@@ -1,4 +1,4 @@
-import styles from './../styles.module.scss'
+import styles from './styles.module.scss';
 // import {BiSearch} from 'react-icons/bi'
 // import {AiOutlineMail} from 'react-icons/ai'
 
