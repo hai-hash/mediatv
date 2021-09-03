@@ -1,0 +1,87 @@
+.header{
+    height: 50px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+   
+
+    .header_search{
+        height: 80%;
+        width: 35%;
+        background-color: #fff;
+        display: flex;
+       margin-left: 50%;
+       transform: translate(-50%);
+       align-items: center;
+       justify-content: center;
+       border-radius: 5px;
+       input{
+        width: 80%;
+        border: none;
+        &:focus-visible{
+            outline-style: none;
+            }  
+        }
+        .icon{
+            height: 25px;
+            cursor: pointer;
+            width: 25px;
+        }
+    }
+    .contact_header{
+        height: 80%;
+        width: 5%;
+        background-color: rgb(182, 178, 178,0.5);
+        margin-left: -4%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        span{
+            margin-left: 3px;
+            margin-top: -3px;
+            
+        }
+    }
+}
+
+.menu{
+    height: 43px;
+    background-color: #ddd;
+    .category{
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        li{
+            list-style: none;
+            padding: 9px 20px;
+            box-sizing: border-box;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-left: 1px solid #ccc;
+            .icon_home{
+                height: 25px;
+                width: 25px;
+            }
+            .icon_category{
+                height: 20px;
+                width: 20px;
+            }
+            .icon_nation, .icon_media,.icon_firm,.icon_star,.icon_cinema,.icon_tvshow{
+                height: 15px;
+                width: 15px;
+            }
+            span{
+                margin-left: 3px;
+            }
+            &:hover{
+                color: red;
+                background-color: #fff;
+            }
+        }
+    }
+}

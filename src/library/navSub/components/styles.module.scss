@@ -1,0 +1,27 @@
+.nav_item{
+    height: 75px;
+    display: flex;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    img{
+        width: 75px;
+    }
+    .info_item{
+       margin-left: 10px;
+       .title{
+        font-weight: 500;
+       }
+       .content{
+           opacity: 0.8;
+       }
+       .star{
+           .star_full{
+               color: rgb(238, 200, 97);
+           }
+       }
+    }
+    &:hover{
+        opacity: 0.8;
+    }
+}

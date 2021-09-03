@@ -1,0 +1,26 @@
+.rank{
+    text-align: center;
+    font-size: 30px;
+    color: rgb(16, 9, 116);
+    border-bottom: 1px solid #ccc;
+    &:hover{
+        color: red;
+        cursor: pointer;
+    }
+}
+.button_navsub{
+    display: flex;
+    button{
+        padding:10px 10px;
+        margin: 5px;
+        cursor: pointer;
+        background: rgb(16, 9, 116);
+        border:none;
+        color: #fff;
+        border-radius: 5px;
+
+        &:hover{
+            background: rgb(202, 20, 202);
+        }
+    }
+}
