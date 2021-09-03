@@ -12,7 +12,7 @@ const Header = () =>{
            </div>
            <div className={styles.contact_header}>
                <AiOutlineMail/>
-               <span>Liên hệ</span>
+               <span><a href="mailto:whynotme1131999@gmail.com">Liên hệ</a></span>
            </div>
 
        </div>
