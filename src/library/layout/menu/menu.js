@@ -1,4 +1,12 @@
 import styles from './../styles.module.scss'
+// import {AiFillHome} from 'react-icons/ai'
+// import {AiOutlineBlock} from 'react-icons/ai'
+// import {BiGlobe} from 'react-icons/bi'
+// import {GrMultimedia} from 'react-icons/gr'
+// import {RiPlayList2Fill} from 'react-icons/ri'
+// import {GiJusticeStar} from 'react-icons/gi'
+// import {MdPlaylistPlay} from 'react-icons/md'
+// import {BiCaretRightCircle} from 'react-icons/bi'
 
 const Menu = () =>{
     return (
