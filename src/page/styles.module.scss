@@ -1,0 +1,22 @@
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+
+    .container_main{
+        display: flex;
+        .container_left{
+            width: 70%;
+            margin: 17px;
+        }
+    
+        .container_right{
+            width: 30%;
+            margin: 17px;
+        }
+
+    }
+
+    
+}
+

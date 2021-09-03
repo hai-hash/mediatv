@@ -1,0 +1,103 @@
+.banner{
+    margin:17px;
+   
+    img{
+        width: 180px;
+        border-radius: 5px;
+        margin: 0 auto;
+    }
+    .item_banner{
+        position: relative;
+       .title_banner{
+           color: rgb(19, 19, 163);
+           padding-top: 5px;
+           font-size: 18px;
+           font-weight: 500;
+           
+       }
+       .time_banner{
+           font-size: 14px;
+           color:#ccc;
+       }
+       span{
+           position: absolute;
+           background: rgb(150, 20, 20);
+           top: 4px;
+           left: 10px;
+           border-radius: 5px;
+           color: #fff;
+       }
+    }
+}
+
+.slide{
+    .item_slide{
+        position: relative;
+        img{
+            width: 100%;
+            height: 400px;
+        }
+        .title_slide{
+            position: absolute;
+            background: rgba(255, 255, 255,0.5);
+            top: 5px;
+            left: 5px;
+            border-radius: 5px;
+            .name_slide{
+                font-size: 18px;
+                color: rgb(19, 19, 163);
+                margin-left: 2px;
+                margin-right: 2px;
+            }
+            .time_slide{
+                font-size: 14px;
+                color:rgb(45, 41, 228);
+                margin-left: 2px;
+                margin-right: 2px;
+            }
+    
+        }
+
+
+    }
+  
+    
+    
+}
+
+.item_firm{
+    position: relative;
+    margin-bottom: 20px;
+    img{
+        width: 100%;
+        border-radius: 5px;
+        margin: 0 auto;
+    }
+    .title_banner{
+        padding-top: 5px;
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .time_banner{
+        font-size: 14px;
+        color:#ccc;
+    }
+    span{
+        position: absolute;
+        background: rgb(150, 20, 20);
+        top: 4px;
+        left: 10px;
+        border-radius: 5px;
+        color: #fff;
+    }
+}
+.title_series{
+    font-size: 30px;
+    font-weight: 300;
+    color: rgb(195, 116, 211);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    .icon_series{
+        margin-right: 20px;
+    }
+}
