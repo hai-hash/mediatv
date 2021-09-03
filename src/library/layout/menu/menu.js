@@ -1,5 +1,5 @@
 import styles from './../styles.module.scss'
-// import {AiFillHome} from 'react-icons/ai'
+import {AiFillHome} from 'react-icons/ai'
 // import {AiOutlineBlock} from 'react-icons/ai'
 // import {BiGlobe} from 'react-icons/bi'
 // import {GrMultimedia} from 'react-icons/gr'
@@ -13,7 +13,7 @@ const Menu = () =>{
         <>
         <div className={styles.menu}>
             <ul className={styles.category}>
-                <li>Home</li>
+                <li><AiFillHome className={styles.icon_home}/></li>
                 <li><span>Thể loại</span></li>
                 <li><span>Quốc gia</span></li>
                 <li><span>Phim lẻ</span></li>
