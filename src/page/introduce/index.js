@@ -1,13 +1,15 @@
 import styles from './styles.module.scss'
+import {Link} from 'react-router-dom'
 
 const Introduct = () =>{
     return (
+        
         <>
         <div className={styles.wap_introduct}>
             <div className={styles.top_introduct}>
                 <div className={styles.image_introduct}>
                     <img src="https://i.pinimg.com/474x/27/c5/fa/27c5fac7833c0233cef69700e4b44ee6.jpg" alt="" />
-                    <div className={styles.view}><p>Xem ngay</p></div>
+                    <div className={styles.view}><Link to = "/firm"><p>Xem ngay</p></Link></div>
                 </div>
                 <div className={styles.info_introduct}>
                     <p className={styles.name}>Bí Mật Nơi Góc Tối</p>
