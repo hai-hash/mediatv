@@ -1,0 +1,63 @@
+.wap_introduct{
+    .top_introduct{
+        display: flex;
+        .image_introduct{
+            position: relative;
+            width: 300px;
+            height: 500px;
+            img{
+                width: 300px;
+            }
+            .view{
+                top: 380px;
+                position: absolute;
+                width: 300px;
+                height: 46px;
+                background-color: rgba(0,0,0,0.5);
+                align-content: center;
+                p{
+                    background-color: red;
+                    height:30px;
+                    width: 100px;
+                    margin: 0 auto;
+                    margin-top: 10px;
+                    border-radius: 5px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    &:hover{
+                        opacity: 0.6;
+                    }
+                }
+            }
+
+        }
+        .info_introduct{
+
+            padding-left: 40px;
+            .name{
+                font-size: 40px;
+                font-weight: 500;
+            }
+            .time{
+                font-size: 22px;
+                font-weight: 500;
+            }
+            .status{
+                font-size: 18px;
+                span{
+                    color: red;
+                    font-weight: 500;
+                }
+            }
+            .director,.actor,.type{
+                font-size: 18px;
+                span{
+                    color: blue;
+                }
+            }
+
+        }
+    }
+}
