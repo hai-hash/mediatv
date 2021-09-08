@@ -1,0 +1,21 @@
+.list_chap{
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: 500;
+}
+.chap{
+    display: flex;
+    p{
+       
+        background-color: #ccc;
+        color: #fff;
+        padding: 10px 20px;
+        margin-right: 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        &:hover{
+            background-color: rgb(177, 135, 216);
+        }
+    }
+}
