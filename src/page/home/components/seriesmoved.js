@@ -2,15 +2,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ItemFirm from './Itemfirm';
 import styles from './styles.module.scss';
 import {AiFillVideoCamera} from 'react-icons/ai'
+import VideoUtils from '../../../handler/video/video.utils';
 const SeriesMoved = () =>{
-    const arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+    const arr = []
+    const{videos} = VideoUtils();
     const display = () =>{
         var result = null;
-        if(arr.length > 0){
-            result = arr.map((slide,index) =>{
+        if(videos.length > 0){
+            result = videos.map((video,index) =>{
                 return (
                     <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3"  key={index}>
-                      <ItemFirm/>
+                      <ItemFirm video={video}/>
                     </div>
                 )
             })

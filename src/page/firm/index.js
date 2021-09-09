@@ -1,37 +1,41 @@
 import styles from './styles.module.scss'
-import { useState } from 'react'
+import { useState ,useEffect} from 'react'
+import {useParams} from 'react-router-dom'
+import VideoUtils from './../../handler/video/video.utils'
+
 const Firm = () =>{
     const [urlCurren,setUrlCurren] = useState("https://www.youtube.com/embed/AeaD3Q-bFjU");
-    const [chap,setChap] = useState([
-        {
-            namechap: "Tập 1",
-            url: "https://www.youtube.com/embed/AeaD3Q-bFjU",
-        },
-        {
-            namechap: "Tập 2",
-            url: "https://youtube.com/embed/mOUQwVUO4q0",
-        },
-        {
-            namechap: "Tập 3",
-            url: "https://www.youtube.com/embed/tzv86xibN6s",
-        },
-        {
-            namechap: "Tập 4",
-            url: " https://www.youtube.com/embed/puHNx_44koE",
-        },
-       
-        
-    ])
+    const [chap,setChap] = useState([])
+    const {getFirmCurren,firmCurren} = VideoUtils();
     const onNextChap = (url) =>{
         setUrlCurren(url);
     }
+    let { id } = useParams();
+
+    useEffect(() => {
+       getFirmCurren(id)   
+    }, [])
+
+    useEffect(() => {
+        if(firmCurren){
+        setChap(firmCurren.firm)   
+        }
+     }, [firmCurren])
+
+     
+    useEffect(() => {
+        if(firmCurren && firmCurren.firm){
+        setUrlCurren(firmCurren.firm[0].url);
+        }
+     }, [chap])
+
 
 
     const onDisplayChap = () =>{
         let result = null;
         if(chap.length > 0){
             result = chap.map((cha,index) =>{
-                return  <p key={index} onClick={() => onNextChap(cha.url)}>{cha.namechap}</p>
+                return  <p key={index} style={{backgroundColor: urlCurren === cha.url ? "rgb(177, 135, 216)" : "#ccc"}} onClick={() => onNextChap(cha.url)}>{cha.namechap}</p>
             })
         }
         return result;
@@ -42,7 +46,7 @@ const Firm = () =>{
             <iframe style={{marginTop:"44px"}} width="785" height="480" src={urlCurren} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"></iframe>
             <div className={styles.list_chap}>Danh sách tập</div>
             <div className={styles.chap}>
-                {onDisplayChap()}
+            {onDisplayChap()}
             </div>
         </div>
     )
