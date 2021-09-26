@@ -1,8 +1,7 @@
-import Home from "./home/home";
 import styles from './styles.module.scss';
 import Banner from './home/components/banner'
 import NavSub from "../library/navSub/navsub";
-import {Switch,Route,Link} from "react-router-dom";
+import {Switch,Route} from "react-router-dom";
 import  {routes} from './../library/Router/route';
 const Body = () =>{
     const displayPage = () =>{

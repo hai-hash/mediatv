@@ -23,8 +23,6 @@ const Anime = () =>{
         <div className="row">
         {display()}
         </div>
-        
-
         </>
     )
 }

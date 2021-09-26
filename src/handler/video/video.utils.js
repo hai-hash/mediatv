@@ -1,10 +1,48 @@
-
-import {useState} from 'react'
-import {findIndex} from 'lodash'
+import * as apis from './../api/callapi';
+import {useState,useEffect} from 'react';
+import {findIndex} from 'lodash';
+import * as urls from './../api/apis.url';
 
 
 export default function VideoUtils(){
     const [firmCurren,setFirmCurren] = useState();
+    const [data,setData] = useState([]);
+    const [dataFilmAdmin,setDataFilmAdmin] = useState([]);
+    const [film,setFilm] = useState({});
+    useEffect(() => {
+        GetAllFilm(urls.GET_ALL_FILM,8,0);
+       
+    }, [])
+    const GetAllFilm = async(url,size,page) =>{
+        var res = await apis.get(url,size,page);
+        setData(res.data);
+        console.log("đây là dữ liệu của film khi gọi api:,",res);
+    }
+
+    const GetAllFilmAdmin = async() =>{
+        console.log("đã vào đến đây")
+        var res = await apis.getNoPage(urls.GET_ALL_FILM);
+        setDataFilmAdmin(res.data);
+        console.log("dữ liệu admin gọi:,",res);
+    }
+
+    const GetFilmById = async(url,id) =>{
+        var res = await apis.getDetail(url,id);
+        console.log("đây là dữ liệu chi tiết firm",res);
+        setFilm(res.data);
+    }
+
+    // thay đổi trang thái của film 
+    const changeActiveFilm = async(id) =>{
+        const res = await apis.put(`${urls.CHANGE_ACTIVE_FILM}/${id}`);
+        console.log(res);
+    }
+
+     // thay đổi trang thái của hot film
+     const changeHotFilm = async(id) =>{
+        const res = await apis.put(`${urls.CHANGE_HOT}/${id}`);
+        console.log(res);
+    }
     const [videos, setVideo] = useState([
         {
             id: 1,
@@ -98,6 +136,13 @@ export default function VideoUtils(){
     return {
         videos,
         getFirmCurren,
-        firmCurren
+        firmCurren,
+        data,
+        GetFilmById,
+        film,
+        GetAllFilmAdmin,
+        dataFilmAdmin,
+        changeActiveFilm,
+        changeHotFilm,
     }
 }

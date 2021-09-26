@@ -1,0 +1,78 @@
+.wap_menu{
+    background-color: black;
+    color: rgb(214, 209, 209);
+    font-size: 20px;
+    box-sizing: border-box;
+    min-height: 900px;
+    border: 1px solid #ffff;
+    img{
+        width: 100%;
+    }
+}
+
+.element{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    &:hover{
+        color: #ffff;
+    }
+    .title{
+        position: relative;
+        padding-left: 20px;
+        display: flex;
+        flex-direction: row;
+        cursor: pointer;
+        .icon{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        
+        }
+        h5{
+            margin-left: 20px;
+            margin-bottom: 0px;
+        }
+        span{
+            position: absolute;
+            top: 0;
+            right: 20px;
+        }
+    }
+    .element_menu{
+        display: none;
+        padding-left: 70px;
+        padding-top: 20px;
+       margin-bottom: 0px;
+        li{
+            list-style: none;
+            cursor: pointer;
+        }
+    }
+    .active{
+        display: block;
+    }
+}
+
+.body{
+    // min-height: 850px;
+    background-color: #ddd;
+    .header{
+        background-color: #fff;
+        min-height: 50px;
+        position: relative;
+        .icon_account{
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            top: 0;
+            right: 10px;
+            color: rgb(57, 211, 203);
+        }
+    }
+}
+
+.toLink{
+    color: #fff;
+    text-decoration: none;
+}

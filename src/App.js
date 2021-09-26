@@ -1,16 +1,17 @@
 
 import './App.css';
-import Layout from './library/layout/layout';
-import Body from './page/body';
-import {BrowserRouter as Router} from "react-router-dom";
+import HomeAdmin from './page/homeadmin';
+import HomeUser from './page/homeuser';
+import {Switch,Route,Link,Redirect} from "react-router-dom";
 
 function App() {
   return (
     <>
-    <Router>
-    <Layout/>
-    <Body/>
-    </Router>
+    <Switch>
+      <Route path="/home"><HomeUser/></Route>
+      <Route path="/admin"><HomeAdmin/></Route>
+      <Route path="/"><Redirect to="/home"/></Route>
+    </Switch>
     
     </>
   );

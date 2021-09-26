@@ -1,14 +1,14 @@
 import styles from './styles.module.scss'
-import {Switch,Route,Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const ItemFirm = ({video}) =>{
     return (
         <>
-        <Link to={`/anime/${video.id}`} className={styles.wap_item_firm}>
+        <Link to={`/home/anime/${video.id}`} className={styles.wap_item_firm}>
         <div className={styles.item_firm}>
-        <img src ={video.url} alt = ""/>
-        <div className={styles.title_banner}>{video.nameVideo}</div>
-        <div className={styles.time_banner}>{video.time}</div>
+        <img src ={video.illustration} alt = ""/>
+        <div className={styles.title_banner}>{video.nameFilm}</div>
+        <div className={styles.time_banner}>{video.viewingTime}</div>
         <span>Full 40/40</span>
         </div>
         </Link>

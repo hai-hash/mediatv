@@ -5,11 +5,12 @@ import {AiFillVideoCamera} from 'react-icons/ai'
 import VideoUtils from '../../../handler/video/video.utils';
 const SeriesMoved = () =>{
     const arr = []
-    const{videos} = VideoUtils();
+    const{videos,data} = VideoUtils();
+    console.log("đây là dữ liệu :", data);
     const display = () =>{
         var result = null;
-        if(videos.length > 0){
-            result = videos.map((video,index) =>{
+        if(data.length > 0){
+            result = data.map((video,index) =>{
                 return (
                     <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3"  key={index}>
                       <ItemFirm video={video}/>

@@ -1,14 +1,5 @@
-
 import React from 'react'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useRouteMatch,
-    useParams
-  } from "react-router-dom";
-
+import {useRouteMatch} from "react-router-dom";
 const NotFound = () => {
     let url = useRouteMatch();
     console.log(url);
@@ -18,5 +9,4 @@ const NotFound = () => {
         </div>
     )
 }
-
 export default NotFound
