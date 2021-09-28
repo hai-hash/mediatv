@@ -1,47 +1,47 @@
-import React,{useState} from 'react'
-export default function MenuUtils(){
+import { useState } from 'react'
+export default function MenuUtils() {
     const [menu, setMenu] = useState(
         [
             {
-                title : "Trang chủ",
+                title: "Trang chủ",
                 icon: "AiFillHome",
                 element: [
                 ]
             },
             {
-                title : "Quản lý tài khoản",
+                title: "Quản lý tài khoản",
                 icon: "MdAccountCircle",
                 element: [
                     {
                         title: "Tài khoản",
-                        url : "/admin/account"
+                        url: "/admin/account"
                     },
                 ]
             },
             {
-                title : "Quản lý phim",
+                title: "Quản lý phim",
                 icon: "AiFillSwitcher",
                 element: [
                     {
                         title: "Phim",
-                        url : "/admin/film"
+                        url: "/admin/film"
                     },
                     {
                         title: "Thể loại",
-                        url : "/admin/category"
+                        url: "/admin/category"
                     },
                     {
                         title: "Tập phim",
-                        url : "/admin/episodes"
+                        url: "/admin/episodes"
                     }
                 ]
             }
         ]
     );
 
-    return{
+    return {
         menu
     }
-   
+
 }
 

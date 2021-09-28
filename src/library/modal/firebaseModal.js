@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Modal, ModalBody } from 'reactstrap';
 import styles from './styles.module.scss';
-import accountApi from '../../api/account/accountApi';
+// import accountApi from '../../api/account/accountApi';
 const FireBaseModal = ({ activeFireBase, onFireBase, dataFormSignUp }) => {
     const [dataForm, setDataForm] = useState({ verify: "" })
-    console.log("this firebase:",dataFormSignUp);
+    console.log("this firebase:", dataFormSignUp);
     const onChangeForm = (event) => {
         var name = event.target.name;
         var value = event.target.value;
@@ -12,28 +12,28 @@ const FireBaseModal = ({ activeFireBase, onFireBase, dataFormSignUp }) => {
     }
     const onSubmitForm = (event) => {
         event.preventDefault();
-        const fetchSignUp = async () => {
-            try {
-                const params = dataFormSignUp;
-                const res = await accountApi.signup(params)
-                console.log(res);
-                alert("đăng ký thành công");
-            } catch (error) {
-                console.log("Failed to fetch sign up :", error);
-                alert("Tên tài khoản đã tồn tại");
-            }
-        }
-        const code = dataForm.verify;
-        window.confirmationResult.confirm(code).then((result) => {
-            const user = result.user;
-            console.log(JSON.stringify(user));
-            fetchSignUp();
-            alert("Xác nhận mã thành công");
-            onFireBase();
-        }).catch((error) => {
-            console.log(error);
-            alert("Xác nhận thất bại")
-        });
+        // const fetchSignUp = async () => {
+        //     try {
+        //         const params = dataFormSignUp;
+        //         const res = await accountApi.signup(params)
+        //         console.log(res);
+        //         alert("đăng ký thành công");
+        //     } catch (error) {
+        //         console.log("Failed to fetch sign up :", error);
+        //         alert("Tên tài khoản đã tồn tại");
+        //     }
+        // }
+        // const code = dataForm.verify;
+        // window.confirmationResult.confirm(code).then((result) => {
+        //     const user = result.user;
+        //     console.log(JSON.stringify(user));
+        //     fetchSignUp();
+        //     alert("Xác nhận mã thành công");
+        //     onFireBase();
+        // }).catch((error) => {
+        //     console.log(error);
+        //     alert("Xác nhận thất bại")
+        // });
 
     }
     return (

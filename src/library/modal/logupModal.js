@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Modal, ModalBody } from 'reactstrap';
 import styles from './styles.module.scss';
 import accountApi from '../../api/account/accountApi';
@@ -12,55 +12,55 @@ const LogUpModal = ({ activeSignUp, onSignUp, setDataFormSignUp, setActiveFireBa
     }
 
 
-    const customNumberPhone = () => {
-        let numberPhone = dataForm.numberPhone.slice(1);
+    // const customNumberPhone = () => {
+    //     let numberPhone = dataForm.numberPhone.slice(1);
 
-        return "+84" + numberPhone;
-    }
+    //     return "+84" + numberPhone;
+    // }
 
     const onSubmitForm = (event) => {
         event.preventDefault();
         setDataFormSignUp(dataForm);
-        figureCapcha();
-        var numberPhone = customNumberPhone(dataForm.numberPhone);
-        console.log("đây là số điện thoại", numberPhone);
-        const appVerifier = window.recaptchaVerifier;
-        firebase.auth().signInWithPhoneNumber(numberPhone, appVerifier)
-            .then((confirmationResult) => {
-                window.confirmationResult = confirmationResult;
-                console.log("Sending DTO ...")
-                onSignUp();
-                setActiveFireBase(true);
-            }).catch((error) => {
-                console.log("can not send to numberPhone :", error)
-            });
+        // figureCapcha();
+        // var numberPhone = customNumberPhone(dataForm.numberPhone);
+        // console.log("đây là số điện thoại", numberPhone);
+        // const appVerifier = window.recaptchaVerifier;
+        // firebase.auth().signInWithPhoneNumber(numberPhone, appVerifier)
+        //     .then((confirmationResult) => {
+        //         window.confirmationResult = confirmationResult;
+        //         console.log("Sending DTO ...")
+        //         onSignUp();
+        //         setActiveFireBase(true);
+        //     }).catch((error) => {
+        //         console.log("can not send to numberPhone :", error)
+        //     });
 
 
-        // const fetchSignUp = async () => {
-        //     try {
-        //         const params = dataForm;
-        //         const res = await accountApi.signup(params)
-        //         console.log(res);
-        //         alert("đăng ký thành công");
-        //     } catch (error) {
-        //         console.log("Failed to fetch sign up :", error);
-        //         alert("Tên tài khoản đã tồn tại");
-        //     }
-        // }
+        const fetchSignUp = async () => {
+            try {
+                const params = dataForm;
+                const res = await accountApi.signup(params)
+                console.log(res);
+                alert("đăng ký thành công");
+            } catch (error) {
+                console.log("Failed to fetch sign up :", error);
+                alert("Tên tài khoản đã tồn tại");
+            }
+        }
 
-        // fetchSignUp();
+        fetchSignUp();
     }
 
-    const figureCapcha = () => {
-        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-in-button', {
-            'size': 'invisible',
-            'callback': (response) => {
-                // reCAPTCHA solved, allow signInWithPhoneNumber.
-                onSubmitForm();
-            },
-            defaultCountry: "IN"
-        });
-    }
+    // const figureCapcha = () => {
+    //     window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-in-button', {
+    //         'size': 'invisible',
+    //         'callback': (response) => {
+    //             // reCAPTCHA solved, allow signInWithPhoneNumber.
+    //             onSubmitForm();
+    //         },
+    //         defaultCountry: "IN"
+    //     });
+    // }
     return (
         <div>
             <Modal

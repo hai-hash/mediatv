@@ -2,7 +2,7 @@
 import './App.css';
 import PageAdmin from './page/pageAdmin';
 import PageUser from './page/pageUser';
-import { Switch, Route, Link, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 function App() {
   return (
