@@ -1,18 +1,18 @@
 
 import './App.css';
-import HomeAdmin from './page/homeadmin';
-import HomeUser from './page/homeuser';
-import {Switch,Route,Link,Redirect} from "react-router-dom";
+import PageAdmin from './page/pageAdmin';
+import PageUser from './page/pageUser';
+import { Switch, Route, Link, Redirect } from "react-router-dom";
 
 function App() {
   return (
     <>
-    <Switch>
-      <Route path="/home"><HomeUser/></Route>
-      <Route path="/admin"><HomeAdmin/></Route>
-      <Route path="/"><Redirect to="/home"/></Route>
-    </Switch>
-    
+      <Switch>
+        <Route path="/home"><PageUser /></Route>
+        <Route path="/admin"><PageAdmin /></Route>
+        <Route path="/"><Redirect to="/home" /></Route>
+      </Switch>
+
     </>
   );
 }

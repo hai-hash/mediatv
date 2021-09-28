@@ -49,6 +49,60 @@
             
         }
     }
+    .user{
+        position: relative;
+        right: -100px;
+        cursor: pointer;
+        .iconUser{
+            color: #fff;
+            width: 40px;
+            height: 40px;
+        }
+        .subMenu{
+            position: absolute;
+            display: none;
+            border-radius: 5px;
+            top: 44px;
+            left: -100px;
+            min-height: 400px;
+            width: 240px;
+            background-color: #fff;
+            border: 0.5px solid #000;
+            ul{
+                border-bottom: 0.5px solid #ccc;
+                padding-left: 20px;
+                li{
+                    list-style: none;
+                    padding: 5px 0;
+                    font-weight: 500;
+                    cursor: pointer;
+                    &:hover{
+                        color: blue;
+                    }
+                    
+                }
+                .avatar{
+                    display: flex;
+                    .icon_name{
+                        background: #000;
+                        color: #fff;
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 100%;
+                        text-align: center;
+                        line-height: 50px;
+                    }
+                    .name{
+                        line-height: 50px;
+                        padding: 0 10px;
+                    }
+                }
+            }
+        }
+        .active{
+            display: block;
+        }
+    }
 }
 
 .menu{

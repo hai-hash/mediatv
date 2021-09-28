@@ -1,0 +1,44 @@
+.content{
+    background: url("https://media.istockphoto.com/videos/defocused-particles-background-loop-video-id932483108?b=1&k=6&m=932483108&s=640x640&h=HAwn4USIw_AF3MuWG3E87XQNYCz7MYLq3sWPn7KDNss=");
+    background-size: cover;
+    span{
+        display: block;
+        padding-top: 30px;
+        img{
+            height: 50px;
+            margin-left: 50%;
+            transform: translate(-50%);
+        }
+    }
+
+    .title{
+        text-align: center;
+        color: #fff;
+        padding: 20px 0;
+        font-size: 20px;
+    }
+    form{
+        margin-top:20px;
+        text-align: center;
+        .line_info{
+            padding: 10px 0;
+            width: 70%;
+            display: flex;
+            margin-left: 50%;
+            transform: translate(-50%);
+            input{
+                height: 45px;
+            }
+        }
+        
+        button{
+            margin-top: 30px;
+            margin-bottom: 30px;
+            width: 70%;
+        }
+    }
+}
+.modalBody{
+    padding: 0px !important;
+}
+

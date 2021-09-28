@@ -3,14 +3,18 @@ import React,{useState} from 'react'
 import styles from './styles.module.scss';
 import FilmAdd from './filmadd';
 import * as types from './../../handler/video/typeFilm';
+import DetailFilm from './detail';
 export default function Film(){
     const [status,setStatus] = useState(types.DISPLAY);
+    const [id,setId] = useState(0);
     const genData = () =>{
         switch (status) {
             case types.DISPLAY:
-                return  <FilmDisplay/>
+                return  <FilmDisplay setStatus={setStatus} setId={setId}/>
             case types.ADD:
                 return <FilmAdd/>
+            case types.Detail:
+                    return <DetailFilm id = {id}/>
         
             default:
                 return  <FilmDisplay/>
@@ -18,6 +22,8 @@ export default function Film(){
     }
     const onAdd = () =>{
         if(status === types.DISPLAY)
+        setStatus(types.ADD)
+        else if(status === types.Detail)
         setStatus(types.ADD)
         else  setStatus(types.DISPLAY)
     }

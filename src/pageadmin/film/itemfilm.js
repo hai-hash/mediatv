@@ -1,8 +1,9 @@
 import React,{useState} from 'react'
 import styles from './styles.module.scss';
 import { AiOutlineEdit,AiFillFileText } from 'react-icons/ai';
+import * as types from './../../handler/video/typeFilm';
 
-export default function ItemFirm({film,changeActiveFilm,changeHotFilm}){
+export default function ItemFirm({film,changeActiveFilm,changeHotFilm,setStatus,setId}){
     const [hot,setHot] = useState(film?.hot);
     const [active,setActive] = useState(film?.active);
     const onHot = () =>{
@@ -12,6 +13,10 @@ export default function ItemFirm({film,changeActiveFilm,changeHotFilm}){
     const onActive = () =>{
         setActive(!active);
         changeActiveFilm(film?.id)
+    }
+    const onDetail = () =>{
+        setId(film?.id)
+        setStatus(types.Detail);
     }
     return (
             <tr>
@@ -23,8 +28,8 @@ export default function ItemFirm({film,changeActiveFilm,changeHotFilm}){
                 <td className={hot ? styles.hot : styles.nhot} onClick={onHot}>Hot</td>
                 <td className={active ? styles.hot : styles.nhot} onClick={onActive}>Hoạt động</td>
                 <td className={styles.action}>
-                    <button className={styles.edit}><AiOutlineEdit/></button>
-                    <button className={styles.detail}><AiFillFileText/></button>
+                  <button className={styles.edit}><AiOutlineEdit/></button>  
+                  <button className={styles.detail} onClick={onDetail}><AiFillFileText/></button>
                 </td>
          </tr>
       

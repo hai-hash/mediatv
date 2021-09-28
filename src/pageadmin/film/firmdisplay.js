@@ -3,7 +3,7 @@ import { Table } from 'reactstrap';
 import styles from './styles.module.scss';
 import VideoUtils from './../../handler/video/video.utils';
 import ItemFirm from './itemfilm';
-const FilmDisplay = () => {
+const FilmDisplay = ({setStatus,setId}) => {
     const {dataFilmAdmin,GetAllFilmAdmin,changeActiveFilm,changeHotFilm,} = VideoUtils();
     useEffect(() => {
         GetAllFilmAdmin();
@@ -13,7 +13,7 @@ const FilmDisplay = () => {
         let result = null;
         if(data.length > 0){
             result = data.map((film,index) =>{
-                return <ItemFirm key={index} film = {film} changeActiveFilm={changeActiveFilm} changeHotFilm={changeHotFilm}/>
+                return <ItemFirm key={index} film = {film} changeActiveFilm={changeActiveFilm} changeHotFilm={changeHotFilm} setStatus={setStatus} setId={setId}/>
             })
         }
         return result;
