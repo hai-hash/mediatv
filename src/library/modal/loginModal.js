@@ -1,15 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Modal, ModalBody } from 'reactstrap';
 import styles from './styles.module.scss';
+import { useContext } from 'react';
+import { PublicContext } from '../../publicContexts/contexts';
+import accountApi from '../../api/account/accountApi';
+
 const LogInModal = ({ activeSignIn, onSignIn }) => {
     const [dataForm, setDataForm] = useState({ username: "", password: "" })
+
+    const history = useHistory();
+
+    const { setIdToken, setInfoAccount, setIsLogin } = useContext(PublicContext);
+
     const onChangeForm = (event) => {
         var name = event.target.name;
         var value = event.target.value;
         setDataForm({ ...dataForm, [name]: value });
     }
+
     const onSubmitForm = (event) => {
         event.preventDefault();
+        const fetchSignIn = async () => {
+            try {
+                const params = dataForm;
+                const res = await accountApi.signin(params)
+                setInfoAccount(res);
+                setIsLogin(true);
+                localStorage.setItem("user", JSON.stringify(res));
+                localStorage.setItem("token", res?.token);
+                alert("Đăng nhập thành công");
+                onSignIn();
+                if (res?.role === "ADMIN") {
+                    history.push("/admin")
+                }
+
+            } catch (error) {
+                console.log("Failed to fetch sign in :", error);
+                alert("Tài khoản hoặc mật khẩu không chính xác");
+            }
+        }
+
+        fetchSignIn();
     }
     return (
         <div>

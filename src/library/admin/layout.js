@@ -1,18 +1,17 @@
-import React from 'react'
-import Menu from './menu'
+import React, { useEffect, useContext } from 'react';
+import Menu from './menu';
 import { Row, Col } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import BodyAdmin from './body';
-
-export default function LayoutAdmin(){
+export default function LayoutAdmin() {
     return (
         <>
             <Row>
                 <Col xs="2">
-                    <Menu/>
+                    <Menu />
                 </Col>
                 <Col xs="10">
-                   <BodyAdmin/>
+                    <BodyAdmin />
                 </Col>
             </Row>
         </>

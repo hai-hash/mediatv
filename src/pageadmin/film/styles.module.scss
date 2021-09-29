@@ -82,3 +82,37 @@
     cursor: pointer;
 }
 
+.wap_detail_film{
+    background-color: #fff;
+    .detail_film{
+        background-color: #fff;
+        border: 1px solid;
+        width: 60%;
+        border-radius: 23px;
+        margin-left: 50%;
+        transform: translate(-50%);
+        background: url("https://img.freepik.com/free-photo/vintage-textured-watercolor-paper-background_53876-103939.jpg?size=626&ext=jpg") no-repeat ;
+        background-size: cover;
+        h1,h3{
+            padding: 10px 20px;
+            text-align: center;
+        }
+        p{
+            padding: 10px 20px;
+            font-weight: 500;
+            font-size: 20px;
+            span{
+                color: rgb(60, 28, 148);
+            }
+        }
+        table{
+            width: 95%;
+            margin-left: 50%;
+            transform: translate(-50%);
+        }
+    }
+
+}
+
+
+
