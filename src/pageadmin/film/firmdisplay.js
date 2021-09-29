@@ -4,8 +4,8 @@ import styles from './styles.module.scss';
 import VideoUtils from './../../handler/video/video.utils';
 import ItemFirm from './itemfilm';
 import filmAdminApi from '../../api/film/filmAdminApi';
-const FilmDisplay = ({ setStatus, setId, setFilmSelected }) => {
-    const { dataFilmAdmin, GetAllFilmAdmin, changeActiveFilm, changeHotFilm, } = VideoUtils();
+const FilmDisplay = ({ setStatus, setId }) => {
+    const { changeActiveFilm, changeHotFilm, } = VideoUtils();
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -29,7 +29,7 @@ const FilmDisplay = ({ setStatus, setId, setFilmSelected }) => {
         let result = null;
         if (data.length > 0) {
             result = data.map((film, index) => {
-                return <ItemFirm key={index} film={film} changeActiveFilm={changeActiveFilm} changeHotFilm={changeHotFilm} setStatus={setStatus} setId={setId} setFilmSelected={setFilmSelected} />
+                return <ItemFirm key={index} film={film} changeActiveFilm={changeActiveFilm} changeHotFilm={changeHotFilm} setStatus={setStatus} setId={setId} />
             })
         }
         return result;

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styles from './styles.module.scss';
 import { AiOutlineEdit, AiFillFileText } from 'react-icons/ai';
 import * as types from './../../handler/video/typeFilm';
-export default function ItemFirm({ film, changeActiveFilm, changeHotFilm, setStatus, setId, setFilmSelected }) {
+export default function ItemFirm({ film, changeActiveFilm, changeHotFilm, setStatus, setId, }) {
     const [hot, setHot] = useState(film?.hot);
     const [active, setActive] = useState(film?.active);
     const onHot = () => {
@@ -18,7 +18,6 @@ export default function ItemFirm({ film, changeActiveFilm, changeHotFilm, setSta
         setStatus(types.Detail);
     }
     const onEdit = () => {
-        setFilmSelected(film);
         setStatus(types.EDIT)
     }
     return (

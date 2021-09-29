@@ -8,17 +8,16 @@ import FilmEdit from './filmEdit';
 export default function Film() {
     const [status, setStatus] = useState(types.DISPLAY);
     const [id, setId] = useState(0);
-    const [filmSelected, setFilmSelected] = useState();
     const genData = () => {
         switch (status) {
             case types.DISPLAY:
-                return <FilmDisplay setStatus={setStatus} setId={setId} setFilmSelected={setFilmSelected} />
+                return <FilmDisplay setStatus={setStatus} setId={setId} />
             case types.ADD:
                 return <FilmAdd />
             case types.Detail:
                 return <DetailFilm id={id} />
             case types.EDIT:
-                return <FilmEdit filmSelected={filmSelected} />
+                return <FilmEdit />
 
             default:
                 return <FilmDisplay />

@@ -1,32 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Row, Col } from 'reactstrap';
 import styles from './styles.module.scss';
-import filmAdminApi from '../../api/film/filmAdminApi';
-const FilmEdit = ({ filmSelected }) => {
+const FilmEdit = () => {
     const [data, setdata] = useState({ id: "", nameFilm: "", illustration: "", title: "", status: "", director: "", actor: "", nation: "", viewingTime: "", countView: "", hot: "", year: "", active: "", createDate: "", episodes: [], categorys: [] });
     const onChangeData = (e) => {
         var name = e.target.name;
         var value = e.target.value;
         setdata({ ...data, [name]: value })
     }
-    useEffect(() => {
-        if (filmSelected) {
-            setdata(filmSelected);
-        }
-    }, [])
-    console.log("phim đã chọn :", filmSelected)
     const onSaveFilm = (e) => {
         e.preventDefault();
-        const fetchCreateFilm = async () => {
-            try {
-                const res = await filmAdminApi.post(data);
-                console.log(res);
-            } catch (error) {
-                console.log("Failed to fetch create new film :", error);
-            }
-        }
-
-        fetchCreateFilm();
     }
     return (
         <div className={styles.form} onSubmit={onSaveFilm}>

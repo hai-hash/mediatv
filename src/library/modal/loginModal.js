@@ -26,6 +26,7 @@ const LogInModal = ({ activeSignIn, onSignIn }) => {
                 const params = dataForm;
                 const res = await accountApi.signin(params)
                 setInfoAccount(res);
+                setIdToken(res?.token)
                 setIsLogin(true);
                 localStorage.setItem("user", JSON.stringify(res));
                 localStorage.setItem("token", res?.token);

@@ -1,4 +1,3 @@
-import React, { useEffect, useContext } from 'react';
 import Menu from './menu';
 import { Row, Col } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
