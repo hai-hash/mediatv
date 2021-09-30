@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Row, Col } from 'reactstrap';
 import styles from './styles.module.scss';
 import filmAdminApi from '../../api/film/filmAdminApi';
 const FilmAdd = () => {
     const [data, setdata] = useState({ hot: false, active: true, countView: 0 });
+
     const onChangeData = (e) => {
         var name = e.target.name;
         var value = e.target.value;
@@ -72,6 +73,11 @@ const FilmAdd = () => {
                     <Col xs="6" className={styles.col}>
                         <div className="form-group">
                             <input required name="year" type="text" className="form-control" placeholder="year" onChange={onChangeData} />
+                        </div>
+                    </Col>
+                    <Col xs="6" className={styles.col}>
+                        <div className="form-group">
+                            <input required name="type" type="text" className="form-control" placeholder="type" onChange={onChangeData} />
                         </div>
                     </Col>
                 </Row>

@@ -5,6 +5,8 @@ const PublicContextProvider = ({ children }) => {
     const [isLogin, setIsLogin] = useState(localStorage.getItem("token") ? true : false);
     const [idToken, setIdToken] = useState(localStorage.getItem("token") ? localStorage.getItem("token") : null);
     const [infoAccount, setInfoAccount] = useState(localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : {});
+    const [filmSelect, setFilmSelect] = useState();
+    const [categorySelect, setCategorySelect] = useState();
     const publicContextData = {
         isLogin,
         idToken,
@@ -12,6 +14,11 @@ const PublicContextProvider = ({ children }) => {
         setIsLogin,
         infoAccount,
         setInfoAccount,
+        filmSelect,
+        setFilmSelect,
+        categorySelect,
+        setCategorySelect,
+
     }
 
     return (

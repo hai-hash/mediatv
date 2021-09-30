@@ -13,7 +13,28 @@ const filmAdminApi = {
     post: (data) => {
         const url = urls.CREATE_NEW_FILM;
         return axiosClient.post(url, data);
+    },
+    patch: (data, id) => {
+        const url = `${urls.UPDATE_FILM}/${id}`;
+        return axiosClient.patch(url, data);
+    },
+    changeHot: (id) => {
+        const url = `${urls.CHANGE_HOT}/${id}`;
+        return axiosClient.put(url);
+    },
+    changeActive: (id) => {
+        const url = `${urls.CHANGE_ACTIVE}/${id}`;
+        return axiosClient.put(url);
+    },
+    addCategory: (idCategory, idFilm) => {
+        const url = `${urls.ADD_CATEGORY_FILM}/${idCategory}/${idFilm}`;
+        return axiosClient.put(url);
+    },
+    deleteCategory: (idCategory, idFilm) => {
+        const url = `${urls.DELETE_CATEGORY_FILM}/${idCategory}/${idFilm}`;
+        return axiosClient.put(url);
     }
+
 }
 
 export default filmAdminApi;

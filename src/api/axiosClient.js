@@ -1,7 +1,7 @@
 import axios from 'axios';
 import queryString from 'query-string';
 const axiosClient = axios.create({
-    baseURL: "https://file-managementt.herokuapp.com",
+    baseURL: "http://localhost:8080",
     headers: {
         'content-type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem("token") ? localStorage.getItem("token") : ""}`,

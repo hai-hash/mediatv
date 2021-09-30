@@ -1,48 +1,48 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { Table } from 'reactstrap';
 import styles from './styles.module.scss';
-import ItemFirm from './itemfilm';
-import filmAdminApi from '../../api/film/filmAdminApi';
-const FilmDisplay = ({ setStatus, setId }) => {
+import ItemCategory from './itemCategory';
+import categoryAdminApi from '../../api/category/categoryApi';
+const CategoryDisplay = ({ setStatus }) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        const fetchFilmList = async () => {
+        const fetchCategoryList = async () => {
             try {
                 const params = {
                     size: 8,
                     page: 0,
                 }
-                const res = await filmAdminApi.getAll(params);
+                const res = await categoryAdminApi.getAll(params);
                 setData(res);
             } catch (error) {
-                console.log("Failed to fetch film admin list :", error);
+                console.log(error);
             }
         }
 
-        fetchFilmList();
+        fetchCategoryList();
     }, [])
+
 
     const Dispplay = (data) => {
         let result = null;
         if (data.length > 0) {
-            result = data.map((film, index) => {
-                return <ItemFirm key={index} film={film} setStatus={setStatus} setId={setId} />
+            result = data.map((category, index) => {
+                return <ItemCategory category={category} key={index} setStatus={setStatus} />
             })
         }
         return result;
     }
+
     return (
         <div className={styles.table}>
             <Table striped>
                 <thead>
                     <tr>
                         <th>Stt</th>
-                        <th>Name Film</th>
+                        <th>Tiêu Đề</th>
                         <th>Ngày Tạo</th>
                         <th>Người Tạo</th>
-                        <th>View</th>
-                        <th>Hot</th>
                         <th>Active</th>
                         <th>Hành động</th>
                     </tr>
@@ -55,4 +55,4 @@ const FilmDisplay = ({ setStatus, setId }) => {
     )
 }
 
-export default FilmDisplay
+export default CategoryDisplay
