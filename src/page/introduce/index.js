@@ -27,7 +27,7 @@ const Introduct = () => {
                         <div className={styles.view}><Link className={styles.view_now} to={`/home/firm/${id}`}><p>Xem ngay</p></Link></div>
                     </div>
                     <div className={styles.info_introduct}>
-                        <p className={styles.name}>{data.nameFilm ? data.namedata : ""}</p>
+                        <p className={styles.name}>{data.nameFilm ? data.nameFilm : ""}</p>
                         <p className={styles.time}>{data.title ? data.title : ""}</p>
                         <p className={styles.status}>Trạng thái: <span>{data.status ? data.status : ""}</span></p>
                         <p className={styles.director}>Đạo diễn:<span>{data.director ? data.director : ""}</span></p>

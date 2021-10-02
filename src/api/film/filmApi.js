@@ -10,6 +10,10 @@ const filmApi = {
         const url = `${urls.GET_DETAIL_FILM_BY_ID}/${id}`;
         return axiosClient.get(url);
     },
+    getepisode: (id) => {
+        const url = `${urls.GET_EPISODE_BY_ID}/${id}`;
+        return axiosClient.get(url);
+    }
 }
 
 export default filmApi;

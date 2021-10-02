@@ -8,3 +8,4 @@ export const CHANGE_HOT = "/api/admin/film/hot";
 export const CHANGE_ACTIVE = "/api/admin/film/active";
 export const ADD_CATEGORY_FILM = "/api/admin/film/add/category";
 export const DELETE_CATEGORY_FILM = "/api/admin/film/delete/category";
+export const GET_EPISODE_BY_ID = "/api/user/film";
