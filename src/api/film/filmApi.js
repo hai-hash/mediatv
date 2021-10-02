@@ -13,6 +13,14 @@ const filmApi = {
     getepisode: (id) => {
         const url = `${urls.GET_EPISODE_BY_ID}/${id}`;
         return axiosClient.get(url);
+    },
+    getFilmByType: (params) => {
+        const url = urls.GET_FILM_BY_TYPE;
+        return axiosClient.get(url, { params });
+    },
+    getFilmByNameCategory: (params) => {
+        const url = urls.GET_FILM_BY_NAME_CATEGORY;
+        return axiosClient.get(url, { params });
     }
 }
 

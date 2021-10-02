@@ -1,6 +1,6 @@
 import styles from './styles.module.scss'
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import filmApi from '../../api/film/filmApi';
 const Firm = () => {
     const [urlCurren, setUrlCurren] = useState("https://www.youtube.com/embed/AeaD3Q-bFjU");
@@ -14,19 +14,31 @@ const Firm = () => {
     // lấy id bộ phim trên thanh url
     let { id } = useParams();
 
+    const history = useHistory();
+
 
     // gọi api để danh sách tập phim
     useEffect(() => {
-        const getEpisode = async () => {
-            try {
-                const res = await filmApi.getepisode(id);
-                setEpisodes(res);
-            } catch (error) {
-                console.log(error);
+        var token = localStorage.getItem("token");
+        if (token) {
+            const getEpisode = async () => {
+                try {
+                    const res = await filmApi.getepisode(id);
+                    setEpisodes(res);
+                } catch (error) {
+                    console.log(error);
+                }
             }
+            getEpisode();
         }
-        getEpisode();
+        else {
+            history.push("/home");
+            alert("bạn cần đăng nhập để vào trang này");
+        }
+
     }, [id])
+
+
 
 
     // lấy danh sách tập phim 

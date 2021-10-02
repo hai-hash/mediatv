@@ -10,10 +10,11 @@ const Anime = () => {
         const fetchFilmList = async () => {
             try {
                 const params = {
+                    name: "Anime",
                     size: 8,
-                    page: 0,
+                    page: 1,
                 }
-                const res = await filmApi.getAll(params);
+                const res = await filmApi.getFilmByNameCategory(params);
                 setData(res);
             } catch (error) {
                 console.log("Failed to fetch film list :", error);

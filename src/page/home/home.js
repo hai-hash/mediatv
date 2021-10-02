@@ -3,7 +3,6 @@ import Slide from './components/slide';
 import SeriesMoved from './components/seriesmoved';
 import OodMoved from './components/oodmoved';
 import Anime from './components/anime';
-import * as pay from './../../library/zalopay/zalopay';
 // import sentiment from 'sentiment';
 // // var sentiment = require('sentiment');
 // var SentimentObject = new sentiment();

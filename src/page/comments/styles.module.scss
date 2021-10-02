@@ -1,0 +1,61 @@
+.wap_comment{
+    padding: 20px 0;
+    border-top: 0.5px solid #ddd;
+    border-bottom: 0.5px solid #ddd;
+    margin-top: 20px;
+    .count_comment{
+        margin-top: 10px;
+        font-weight: 500;
+    }
+
+    .comments{
+        display: flex;
+        margin-top: 30px;
+        .avatar_comment{
+            margin-right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #ccc;
+            color: #fff;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 100%;
+        }
+        .input_comment{
+            width: 90%;
+            input{
+                height: 90px;
+                width: 100%;
+                border: 0.5px solid #ccc;
+                &:focus-visible{
+                    outline: none;
+                }
+            }
+            button{
+                margin-top: 10px;
+                border: 0.5 solid #000;
+                border-radius: 2px;
+                
+    
+            }
+        }
+        
+    }
+    .display_comment{
+        margin-top: 20px;
+        display: flex;
+        .content_display{
+           margin-left: 30px;
+           .name_user{
+            color: #385898;
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+           }
+           .content_comment_display{
+               font-size: 14px;
+               font-weight: 500;
+           }
+        }
+    }
+}

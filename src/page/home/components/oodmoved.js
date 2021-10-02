@@ -11,10 +11,11 @@ const OodMoved = () => {
         const fetchFilmList = async () => {
             try {
                 const params = {
+                    name: "Phim Lẻ",
                     size: 8,
                     page: 0,
                 }
-                const res = await filmApi.getAll(params);
+                const res = await filmApi.getFilmByType(params);
                 setData(res);
             } catch (error) {
                 console.log("Failed to fetch film list :", error);
