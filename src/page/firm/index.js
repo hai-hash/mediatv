@@ -36,7 +36,7 @@ const Firm = () => {
             alert("bạn cần đăng nhập để vào trang này");
         }
 
-    }, [id])
+    }, [id, history])
 
 
 

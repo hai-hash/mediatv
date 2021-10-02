@@ -93,7 +93,7 @@ const Introduct = () => {
             <div className={styles.share}>
                 <span className={styles.facebook}><AiFillFacebook size={20} />  Chia Sẻ</span>
             </div>
-            <Comments />
+            <Comments id={id} />
         </>
     )
 }
