@@ -69,11 +69,12 @@
             font-weight: 500;
         }
         .subMenu{
+            z-index: 10;
             position: absolute;
             display: none;
             border-radius: 5px;
             top: 50px;
-            left: -100px;
+            left: -160px;
             min-height: 400px;
             width: 240px;
             background-color: #fff;
