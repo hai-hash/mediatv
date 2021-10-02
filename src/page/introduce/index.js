@@ -6,9 +6,11 @@ import LogInModal from '../../library/modal/loginModal';
 import ReactStars from "react-rating-stars-component";
 import { AiOutlineBook, AiFillFacebook } from 'react-icons/ai';
 import Comments from '../comments/comments';
+import ShareModal from '../../library/share/shareModal';
 const Introduct = () => {
     const [data, setData] = useState({});
     const [activeSignIn, setActiveSignIn] = useState(false);
+    const [activeShare, setActiveShare] = useState(false);
     let { id } = useParams();
     const history = useHistory();
     useEffect(() => {
@@ -32,6 +34,9 @@ const Introduct = () => {
             setActiveSignIn(true);
         }
 
+    }
+    const onShare = () => {
+        setActiveShare(!activeShare);
     }
     const onSignIn = () => {
         setActiveSignIn(!activeSignIn);
@@ -91,7 +96,8 @@ const Introduct = () => {
                 </div>
             </div>
             <div className={styles.share}>
-                <span className={styles.facebook}><AiFillFacebook size={20} />  Chia Sẻ</span>
+                <span className={styles.facebook} onClick={onShare}><AiFillFacebook size={20} />  Chia Sẻ</span>
+                <ShareModal activeShare={activeShare} onShare={onShare} id={id} />
             </div>
             <Comments id={id} />
         </>

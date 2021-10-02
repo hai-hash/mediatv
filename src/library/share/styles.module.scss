@@ -1,0 +1,102 @@
+.title_share{
+    padding-bottom: 20px;
+    font-weight: 400;
+    font-size: 20px;
+    position: relative;
+    opacity: 0.8;
+    span{
+        position: absolute;
+        right: 12px;
+        cursor: pointer;
+        .icon_close{
+            color: #000;
+        }
+    &:hover{
+        opacity: 1;
+    }
+    }
+}
+.share{
+    padding-bottom: 40px;
+    display: flex;
+    padding-left: 4px;
+    .customArrow {
+        position: absolute;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .customNext {
+        right: -1px;
+        top: 15%;
+    }
+
+    .customPrev {
+        left: -10px;
+        top: 15%;
+    }
+
+    .slider{
+        width: 100%;
+    }
+    .dip{
+        padding-right: 10px;
+        cursor: pointer;
+        .iconDip{
+            height: 60px;
+            width: 60px;
+            background-color: #ccc;
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        p{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    .facebook,.whatapp,.twitter,.email,.reddit,.vk,.Odnoklassniki,
+    .pinterest,.hatena,.instapaper,.line,.linkedin,.livejournal,
+    .mailru,.pocket,.telegram,.tumblr,.viber,.workplace,.weibo{
+        padding-right: 20px;
+        p{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+    }
+    
+}
+
+.content_dip{
+    padding-bottom: 20px;
+    position: relative;
+    input{
+        width: 100%;
+        height: 50px;
+        padding-left: 20px;
+        padding-right: 25%;
+        border-radius: 2px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        &:focus-visible{
+            outline: unset;
+        }
+    }
+    button{
+        position: absolute;
+        background-color: #f9f9f9;
+        top: 16%;
+        left: 80%;
+        border: none;
+        color: blue;
+        font-size: 20px;
+        &:hover{
+            opacity: 0.6;
+        }
+    }
+   
+}
