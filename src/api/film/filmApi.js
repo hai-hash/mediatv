@@ -21,6 +21,18 @@ const filmApi = {
     getFilmByNameCategory: (params) => {
         const url = urls.GET_FILM_BY_NAME_CATEGORY;
         return axiosClient.get(url, { params });
+    },
+    getFilmNewUpdateByType: (params) => {
+        const url = urls.GET_FILM_NEW_UPDATE_BY_TYPE;
+        return axiosClient.get(url, { params });
+    },
+    getFilmNewUpdateByCategory: (params) => {
+        const url = urls.GET_FILM_NEW_UPDATE_BY_CATEGORY;
+        return axiosClient.get(url, { params });
+    },
+    getFilmViewMost: (name) => {
+        const url = `${urls.GET_FILM_VIEW_MOST}/${name}`;
+        return axiosClient.get(url);
     }
 }
 

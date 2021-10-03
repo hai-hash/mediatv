@@ -11,3 +11,6 @@ export const DELETE_CATEGORY_FILM = "/api/admin/film/delete/category";
 export const GET_EPISODE_BY_ID = "/api/user/film";
 export const GET_FILM_BY_TYPE = "/api/public/film/type";
 export const GET_FILM_BY_NAME_CATEGORY = "/api/public/films/name/category";
+export const GET_FILM_NEW_UPDATE_BY_TYPE = "/api/public/film/type/new/update";
+export const GET_FILM_NEW_UPDATE_BY_CATEGORY = "/api/public/film/category/new/update";
+export const GET_FILM_VIEW_MOST = "/api/public/film/view/most";

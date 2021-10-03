@@ -7,6 +7,7 @@ import ReactStars from "react-rating-stars-component";
 import { AiOutlineBook, AiFillFacebook } from 'react-icons/ai';
 import Comments from '../comments/comments';
 import ShareModal from '../../library/share/shareModal';
+import viewApi from '../../api/view/viewApi';
 const Introduct = () => {
     const [data, setData] = useState({});
     const [activeSignIn, setActiveSignIn] = useState(false);
@@ -25,16 +26,28 @@ const Introduct = () => {
 
         fetchFilmId();
     }, [id])
+
     const onViewNow = () => {
         var token = localStorage.getItem("token");
         if (token) {
+            const addView = async () => {
+                try {
+                    const res = await viewApi.addViewByFilm(id)
+                    console.log(res);
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+
             history.push(`/home/firm/${id}`);
+            addView();
         }
         else {
             setActiveSignIn(true);
         }
 
     }
+
     const onShare = () => {
         setActiveShare(!activeShare);
     }

@@ -12,10 +12,8 @@ const OodMoved = () => {
             try {
                 const params = {
                     name: "Phim Lẻ",
-                    size: 8,
-                    page: 0,
                 }
-                const res = await filmApi.getFilmByType(params);
+                const res = await filmApi.getFilmNewUpdateByType(params);
                 setData(res);
             } catch (error) {
                 console.log("Failed to fetch film list :", error);

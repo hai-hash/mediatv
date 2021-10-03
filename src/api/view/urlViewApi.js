@@ -1,0 +1,1 @@
+export const ADD_VIEW_BY_FILM = "/api/public/views";
