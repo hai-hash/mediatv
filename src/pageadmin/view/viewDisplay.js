@@ -74,7 +74,7 @@ const ViewDisplay = ({ setStatus }) => {
 
 
             <div className={styles.table}>
-                <div className={styles.chart}>
+                {/* <div className={styles.chart}>
                     <Bar
                         data={{
                             labels: dataLable,
@@ -93,7 +93,7 @@ const ViewDisplay = ({ setStatus }) => {
                             maintainAspectRatio: false
                         }}
                     />
-                </div>
+                </div> */}
                 <Table striped>
                     <thead>
                         <tr>
