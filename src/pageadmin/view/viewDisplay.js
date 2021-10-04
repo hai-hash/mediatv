@@ -3,7 +3,7 @@ import { Table } from 'reactstrap';
 import styles from './styles.module.scss';
 import viewApi from '../../api/view/viewApi';
 import ItemView from './itemView';
-import { Bar } from 'react-chartjs-2';
+// import { Bar } from 'react-chartjs-2';
 const ViewDisplay = ({ setStatus }) => {
     const [data, setData] = useState([]);
     const [dataLable, setDataLable] = useState([]);
