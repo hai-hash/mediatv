@@ -77,11 +77,11 @@ const ViewDisplay = ({ setStatus }) => {
                 <div className={styles.chart}>
                     <Bar
                         data={{
-                            labels: dataLable,
+                            labels: ['ble', 'd', 'd', 'd'],
                             datasets: [
                                 {
                                     label: "view Total",
-                                    data: dataNumber,
+                                    data: [1, 2, 3, 4],
                                     backgroundColor: '#426ebe',
                                 }
                             ]
