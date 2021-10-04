@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react';
 import filmApi from '../../api/film/filmApi';
 import LogInModal from '../../library/modal/loginModal';
 import ReactStars from "react-rating-stars-component";
-import { AiOutlineBook, AiFillFacebook } from 'react-icons/ai';
+import { AiOutlineBook, AiFillEye ,AiOutlineShareAlt} from 'react-icons/ai';
 import Comments from '../comments/comments';
 import ShareModal from '../../library/share/shareModal';
 import viewApi from '../../api/view/viewApi';
+
 const Introduct = () => {
     const [data, setData] = useState({});
     const [activeSignIn, setActiveSignIn] = useState(false);
@@ -70,12 +71,12 @@ const Introduct = () => {
                         <p className={styles.name}>{data.nameFilm ? data.nameFilm : ""}</p>
                         <p className={styles.time}>{data.title ? data.title : ""}</p>
                         <p className={styles.status}>Trạng thái: <span>{data.status ? data.status : ""}</span></p>
-                        <p className={styles.director}>Đạo diễn:<span>{data.director ? data.director : ""}</span></p>
-                        <p className={styles.actor}>Diễn viên:<span>{data.actor ? data.actor : ""}</span></p>
-                        <p className={styles.type}>Thể loại:<span>{data.category ? data.category : "Phim dài tập"}</span></p>
+                        <p className={styles.director}>Đạo diễn: <span>{data.director ? data.director : ""}</span></p>
+                        <p className={styles.actor}>Diễn viên: <span>{data.actor ? data.actor : ""}</span></p>
+                        <p className={styles.type}>Thể loại: <span>{data.category ? data.category : "Phim dài tập"}</span></p>
                         <p>Quốc gia: {data.nation ? data.nation : ""}</p>
                         <p>Thời lượng: {data.viewingTime ? data.viewingTime : ""}</p>
-                        <p>Lượt xem: {data.countView ? data.countView : 0}</p>
+                        <p>Lượt xem: <AiFillEye />  {data.countView ? data.countView : 0}</p>
                         <p>Năm xuất bản: {data.year ? data.year : ""}</p>
                         <div className={styles.evaluate}>
                             <div className={styles.number_star_tb}>5</div>
@@ -109,7 +110,7 @@ const Introduct = () => {
                 </div>
             </div>
             <div className={styles.share}>
-                <span className={styles.facebook} onClick={onShare}><AiFillFacebook size={20} />  Chia Sẻ</span>
+                <span className={styles.facebook} onClick={onShare}><AiOutlineShareAlt size={20} />  Chia Sẻ</span>
                 <ShareModal activeShare={activeShare} onShare={onShare} id={id} />
             </div>
             <Comments id={id} />

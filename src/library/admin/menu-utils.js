@@ -1,6 +1,6 @@
 import { useState } from 'react'
 export default function MenuUtils() {
-    const [menu, setMenu] = useState(
+    const [menu] = useState(
         [
             {
                 title: "Trang chủ",
@@ -34,6 +34,26 @@ export default function MenuUtils() {
                         title: "Tập phim",
                         url: "/admin/episodes"
                     }
+                ]
+            },
+            {
+                title: "Quản lý bình luận",
+                icon: "AiOutlineComment",
+                element: [
+                    {
+                        title: "Bình Luận",
+                        url: "/admin/comments"
+                    },
+                ]
+            },
+            {
+                title: "Quản lý Lượt xem",
+                icon: "AiFillEye",
+                element: [
+                    {
+                        title: "Lượt xem",
+                        url: "/admin/views"
+                    },
                 ]
             }
         ]

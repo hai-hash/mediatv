@@ -1,34 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react'
 import { Table } from 'reactstrap';
 import styles from './styles.module.scss';
-import ItemCategory from './itemCategory';
-import categoryAdminApi from '../../api/category/categoryApi';
-const CategoryDisplay = ({ setStatus }) => {
+import viewApi from '../../api/view/viewApi';
+import ItemView from './itemView';
+const ViewDisplay = ({ setStatus }) => {
     const [data, setData] = useState([]);
-
     useEffect(() => {
-        const fetchCategoryList = async () => {
+        const getAll = async () => {
             try {
-                const params = {
-                    size: 8,
-                    page: 0,
-                }
-                const res = await categoryAdminApi.getAll(params);
+                const res = await viewApi.getAll();
                 setData(res);
+                console.log(res);
             } catch (error) {
                 console.log(error);
             }
         }
-
-        fetchCategoryList();
+        getAll();
     }, [])
-
 
     const Display = (data) => {
         let result = null;
         if (data.length > 0) {
-            result = data.map((category, index) => {
-                return <ItemCategory category={category} key={index} setStatus={setStatus} />
+            result = data.map((view, index) => {
+                return <ItemView view={view} key={index} setStatus={setStatus} />
             })
         }
         return result;
@@ -40,10 +34,12 @@ const CategoryDisplay = ({ setStatus }) => {
                 <thead>
                     <tr>
                         <th>Stt</th>
-                        <th>Tiêu Đề</th>
-                        <th>Ngày Tạo</th>
-                        <th>Người Tạo</th>
-                        <th>Active</th>
+                        <th>Lượt xem</th>
+                        <th>Ngày</th>
+                        <th>Tháng</th>
+                        <th>Năm</th>
+                        <th>Phim</th>
+                        <th>ngày khởi tạo</th>
                         <th>Hành động</th>
                     </tr>
                 </thead>
@@ -55,4 +51,4 @@ const CategoryDisplay = ({ setStatus }) => {
     )
 }
 
-export default CategoryDisplay
+export default ViewDisplay

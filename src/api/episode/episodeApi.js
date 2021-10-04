@@ -15,6 +15,10 @@ const episodeAdminApi = {
         const url = `${urls.EDIT_EPISODE}/${id}`;
         return axiosClient.put(url, data);
     },
+    delete: (id) => {
+        const url = `${urls.DELETE}/${id}`;
+        return axiosClient.delete(url);
+    }
 }
 
 export default episodeAdminApi;

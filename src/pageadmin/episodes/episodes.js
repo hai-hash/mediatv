@@ -3,6 +3,7 @@ import EpisodeDisplay from './episodeDisplay';
 import * as types from './../../handler/episode/episodeType';
 import styles from './styles.module.scss';
 import EpisodeAdd from './episodeAdd';
+import EpisodeEdit from './episodeEdit';
 const EpisodesAdmin = () => {
     const [status, setStatus] = useState(types.DISPLAY);
 
@@ -12,6 +13,8 @@ const EpisodesAdmin = () => {
                 return <EpisodeDisplay setStatus={setStatus} />
             case types.ADD:
                 return <EpisodeAdd />
+            case types.EDIT:
+                return <EpisodeEdit />
             default:
                 return <EpisodeDisplay />
         }

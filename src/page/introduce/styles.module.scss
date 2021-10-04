@@ -109,12 +109,21 @@
     }
 }
 .share{
+    
     .facebook{
-        background: blue;
+        background: #ff6500;
         border-radius: 5px;
         color: #fff;
         padding: 3px 5px;
         cursor: pointer;
+        width: 90px;
+        height: 36px;
+        display: block;
+        text-align: center;
+        line-height: 30px;
+        &:hover{
+            opacity: 0.5;
+        }
     }
 }
 
