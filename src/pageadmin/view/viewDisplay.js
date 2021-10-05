@@ -8,6 +8,7 @@ const ViewDisplay = ({ setStatus }) => {
     const [data, setData] = useState([]);
     const [dataLable, setDataLable] = useState([]);
     const [dataNumber, setDataNumber] = useState([]);
+    
     useEffect(() => {
         const getAll = async () => {
             try {

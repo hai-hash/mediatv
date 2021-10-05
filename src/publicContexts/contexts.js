@@ -8,6 +8,8 @@ const PublicContextProvider = ({ children }) => {
     const [filmSelect, setFilmSelect] = useState();
     const [categorySelect, setCategorySelect] = useState();
     const [episodeSelect, setEpisodeSelect] = useState();
+    const [viewSelect, setViewSelect] = useState();
+    const [accountSelect, setAccountSelect] = useState();
     const publicContextData = {
         isLogin,
         idToken,
@@ -21,7 +23,10 @@ const PublicContextProvider = ({ children }) => {
         setCategorySelect,
         episodeSelect,
         setEpisodeSelect,
-
+        viewSelect,
+        setViewSelect,
+        accountSelect,
+        setAccountSelect,
     }
 
     return (

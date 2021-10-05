@@ -9,6 +9,7 @@ import NotFound from './notfound';
 import HomeAdminSub from '../../pageadmin/home/home';
 import CommentAdmin from './../../pageadmin/comment/comment';
 import ViewAdmin from '../../pageadmin/view/view';
+import Account from '../../page/account/account';
 
 export default function BodyAdmin() {
     return (
@@ -18,6 +19,7 @@ export default function BodyAdmin() {
             </div>
             <Switch>
                 <Route exact path="/admin"> <HomeAdminSub /></Route>
+                <Route path="/admin/account"> <Account /></Route>
                 <Route path="/admin/film"> <FilmAdmin /></Route>
                 <Route path="/admin/category"> <CategoryAdmin /></Route>
                 <Route path="/admin/episodes"> <EpisodesAdmin /></Route>
