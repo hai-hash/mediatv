@@ -3,6 +3,7 @@ import { Row, Col } from 'reactstrap';
 import { PublicContext } from '../../publicContexts/contexts';
 import viewApi from '../../api/view/viewApi';
 import styles from './styles.module.scss';
+import * as toasts from './../../library/toast/toast';
 const ViewEdit = () => {
     const [data, setData] = useState({ countView: 0 });
     const { viewSelect } = useContext(PublicContext);
@@ -17,8 +18,10 @@ const ViewEdit = () => {
             try {
                 const res = await viewApi.updateView(data?.id, data);
                 console.log(res);
+                toasts.notifySuccess("cập nhật lượt xem thành công");
             } catch (error) {
                 console.log(error);
+                toasts.notifyError("cập nhật lượt xem thất bại");
             }
         }
         updateView();

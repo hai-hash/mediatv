@@ -5,15 +5,12 @@ import styles from './styles.module.scss';
 import { useContext } from 'react';
 import { PublicContext } from '../../publicContexts/contexts';
 import accountApi from '../../api/account/accountApi';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import * as toasis from './../toast/toast';
 
 const LogInModal = ({ activeSignIn, onSignIn }) => {
     const [dataForm, setDataForm] = useState({ username: "", password: "" })
 
     const history = useHistory();
-
-    const notify = () => toast("Wow so easy!");
 
     const { setIdToken, setInfoAccount, setIsLogin } = useContext(PublicContext);
 
@@ -34,7 +31,7 @@ const LogInModal = ({ activeSignIn, onSignIn }) => {
                 setIsLogin(true);
                 localStorage.setItem("user", JSON.stringify(res));
                 localStorage.setItem("token", res?.token);
-                notify();
+                toasis.notifySuccess("đăng nhập thành công");
                 onSignIn();
                 if (res?.role === "ADMIN") {
                     history.push("/admin")
@@ -42,7 +39,7 @@ const LogInModal = ({ activeSignIn, onSignIn }) => {
 
             } catch (error) {
                 console.log("Failed to fetch sign in :", error);
-                alert("Tài khoản hoặc mật khẩu không chính xác");
+                toasis.notifyError("Tài khoản hoặc mật khẩu không chính xác");
             }
         }
 

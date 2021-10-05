@@ -3,7 +3,7 @@ import { Row, Col } from 'reactstrap';
 import styles from './styles.module.scss';
 import categoryAdminApi from '../../api/category/categoryApi';
 import { PublicContext } from '../../publicContexts/contexts';
-
+import * as toasts from './../../library/toast/toast';
 const CategoryEdit = () => {
     const [data, setData] = useState({ id: "", nameCategory: "" });
 
@@ -26,8 +26,10 @@ const CategoryEdit = () => {
             try {
                 const res = await categoryAdminApi.put(data, data?.id);
                 console.log(res);
+                toasts.notifySuccess("cập nhật thông tin category thành công");
             } catch (error) {
                 console.log(error);
+                toasts.notifyError("cập nhật thông tin category thất bại");
             }
         }
 

@@ -5,6 +5,7 @@ import episodeAdminApi from '../../api/episode/episodeApi';
 import filmAdminApi from '../../api/film/filmAdminApi';
 import { PublicContext } from '../../publicContexts/contexts';
 import { findIndex } from 'lodash';
+import * as toasts from './../../library/toast/toast';
 const EpisodeEdit = () => {
     const [data, setData] = useState({ id: "", nameEpisode: "", urlVideo: "", film: "" });
 
@@ -24,8 +25,10 @@ const EpisodeEdit = () => {
             try {
                 const res = await filmAdminApi.getAll();
                 setFilms(res);
+                toasts.notifySuccess("cập nhật thành công");
             } catch (error) {
                 console.log(error);
+                toasts.notifyError("cập nhật thông tin thất bại");
             }
         }
 

@@ -3,6 +3,7 @@ import styles from './styles.module.scss';
 import { Table } from 'reactstrap';
 import commentUserApi from '../../api/comment/commentApi';
 import ItemComment from './itemComment';
+import * as toasts from './../../library/toast/toast';
 const CommentAdmin = () => {
     const [data, setData] = useState([]);
     useEffect(() => {
@@ -11,8 +12,10 @@ const CommentAdmin = () => {
                 const res = await commentUserApi.getAll();
                 setData(res);
                 console.log(res);
+                toasts.notifySuccess("lấy danh sách bình luận thành công");
             } catch (error) {
                 console.log(error);
+                toasts.notifyError("lấy danh sách bình luận thất bại");
             }
         }
         getAllComment();

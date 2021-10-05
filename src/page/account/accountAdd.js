@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Row, Col } from 'reactstrap';
 import styles from './styles.module.scss';
 import accountApi from '../../api/account/accountApi';
+import * as toasts from './../../library/toast/toast';
 const AccountAdd = () => {
     const [data, setData] = useState({ role: "USER" });
 
@@ -18,8 +19,10 @@ const AccountAdd = () => {
             try {
                 const res = await accountApi.createUser(data);
                 console.log(res);
+                toasts.notifySuccess("thêm account thành công");
             } catch (error) {
                 console.log(error);
+                toasts.notifyError("thêm account thất bại");
             }
         }
         createNewAccount();

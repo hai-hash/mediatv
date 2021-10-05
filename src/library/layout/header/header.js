@@ -7,6 +7,7 @@ import LogUpModal from '../../modal/logupModal';
 import LogInModal from '../../modal/loginModal';
 import FireBaseModal from '../../modal/firebaseModal';
 import { PublicContext } from './../../../publicContexts/contexts';
+import * as toasts from './../../toast/toast';
 const Header = () => {
     const [active, setActive] = useState(false);
     const [activeSignUp, setActiveSignUp] = useState(false);
@@ -30,7 +31,7 @@ const Header = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
         setIsLogin(false);
-        alert("Đăng xuất thành công");
+        toasts.notifySuccess("Đăng xuất thành công");
     }
     const getName = (name) => {
         var result = "";

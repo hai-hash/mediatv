@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Modal, ModalBody } from 'reactstrap';
 import styles from './styles.module.scss';
 import accountApi from '../../api/account/accountApi';
+import * as toasts from './../../library/toast/toast';
 // import firebase from '../firebase/firebaseConfig';
 const LogUpModal = ({ activeSignUp, onSignUp, setDataFormSignUp, setActiveFireBase }) => {
     const [dataForm, setDataForm] = useState({ fullName: "", email: "", numberPhone: "", username: "", password: "" })
@@ -41,10 +42,10 @@ const LogUpModal = ({ activeSignUp, onSignUp, setDataFormSignUp, setActiveFireBa
                 const params = dataForm;
                 const res = await accountApi.signup(params)
                 console.log(res);
-                alert("đăng ký thành công");
+                toasts.notifySuccess("Đăng ký thành công");
             } catch (error) {
                 console.log("Failed to fetch sign up :", error);
-                alert("Tên tài khoản đã tồn tại");
+                toasts.notifyError("Tên tài khoản đã tồn tại");
             }
         }
 

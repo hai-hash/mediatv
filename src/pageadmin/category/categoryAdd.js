@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Row, Col } from 'reactstrap';
 import styles from './styles.module.scss';
 import categoryAdminApi from '../../api/category/categoryApi';
+import * as toasts from './../../library/toast/toast';
 const CategoryAdd = () => {
     const [data, setdata] = useState({ nameCategory: "" });
 
@@ -18,8 +19,10 @@ const CategoryAdd = () => {
             try {
                 const res = await categoryAdminApi.post(data);
                 console.log(res);
+                toasts.notifySuccess("Thêm category thành công");
             } catch (error) {
                 console.log(error);
+                toasts.notifyError("Thêm category thất bại");
             }
         }
 

@@ -3,6 +3,7 @@ import { Table } from 'reactstrap';
 import styles from './styles.module.scss';
 import ItemCategory from './itemCategory';
 import categoryAdminApi from '../../api/category/categoryApi';
+import * as toasts from './../../library/toast/toast';
 const CategoryDisplay = ({ setStatus }) => {
     const [data, setData] = useState([]);
 
@@ -15,8 +16,10 @@ const CategoryDisplay = ({ setStatus }) => {
                 }
                 const res = await categoryAdminApi.getAll(params);
                 setData(res);
+                toasts.notifySuccess("lấy danh sách category thành công");
             } catch (error) {
                 console.log(error);
+                toasts.notifyError("lấy danh sách category thất bại");
             }
         }
 

@@ -3,6 +3,7 @@ import { Row, Col } from 'reactstrap';
 import styles from './styles.module.scss';
 import episodeAdminApi from '../../api/episode/episodeApi';
 import filmAdminApi from '../../api/film/filmAdminApi';
+import * as toasts from './../../library/toast/toast';
 const EpisodeAdd = () => {
     const [data, setData] = useState({});
 
@@ -15,8 +16,10 @@ const EpisodeAdd = () => {
             try {
                 const res = await filmAdminApi.getAll();
                 setFilm(res);
+                toasts.notifySuccess("thêm thành công");
             } catch (error) {
                 console.log(error);
+                toasts.notifyError("thêm thất bại");
             }
         }
 

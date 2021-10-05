@@ -3,6 +3,7 @@ import { Row, Col } from 'reactstrap';
 import styles from './styles.module.scss';
 import accountApi from '../../api/account/accountApi';
 import { PublicContext } from '../../publicContexts/contexts';
+import * as toasts from './../../library/toast/toast';
 
 const AccountEdit = () => {
     const [data, setData] = useState({ fullName: "", email: "", numberPhone: "", username: "", role: "USER" });
@@ -26,8 +27,10 @@ const AccountEdit = () => {
             try {
                 const res = await accountApi.updateUser(data, data?.id);
                 console.log(res);
+                toasts.notifySuccess("cập nhật account thành công");
             } catch (error) {
                 console.log(error);
+                toasts.notifyError("cập nhật account thất bại");
             }
         }
         updateNewAccount();

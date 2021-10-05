@@ -3,6 +3,7 @@ import { Table } from 'reactstrap';
 import styles from './styles.module.scss';
 import AccountItem from './accountItem';
 import accountApi from '../../api/account/accountApi';
+import * as toasts from './../../library/toast/toast';
 const AccountDisPlay = ({ setStatus }) => {
     const [data, setData] = useState([]);
 
@@ -12,8 +13,10 @@ const AccountDisPlay = ({ setStatus }) => {
                 const res = await accountApi.getAll();
                 setData(res);
                 console.log(res);
+                toasts.notifySuccess("lấy danh sách account thành công");
             } catch (error) {
                 console.log(error);
+                toasts.notifyError("lấy danh sách account thất bại");
             }
         }
         getAllAccount();

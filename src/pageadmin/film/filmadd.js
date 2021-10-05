@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Row, Col } from 'reactstrap';
 import styles from './styles.module.scss';
 import filmAdminApi from '../../api/film/filmAdminApi';
+import * as toasts from './../../library/toast/toast';
 const FilmAdd = () => {
     const [data, setdata] = useState({ hot: false, active: true, countView: 0 });
 
@@ -18,8 +19,10 @@ const FilmAdd = () => {
             try {
                 const res = await filmAdminApi.post(data);
                 console.log(res);
+                toasts.notifySuccess("Thêm thành công");
             } catch (error) {
                 console.log("Failed to fetch create new film :", error);
+                toasts.notifyError("Thêm thất bại");
             }
         }
 

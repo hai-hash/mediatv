@@ -3,6 +3,7 @@ import { Table } from 'reactstrap';
 import styles from './styles.module.scss';
 import ItemFirm from './itemfilm';
 import filmAdminApi from '../../api/film/filmAdminApi';
+import * as toasts from './../../library/toast/toast';
 const FilmDisplay = ({ setStatus, setId }) => {
     const [data, setData] = useState([]);
 
@@ -15,8 +16,10 @@ const FilmDisplay = ({ setStatus, setId }) => {
                 }
                 const res = await filmAdminApi.getAll(params);
                 setData(res);
+                toasts.notifySuccess("lấy danh sách film thành công");
             } catch (error) {
                 console.log("Failed to fetch film admin list :", error);
+                toasts.notifyError("lấy danh sách phim thất bại");
             }
         }
 

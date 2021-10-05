@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 import { PublicContext } from '../../publicContexts/contexts';
 import filmAdminApi from '../../api/film/filmAdminApi';
 import categoryAdminApi from '../../api/category/categoryApi';
-
+import * as toasts from './../../library/toast/toast';
 
 const FilmEdit = () => {
     const [data, setdata] = useState({ id: "", nameFilm: "", illustration: "", title: "", status: "", director: "", actor: "", nation: "", viewingTime: "", countView: "", hot: "", year: "", active: "", createDate: "", episodes: [], categorys: [] });
@@ -33,8 +33,10 @@ const FilmEdit = () => {
             try {
                 const res = await categoryAdminApi.getAll();
                 setCategory(res)
+                toasts.notifySuccess("Lấy danh sách category thành công");
             } catch (error) {
                 console.log(error);
+                toasts.notifyError("Lấy danh sách category thất bại");
             }
         }
 
@@ -47,8 +49,10 @@ const FilmEdit = () => {
             try {
                 const res = await filmAdminApi.patch(data, data.id);
                 console.log(res);
+                toasts.notifySuccess("Cập nhật thông tin thành công");
             } catch (error) {
                 console.log("Failed to fetch update film :", error);
+                toasts.notifyError("cập nhật thông tin thất bại");
             }
         }
 

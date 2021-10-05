@@ -4,6 +4,7 @@ import ItemComment from './itemComment';
 import { useState, useContext, useEffect } from 'react';
 import { PublicContext } from '../../publicContexts/contexts';
 import commentUserApi from '../../api/comment/commentApi';
+import * as toasts from './../../library/toast/toast';
 const Comments = ({ id }) => {
     const { infoAccount } = useContext(PublicContext);
 
@@ -66,8 +67,10 @@ const Comments = ({ id }) => {
                 try {
                     const res = await commentUserApi.post(comment, id, infoAccount?.username ? infoAccount?.username : "");
                     console.log(res);
+                    toasts.notifyInfo("Bình luận đã được ghi lại");
                 } catch (error) {
                     console.log(error);
+                    toasts.notifyError("bình luận thất bại");
                 }
             }
             SubmitComment();
@@ -77,7 +80,7 @@ const Comments = ({ id }) => {
         }
 
     }
-    
+
 
     const getName = (name) => {
         var result = "";

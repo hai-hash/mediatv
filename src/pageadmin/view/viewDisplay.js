@@ -3,20 +3,23 @@ import { Table } from 'reactstrap';
 import styles from './styles.module.scss';
 import viewApi from '../../api/view/viewApi';
 import ItemView from './itemView';
+import * as toasts from './../../library/toast/toast';
 // import { Bar } from 'react-chartjs-2';
 const ViewDisplay = ({ setStatus }) => {
     const [data, setData] = useState([]);
     const [dataLable, setDataLable] = useState([]);
     const [dataNumber, setDataNumber] = useState([]);
-    
+
     useEffect(() => {
         const getAll = async () => {
             try {
                 const res = await viewApi.getAll();
                 setData(res);
                 console.log(res);
+                toasts.notifySuccess("lấy danh sách lượt xem thành công");
             } catch (error) {
                 console.log(error);
+                toasts.notifyError("lấy danh sách lượt xem thất bại");
             }
         }
         getAll();

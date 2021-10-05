@@ -3,6 +3,7 @@ import { Table } from 'reactstrap';
 import styles from './styles.module.scss';
 import episodeAdminApi from '../../api/episode/episodeApi';
 import ItemEpisode from './itemEpisode';
+import * as toasts from './../../library/toast/toast';
 const EpisodeDisplay = ({ setStatus }) => {
     const [data, setData] = useState([]);
 
@@ -15,8 +16,10 @@ const EpisodeDisplay = ({ setStatus }) => {
                 }
                 const res = await episodeAdminApi.getAll(params);
                 setData(res);
+                toasts.notifySuccess("lấy danh sách tập phim thành công");
             } catch (error) {
                 console.log(error);
+                toasts.notifyError("lấy danh sách tập phim thất bại");
             }
         }
 
