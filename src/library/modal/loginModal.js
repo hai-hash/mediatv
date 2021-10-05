@@ -5,11 +5,15 @@ import styles from './styles.module.scss';
 import { useContext } from 'react';
 import { PublicContext } from '../../publicContexts/contexts';
 import accountApi from '../../api/account/accountApi';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LogInModal = ({ activeSignIn, onSignIn }) => {
     const [dataForm, setDataForm] = useState({ username: "", password: "" })
 
     const history = useHistory();
+
+    const notify = () => toast("Wow so easy!");
 
     const { setIdToken, setInfoAccount, setIsLogin } = useContext(PublicContext);
 
@@ -30,7 +34,7 @@ const LogInModal = ({ activeSignIn, onSignIn }) => {
                 setIsLogin(true);
                 localStorage.setItem("user", JSON.stringify(res));
                 localStorage.setItem("token", res?.token);
-                alert("Đăng nhập thành công");
+                notify();
                 onSignIn();
                 if (res?.role === "ADMIN") {
                     history.push("/admin")

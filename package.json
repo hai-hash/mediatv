@@ -20,6 +20,7 @@
     "react-scripts": "4.0.3",
     "react-share": "^4.4.0",
     "react-slick": "^0.28.1",
+    "react-toastify": "^8.0.3",
     "reactstrap": "^8.10.0",
     "sass": "^1.39.0",
     "sentiment": "^5.0.2",

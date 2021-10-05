@@ -5,10 +5,12 @@ import PageUser from './page/pageUser';
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useContext } from 'react';
 import { PublicContext } from './publicContexts/contexts';
+import { ToastContainer } from 'react-toastify';
 function App() {
   const { infoAccount } = useContext(PublicContext);
   return (
     <>
+      <ToastContainer />
       <Switch>
         <Route path="/home"><PageUser /></Route>
         <Route path="/admin" render={() => {
