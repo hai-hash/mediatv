@@ -9,19 +9,19 @@ const EvaluateDisplay = ({ setStatus }) => {
     const [data, setData] = useState([]);
     const [id, setId] = useState(0);
 
-    // useEffect(() => {
-    //     if (id !== 0) {
-    //         var index = findIndex(data, (eva) => {
-    //             return eva?.id === id;
-    //         })
-    //         if (index !== -1) {
-    //             const a1 = data.slice(0, index);
-    //             const a2 = data.slice(index + 1, data.length);
-    //             const new_arr = a1.concat(a2);
-    //             setData(new_arr);
-    //         }
-    //     }
-    // }, [id])
+    useEffect(() => {
+        if (id !== 0) {
+            var index = findIndex(data, (eva) => {
+                return eva?.id === id;
+            })
+            if (index !== -1) {
+                const a1 = data.slice(0, index);
+                const a2 = data.slice(index + 1, data.length);
+                const new_arr = a1.concat(a2);
+                setData(new_arr);
+            }
+        }
+    }, [id])
 
     useEffect(() => {
         const fetchEvaluateList = async () => {
