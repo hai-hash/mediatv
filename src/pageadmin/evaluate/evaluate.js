@@ -9,17 +9,15 @@ const Evaluate = () => {
         switch (status) {
             case types.DISPLAY:
                 return <EvaluateDisplay setStatus={setStatus} />
-            case types.ADD:
-                return <EvaluateAdd setStatus={setStatus} />
             default:
                 return <EvaluateDisplay />
         }
     }
-    const onAdd = () => {
-        if (status === types.DISPLAY)
-            setStatus(types.ADD)
-        else setStatus(types.DISPLAY)
-    }
+    // const onAdd = () => {
+    //     if (status === types.DISPLAY)
+    //         setStatus(types.ADD)
+    //     else setStatus(types.DISPLAY)
+    // }
     return (
         <div>
             <div className={styles.url}>
@@ -28,7 +26,7 @@ const Evaluate = () => {
                     <h5>Evaluate</h5>
                 </div>
                 <div className={styles.url_right}>
-                    <button onClick={onAdd}>Evaluate</button>
+                    <button>Evaluate</button>
                 </div>
             </div>
             {genData()}
