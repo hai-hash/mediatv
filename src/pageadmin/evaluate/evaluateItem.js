@@ -3,7 +3,6 @@ import styles from './styles.module.scss';
 import { AiOutlineEdit, AiFillDelete } from 'react-icons/ai';
 import * as types from './../../handler/evaluate/evaluateType';
 import evaluateAdminApi from '../../api/evaluate/evaluateApi';
-import * as toasts from './../../library/toast/toast';
 const EvaluateItem = ({ evaluate, setStatus, setId }) => {
 
     const onEdit = () => {
@@ -14,11 +13,11 @@ const EvaluateItem = ({ evaluate, setStatus, setId }) => {
             try {
                 const res = await evaluateAdminApi.delete(evaluate?.id);
                 console.log(res);
-                toasts.notifySuccess("xóa thành công");
+
                 setId(evaluate?.id);
             } catch (error) {
                 console.log(error);
-                toasts.notifyError("xóa thất bại");
+
             }
         }
         deleteEvaluate();
