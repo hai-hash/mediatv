@@ -10,6 +10,7 @@ import HomeAdminSub from '../../pageadmin/home/home';
 import CommentAdmin from './../../pageadmin/comment/comment';
 import ViewAdmin from '../../pageadmin/view/view';
 import Account from '../../page/account/account';
+import Evaluate from '../../pageadmin/evaluate/evaluate';
 
 export default function BodyAdmin() {
     return (
@@ -25,6 +26,7 @@ export default function BodyAdmin() {
                 <Route path="/admin/episodes"> <EpisodesAdmin /></Route>
                 <Route path="/admin/comments"> <CommentAdmin /></Route>
                 <Route path="/admin/views"> <ViewAdmin /></Route>
+                <Route path="/admin/evaluates"> <Evaluate /></Route>
                 <Route path="/admin/*"><NotFound /></Route>
             </Switch>
 

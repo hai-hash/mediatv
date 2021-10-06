@@ -55,6 +55,16 @@ export default function MenuUtils() {
                         url: "/admin/views"
                     },
                 ]
+            },
+            {
+                title: "Quản lý đánh giá",
+                icon: "AiFillEye",
+                element: [
+                    {
+                        title: "Đánh giá",
+                        url: "/admin/evaluates"
+                    },
+                ]
             }
         ]
     );
