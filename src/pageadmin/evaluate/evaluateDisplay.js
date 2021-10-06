@@ -4,24 +4,8 @@ import styles from './styles.module.scss';
 import * as toasts from './../../library/toast/toast';
 import EvaluateItem from './evaluateItem';
 import evaluateAdminApi from '../../api/evaluate/evaluateApi';
-import { findIndex } from 'lodash';
 const EvaluateDisplay = ({ setStatus }) => {
     const [data, setData] = useState([]);
-    const [id, setId] = useState(0);
-
-    // useEffect(() => {
-    //     if (id !== 0) {
-    //         var index = findIndex(data, (eva) => {
-    //             return eva?.id === id;
-    //         })
-    //         if (index !== -1) {
-    //             const a1 = data.slice(0, index);
-    //             const a2 = data.slice(index + 1, data.length);
-    //             const new_arr = a1.concat(a2);
-    //             setData(new_arr);
-    //         }
-    //     }
-    // }, [id])
 
     useEffect(() => {
         const fetchEvaluateList = async () => {
@@ -42,7 +26,7 @@ const EvaluateDisplay = ({ setStatus }) => {
         let result = null;
         if (data.length > 0) {
             result = data.map((evaluate, index) => {
-                return <EvaluateItem evaluate={evaluate} key={index} setStatus={setStatus} setId={setId} />
+                return <EvaluateItem evaluate={evaluate} key={index} setStatus={setStatus} />
             })
         }
         return result;
