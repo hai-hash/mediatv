@@ -22,6 +22,10 @@ const filmApi = {
         const url = urls.GET_FILM_BY_NAME_CATEGORY;
         return axiosClient.get(url, { params });
     },
+    getFilmByCountry: (params, name) => {
+        const url = `${urls.GET_FILM_BY_COUNTRY}/${name}`;
+        return axiosClient.get(url, { params });
+    },
     getFilmNewUpdateByType: (params) => {
         const url = urls.GET_FILM_NEW_UPDATE_BY_TYPE;
         return axiosClient.get(url, { params });
@@ -33,6 +37,10 @@ const filmApi = {
     getFilmViewMost: (name) => {
         const url = `${urls.GET_FILM_VIEW_MOST}/${name}`;
         return axiosClient.get(url);
+    },
+    searchFilm: (params) => {
+        const url = urls.SEARCH_FILM;
+        return axiosClient.get(url, { params });
     }
 }
 

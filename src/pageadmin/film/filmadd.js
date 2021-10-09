@@ -1,10 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col } from 'reactstrap';
 import styles from './styles.module.scss';
 import filmAdminApi from '../../api/film/filmAdminApi';
 import * as toasts from './../../library/toast/toast';
+import countryAdminApi from '../../api/country/countryApi';
+import { findIndex } from 'lodash';
 const FilmAdd = () => {
     const [data, setdata] = useState({ hot: false, active: true, countView: 0 });
+    const [countries, setCountries] = useState([]);
+
+    useEffect(() => {
+        const fetchCountryList = async () => {
+            try {
+
+                const res = await countryAdminApi.getAll();
+                setCountries(res);
+                toasts.notifySuccess("lấy danh sách country thành công");
+            } catch (error) {
+                console.log(error);
+                toasts.notifyError("lấy danh sách country thất bại");
+            }
+        }
+
+        fetchCountryList();
+    }, [])
+
+    const displaySelect = (data) => {
+        var result = null;
+        if (data.length > 0) {
+            result = data.map((country, index) => {
+                return <option key={index} value={country.id}>{country.nameCountry}</option>
+            })
+        }
+        return result;
+    }
 
     const onChangeData = (e) => {
         var name = e.target.name;
@@ -27,6 +56,17 @@ const FilmAdd = () => {
         }
 
         fetchCreateFilm();
+    }
+
+    const onSelectFilm = (e) => {
+        var name = e.target.name;
+        var value = e.target.value;
+        var index = findIndex(countries, (country) => {
+            return country?.id === parseInt(value);
+        })
+        if (index !== -1) {
+            setdata({ ...data, [name]: countries[index] })
+        }
     }
     return (
         <div className={styles.form} onSubmit={onSaveFilm}>
@@ -81,6 +121,20 @@ const FilmAdd = () => {
                     <Col xs="6" className={styles.col}>
                         <div className="form-group">
                             <input required name="type" type="text" className="form-control" placeholder="type" onChange={onChangeData} />
+                        </div>
+                    </Col>
+                    <Col xs="12" className={styles.col}>
+                        <div className="form-group">
+                            <select title="danh sách country" name="country" className="form-control" onChange={onSelectFilm}>
+                                {displaySelect(countries)
+                                }
+                            </select>
+                        </div>
+                    </Col>
+                    <Col xs="12" className={styles.col}>
+                        <div className="form-group">
+                            <textarea id="w3review" name="decreption" rows="4" cols="50" style={{ width: '100%', height: "300px" }} onChange={onChangeData}>
+                            </textarea>
                         </div>
                     </Col>
                 </Row>

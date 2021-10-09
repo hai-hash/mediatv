@@ -123,6 +123,74 @@
         max-width: 1200px;
         margin: 0 auto;
         display: flex;
+        .main_category{
+            position: relative;
+            .sub_category{
+                display: none;
+                position: absolute;
+                width: 640px;
+                min-height: 200px;
+                background-color: #ddd;
+                top: 45px;
+                left: 0px;
+                z-index: 100;
+                border-radius: 5px;
+                .row_category{
+                    width: 100%;
+                    margin: 0px;
+                    .col_category{
+                       margin-top: 5px;
+                        .name_category{
+                            margin-left: 10px;
+                            font-weight: 500;
+                        }
+                        &:hover{
+                            background-color: #fff;
+                            color: red;
+                        }
+                    }
+                    
+                }
+                
+            }
+            &:hover .sub_category{
+                display: block;
+            }
+        }
+        .main_country{
+            position: relative;
+            .sub_country{
+                display: none;
+                position: absolute;
+                width: 540px;
+                min-height: 200px;
+                background-color: #ddd;
+                top: 45px;
+                left: 0px;
+                z-index: 100;
+                border-radius: 5px;
+                .row_country{
+                    width: 100%;
+                    margin: 0px;
+                    .col_country{
+                       margin-top: 5px;
+                        .name_country{
+                            margin-left: 10px;
+                            font-weight: 500;
+                        }
+                        &:hover{
+                            background-color: #fff;
+                            color: red;
+                        }
+                    }
+                    
+                }
+            }
+            &:hover .sub_country{
+                display: block;
+            }
+        }
+
         li{
             list-style: none;
             padding: 9px 20px;
@@ -148,8 +216,11 @@
                 margin-left: 3px;
             }
             &:hover{
-                color: red;
+               
                 background-color: #fff;
+            }
+            &:hover span{
+                color: red;
             }
         }
     }

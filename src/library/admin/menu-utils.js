@@ -65,6 +65,16 @@ export default function MenuUtils() {
                         url: "/admin/evaluates"
                     },
                 ]
+            },
+            {
+                title: "Quản lý quốc gia",
+                icon: "AiFillEye",
+                element: [
+                    {
+                        title: "Quốc gia",
+                        url: "/admin/countrys"
+                    },
+                ]
             }
         ]
     );

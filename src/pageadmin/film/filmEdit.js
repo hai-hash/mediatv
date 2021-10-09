@@ -5,6 +5,8 @@ import { PublicContext } from '../../publicContexts/contexts';
 import filmAdminApi from '../../api/film/filmAdminApi';
 import categoryAdminApi from '../../api/category/categoryApi';
 import * as toasts from './../../library/toast/toast';
+import countryAdminApi from '../../api/country/countryApi';
+import { findIndex } from 'lodash';
 
 const FilmEdit = () => {
     const [data, setdata] = useState({ id: "", nameFilm: "", illustration: "", title: "", status: "", director: "", actor: "", nation: "", viewingTime: "", countView: "", hot: "", year: "", active: "", createDate: "", episodes: [], categorys: [] });
@@ -14,6 +16,8 @@ const FilmEdit = () => {
     const [idCategory, setIdCategory] = useState(0);
 
     const [listCategory, setListCategory] = useState([]);
+
+    const [countries, setCountries] = useState([]);
 
     const onChangeData = (e) => {
         var name = e.target.name;
@@ -27,6 +31,22 @@ const FilmEdit = () => {
         setdata(filmSelect);
         setListCategory(filmSelect?.categorys);
     }, [filmSelect])
+
+    useEffect(() => {
+        const fetchCountryList = async () => {
+            try {
+
+                const res = await countryAdminApi.getAll();
+                setCountries(res);
+                toasts.notifySuccess("lấy danh sách country thành công");
+            } catch (error) {
+                console.log(error);
+                toasts.notifyError("lấy danh sách country thất bại");
+            }
+        }
+
+        fetchCountryList();
+    }, [])
 
     useEffect(() => {
         const fetchCategoryList = async () => {
@@ -74,6 +94,16 @@ const FilmEdit = () => {
         return result;
     }
 
+    const displaySelectCountry = (data) => {
+        var result = null;
+        if (data.length > 0) {
+            result = data.map((country, index) => {
+                return <option key={index} value={country.id}>{country.nameCountry}</option>
+            })
+        }
+        return result;
+    }
+
     const onAddCategory = () => {
         const addCategory = async () => {
             try {
@@ -113,6 +143,17 @@ const FilmEdit = () => {
             })
         }
         return result;
+    }
+
+    const onSelectCountry = (e) => {
+        var name = e.target.name;
+        var value = e.target.value;
+        var index = findIndex(countries, (country) => {
+            return country?.id === parseInt(value);
+        })
+        if (index !== -1) {
+            setdata({ ...data, [name]: countries[index] })
+        }
     }
 
     return (
@@ -168,6 +209,20 @@ const FilmEdit = () => {
                     <Col xs="6" className={styles.col}>
                         <div className="form-group">
                             <input required name="type" value={data?.type ? data?.type : ""} type="text" className="form-control" placeholder="type" onChange={onChangeData} />
+                        </div>
+                    </Col>
+                    <Col xs="12" className={styles.col}>
+                        <div className="form-group">
+                            <select title="danh sách country" value={data?.country?.id ? data?.country.id : ""} name="country" className="form-control" onChange={onSelectCountry}>
+                                {displaySelectCountry(countries)
+                                }
+                            </select>
+                        </div>
+                    </Col>
+                    <Col xs="12" className={styles.col}>
+                        <div className="form-group">
+                            <textarea id="w3review" name="decreption" rows="4" cols="50" value={data?.decreption ? data?.decreption : ""} style={{ width: '100%', height: "300px" }} onChange={onChangeData}>
+                            </textarea>
                         </div>
                     </Col>
                     <Col xs="12" className={styles.col}>

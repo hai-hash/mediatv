@@ -1,9 +1,11 @@
 import styles from './styles.module.scss'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import filmApi from '../../api/film/filmApi';
 import Comments from '../comments/comments';
 import ModalComingSoonComponent from '../../library/modal/modalCommingSoon';
+import { PublicContext } from '../../publicContexts/contexts';
+import evaluateAdminApi from '../../api/evaluate/evaluateApi';
 const Firm = () => {
     const [urlCurren, setUrlCurren] = useState("https://www.youtube.com/embed/wub1_ZWgmO0");
 
@@ -11,14 +13,35 @@ const Firm = () => {
 
     const [activeCommingSoon, setActiveCommingSoon] = useState(false);
 
-    // xử lý khi thực hiện next chap
-    const onNextChap = (url) => {
-        setUrlCurren(url);
-    }
+    const { infoAccount } = useContext(PublicContext);
+
     // lấy id bộ phim trên thanh url
     let { id } = useParams();
 
     const history = useHistory();
+
+
+    useEffect(() => {
+        const getStar = async () => {
+            try {
+                const res = await evaluateAdminApi.getStar(id, infoAccount?.username);
+                console.log(res);
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getStar();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [id])
+
+    // xử lý khi thực hiện next chap
+    const onNextChap = (url) => {
+        setUrlCurren(url);
+    }
+
+
+
 
     const onCommingSoon = () => {
         setActiveCommingSoon(!activeCommingSoon);

@@ -8,6 +8,7 @@ import LogInModal from '../../modal/loginModal';
 import FireBaseModal from '../../modal/firebaseModal';
 import { PublicContext } from './../../../publicContexts/contexts';
 import * as toasts from './../../toast/toast';
+import { useHistory } from 'react-router-dom';
 const Header = () => {
     const [active, setActive] = useState(false);
     const [activeSignUp, setActiveSignUp] = useState(false);
@@ -15,6 +16,8 @@ const Header = () => {
     const [activeFireBase, setActiveFireBase] = useState(false);
     const [dataFormSignUp, setDataFormSignUp] = useState({});
     const { isLogin, infoAccount, setIsLogin } = useContext(PublicContext);
+    const [dataSearch, setDataSearch] = useState("");
+    const history = useHistory();
     const onActive = () => {
         setActive(!active);
     }
@@ -50,12 +53,18 @@ const Header = () => {
         }
         return result;
     }
+    const onChangeContentSearch = (e) => {
+        setDataSearch(e.target.value);
+    }
+    const onSearch = () => {
+        history.push(`/home/search/${dataSearch}`);
+    }
     return (
         <>
             <div className={styles.header}>
                 <div className={styles.header_search}>
-                    <input type="text" name="search" placeholder="Nhập tên phim, diễn viên ..." />
-                    <BiSearch className={styles.icon} />
+                    <input onChange={onChangeContentSearch} type="text" name="search" placeholder="Nhập tên phim, diễn viên ..." />
+                    <BiSearch className={styles.icon} onClick={onSearch} />
                 </div>
                 <div className={styles.contact_header}>
                     <AiOutlineMail />

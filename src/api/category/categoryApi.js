@@ -5,6 +5,10 @@ const categoryAdminApi = {
         const url = urls.GET_ALL;
         return axiosClient.get(url, { params });
     },
+    getAllPublic: (params) => {
+        const url = urls.GET_ALL_PUBLIC;
+        return axiosClient.get(url, { params });
+    },
 
     post: (data) => {
         const url = urls.CREATE_NEW_CATEGORY;

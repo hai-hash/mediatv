@@ -13,6 +13,18 @@ const evaluateAdminApi = {
         const url = `${urls.DELETE_EVALUATE}/${id}`;
         return axiosClient.delete(url);
     },
+    getStar: (id, name) => {
+        const url = `${urls.CHECK_UPDATE}/${id}/${name}`;
+        return axiosClient.post(url);
+    },
+    updateStar: (id, name, star) => {
+        const url = `${urls.UPDATE_STAR}/${id}/${name}/${star}`;
+        return axiosClient.put(url);
+    },
+    getTotalAndValueTbStar: (id) => {
+        const url = `${urls.GET_TOTAL_STAR_AND_VALUE}/${id}`;
+        return axiosClient.get(url);
+    }
 }
 
 export default evaluateAdminApi;

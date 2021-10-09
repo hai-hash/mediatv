@@ -32,6 +32,7 @@ const LogInModal = ({ activeSignIn, onSignIn }) => {
                 localStorage.setItem("user", JSON.stringify(res));
                 localStorage.setItem("token", res?.token);
                 toasis.notifySuccess("đăng nhập thành công");
+                history.push("/home");
                 onSignIn();
                 if (res?.role === "ADMIN") {
                     history.push("/admin")

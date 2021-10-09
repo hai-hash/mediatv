@@ -1,5 +1,13 @@
 import axios from 'axios';
 import queryString from 'query-string';
+// import { useContext } from 'react';
+// import { PublicContext } from '../publicContexts/contexts';
+
+// const GetIdToken = () => {
+//     const { idToken } = useContext(PublicContext);
+//     return idToken;
+// }
+
 const axiosClient = axios.create({
     baseURL: "https://file-managementt.herokuapp.com",
     headers: {

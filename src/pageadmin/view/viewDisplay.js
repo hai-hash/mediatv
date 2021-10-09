@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 import viewApi from '../../api/view/viewApi';
 import ItemView from './itemView';
 import * as toasts from './../../library/toast/toast';
-// import { Bar } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 const ViewDisplay = ({ setStatus }) => {
     const [data, setData] = useState([]);
     const [dataLable, setDataLable] = useState([]);
@@ -78,14 +78,14 @@ const ViewDisplay = ({ setStatus }) => {
 
 
             <div className={styles.table}>
-                {/* <div className={styles.chart}>
+                <div className={styles.chart}>
                     <Bar
                         data={{
-                            labels: ['ble', 'd', 'd', 'd'],
+                            labels: dataLable,
                             datasets: [
                                 {
                                     label: "view Total",
-                                    data: [1, 2, 3, 4],
+                                    data: dataNumber,
                                     backgroundColor: '#426ebe',
                                 }
                             ]
@@ -97,7 +97,7 @@ const ViewDisplay = ({ setStatus }) => {
                             maintainAspectRatio: false
                         }}
                     />
-                </div> */}
+                </div>
                 <Table striped>
                     <thead>
                         <tr>

@@ -1,18 +1,23 @@
-import React, { useState } from 'react'
-import EvaluateDisplay from './evaluateDisplay'
+import React, { useState } from 'react';
+import * as types from './../../handler/country/countryType';
 import styles from './styles.module.scss';
-import * as types from './../../handler/evaluate/evaluateType';
-import EvaluateAdd from './evaluateAdd';
-const Evaluate = () => {
+import CountryDisplay from './countryDisplay';
+import CountryAdd from './countryAdd';
+import CountryEdit from './countryEdit';
+
+const Country = () => {
     const [status, setStatus] = useState(types.DISPLAY);
     const genData = () => {
         switch (status) {
             case types.DISPLAY:
-                return <EvaluateDisplay setStatus={setStatus} />
+                return <CountryDisplay setStatus={setStatus} />
             case types.ADD:
-                return <EvaluateAdd />
+                return <CountryAdd />
+            case types.EDIT:
+                return <CountryEdit />
+
             default:
-                return <EvaluateDisplay />
+                return <CountryDisplay />
         }
     }
     const onAdd = () => {
@@ -24,11 +29,11 @@ const Evaluate = () => {
         <div>
             <div className={styles.url}>
                 <div className={styles.url_left}>
-                    <span>api / admin / Evaluate </span>
-                    <h5>Evaluate</h5>
+                    <span>api / admin / country </span>
+                    <h5>Country</h5>
                 </div>
                 <div className={styles.url_right}>
-                    <button onClick={onAdd}>Evaluate</button>
+                    <button onClick={onAdd}>Country</button>
                 </div>
             </div>
             {genData()}
@@ -36,4 +41,4 @@ const Evaluate = () => {
     )
 }
 
-export default Evaluate
+export default Country

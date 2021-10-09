@@ -1,13 +1,16 @@
 import styles from './styles.module.scss';
 import { useParams, useHistory } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import filmApi from '../../api/film/filmApi';
 import LogInModal from '../../library/modal/loginModal';
 import ReactStars from "react-rating-stars-component";
-import { AiOutlineBook, AiFillEye ,AiOutlineShareAlt} from 'react-icons/ai';
+import { AiOutlineBook, AiFillEye, AiOutlineShareAlt } from 'react-icons/ai';
 import Comments from '../comments/comments';
 import ShareModal from '../../library/share/shareModal';
 import viewApi from '../../api/view/viewApi';
+import evaluateAdminApi from '../../api/evaluate/evaluateApi';
+import * as toasts from './../../library/toast/toast';
+import { PublicContext } from '../../publicContexts/contexts';
 
 const Introduct = () => {
     const [data, setData] = useState({});
@@ -15,6 +18,23 @@ const Introduct = () => {
     const [activeShare, setActiveShare] = useState(false);
     let { id } = useParams();
     const history = useHistory();
+    const { infoAccount } = useContext(PublicContext);
+    const [star, setStar] = useState({ valueStarTb: 0, total: 0 });
+    const [starCurren, setStarCurren] = useState(0);
+    useEffect(() => {
+        const getTotalAndValueStar = async () => {
+            try {
+                const res = await evaluateAdminApi.getTotalAndValueTbStar(id);
+                setStar(res);
+                console.log(res);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getTotalAndValueStar();
+
+    }, [id, starCurren])
+
     useEffect(() => {
         const fetchFilmId = async () => {
             try {
@@ -57,7 +77,27 @@ const Introduct = () => {
     }
 
     const ratingChanged = (newRating) => {
-        console.log(newRating);
+        var token = localStorage.getItem("token");
+        if (token) {
+            const updateStar = async () => {
+                try {
+                    const res = await evaluateAdminApi.updateStar(id, infoAccount?.username, parseInt(newRating));
+                    console.log(res);
+                    toasts.notifySuccess("đánh giá của bạn đã được ghi nhận");
+                    setStarCurren(parseInt(newRating));
+                } catch (error) {
+                    console.log(error);
+                    toasts.notifyError("đánh giá của bạn ghi nhận thất bại");
+                }
+            }
+            updateStar();
+        }
+        else {
+            setActiveSignIn(true);
+            toasts.notifyWarning("bạn cần đăng nhập để thực hiện đánh giá")
+
+        }
+
     };
     return (
         <>
@@ -79,7 +119,7 @@ const Introduct = () => {
                         <p>Lượt xem: <AiFillEye />  {data.countView ? data.countView : 0}</p>
                         <p>Năm xuất bản: {data.year ? data.year : ""}</p>
                         <div className={styles.evaluate}>
-                            <div className={styles.number_star_tb}>5</div>
+                            <div className={styles.number_star_tb}>{star?.valueStarTb}</div>
                             <div className={styles.evaluate_star}>
                                 <ReactStars
                                     count={5}
@@ -87,7 +127,7 @@ const Introduct = () => {
                                     size={34}
                                     activeColor="#ffd700"
                                 />
-                                <span className={styles.total_count_evaluate}>7 lượt đánh giá</span>
+                                <span className={styles.total_count_evaluate}>{star?.total} lượt đánh giá</span>
                             </div>
 
                         </div>
@@ -103,7 +143,7 @@ const Introduct = () => {
             <div className={styles.content_film}>
                 <div className={styles.icon_content}><AiOutlineBook size={40} /> NỘI DUNG PHIM</div>
                 <div className={styles.content}>
-                    Này! Cậu Rất Ổn Áp / Ơ Hay! Đại Sự Của Ngươi Thật Vi Diệu - Hei! Ni Da Shi Hen Miao xoay quanh câu chuyện về hai người bạn thanh mai trúc mã Hùng Kỳ Kỳ và Lê Nhất Hòa, cả hai đều sinh cùng ngày và cùng một thị trấn, cùng nhau lớn lên. Nhưng tính cách của cả hai lại trái ngược nhau khi Hùng Kỳ Kỳ là một cô gái vô cùng lười nhát luôn thích ở trong nhà, còn chàng trai Lê Nhất Hòa lại vô cùng thẳng thắn nghiêm tục. Mặc dù tính cách khác nhau nhưng cả hai vẫn luôn có mối quan hệ tốt đẹp và giúp đỡ nhau trong cuộc sống và trên con đường thực hiện ước mơ của mỗi người.
+                {data?.decription ? data?.decription : " Hãy xem để biết nội dung nhé , nói trước mất hay"}
                 </div>
                 <div className={styles.content_image} style={{ background: `url(${data.illustration ? data.illustration : ""})` }}>
 

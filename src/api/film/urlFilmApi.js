@@ -14,3 +14,5 @@ export const GET_FILM_BY_NAME_CATEGORY = "/api/public/films/name/category";
 export const GET_FILM_NEW_UPDATE_BY_TYPE = "/api/public/film/type/new/update";
 export const GET_FILM_NEW_UPDATE_BY_CATEGORY = "/api/public/film/category/new/update";
 export const GET_FILM_VIEW_MOST = "/api/public/film/view/most";
+export const GET_FILM_BY_COUNTRY = "/api/public/film/nation";
+export const SEARCH_FILM = "/api/public/search/film/by/name";
