@@ -1,5 +1,4 @@
 .content{
-    background: url("https://media.istockphoto.com/videos/defocused-particles-background-loop-video-id932483108?b=1&k=6&m=932483108&s=640x640&h=HAwn4USIw_AF3MuWG3E87XQNYCz7MYLq3sWPn7KDNss=");
     background-size: cover;
     span{
         display: block;
@@ -56,4 +55,64 @@
         }
     }
 }
+.momo{
+    border: none;
+    background: #a80069;
+    height: 48px;
+    margin-bottom: 25px;
+    width: 85%;
+    margin-left: 50%;
+    transform: translate(-50%);
+    border-radius: 5px;
+    color: #fff;
+    font-size: 30px;
+}
+.zalo{
+    font-size: 20px;
+    border: none;
+    background: #fff;
+    height: 48px;
+    margin-bottom: 25px;
+    width: 85%;
+    margin-left: 50%;
+    transform: translate(-50%);
+    border-radius: 5px;
+    box-shadow: 0 0 2px 0px;
+}
 
+.paypal{
+    font-size: 20px;
+    border: none;
+    background: #ffc439;
+    height: 48px;
+    margin-bottom: 25px;
+    width: 85%;
+    margin-left: 50%;
+    transform: translate(-50%);
+    border-radius: 5px;
+    color: #fff;
+}
+.titlepaypal{
+    text-align: center;
+    font-size: 30px;
+    font-weight: 500;
+    margin-top: 5px;
+}
+.moneyPaypal{
+    height: 100px;
+    text-align: center;
+    width: 80%;
+    margin-left: 50%;
+    transform: translate(-50%);
+    .price{
+        color:#ffc439 ;
+        font-size: 20px;
+        margin: 0px;
+    }
+}
+
+.displayPaypal{
+    width: 85%;
+    margin-left: 50%;
+    transform: translate(-50%);
+}

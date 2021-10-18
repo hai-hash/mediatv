@@ -42,6 +42,7 @@ const LogUpModal = ({ activeSignUp, onSignUp, setDataFormSignUp, setActiveFireBa
                 const params = dataForm;
                 const res = await accountApi.signup(params)
                 console.log(res);
+                onSignUp();
                 toasts.notifySuccess("Đăng ký thành công");
             } catch (error) {
                 console.log("Failed to fetch sign up :", error);
@@ -71,7 +72,7 @@ const LogUpModal = ({ activeSignUp, onSignUp, setDataFormSignUp, setActiveFireBa
                 style={{ maxWidth: '518px' }}
             >
                 <ModalBody className={styles.modalBody}>
-                    <div className={styles.content}>
+                    <div className={styles.content} style={{ background: 'url("https://media.istockphoto.com/videos/defocused-particles-background-loop-video-id932483108?b=1&k=6&m=932483108&s=640x640&h=HAwn4USIw_AF3MuWG3E87XQNYCz7MYLq3sWPn7KDNss=")' }}>
                         <span><img src="/logo/logo2.png" alt="" /></span>
                         <p className={styles.title}>Đăng ký</p>
 
@@ -89,7 +90,7 @@ const LogUpModal = ({ activeSignUp, onSignUp, setDataFormSignUp, setActiveFireBa
                                 <input name="username" type="text" className="form-control" placeholder="Tên tài khoản" required onChange={onChangeForm} />
                             </div>
                             <div className={styles.line_info}>
-                                <input name="password" type="text" className="form-control" placeholder="Mật Khẩu" required onChange={onChangeForm} />
+                                <input name="password" type="password" className="form-control" placeholder="Mật Khẩu" required onChange={onChangeForm} />
                             </div>
                             <div id="sign-in-button"></div>
                             <button className="btn btn-primary">Tiếp Tục</button>

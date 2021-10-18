@@ -3,8 +3,29 @@
     color: rgb(214, 209, 209);
     font-size: 20px;
     box-sizing: border-box;
-    min-height: 900px;
+    height: 750px;
     border: 1px solid #ffff;
+    overflow-y: auto;
+    
+        /* width */
+        &::-webkit-scrollbar {
+            width: 2px;
+        }
+        
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+        
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
     img{
         width: 100%;
     }
@@ -32,11 +53,13 @@
         h5{
             margin-left: 20px;
             margin-bottom: 0px;
+            margin-right: 20px;
+            font-size: 18px;
         }
         span{
             position: absolute;
             top: 0;
-            right: 20px;
+            right: 3px;
         }
     }
     .element_menu{
@@ -68,6 +91,7 @@
             top: 0;
             right: 10px;
             color: rgb(57, 211, 203);
+            cursor: pointer;
         }
     }
 }

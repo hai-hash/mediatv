@@ -20,7 +20,12 @@ const accountApi = {
     updateUser: (data, id) => {
         const url = `${urls.UPDATE_ACCOUNT}/${id}`;
         return axiosClient.put(url, data);
-    }
+    },
+    upToVip: (username) => {
+        const url = `${urls.UPDATE_ACCOUNT_UPTO_VIP}/${username}`;
+        return axiosClient.put(url);
+    },
+
 }
 
 export default accountApi;

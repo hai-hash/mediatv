@@ -75,6 +75,20 @@ export default function MenuUtils() {
                         url: "/admin/countrys"
                     },
                 ]
+            },
+            {
+                title: "Quản lý giao dịch",
+                icon: "AiFillEye",
+                element: [
+                    {
+                        title: "Giao dịch",
+                        url: "/admin/transaction"
+                    },
+                    {
+                        title: "Hình thức giao dịch",
+                        url: "/admin/type/transaction"
+                    },
+                ]
             }
         ]
     );

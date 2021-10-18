@@ -45,6 +45,7 @@ const FilmDisplay = ({ setStatus, setId }) => {
                         <th>Ngày Tạo</th>
                         <th>Người Tạo</th>
                         <th>View</th>
+                        <th>Tính phí</th>
                         <th>Hot</th>
                         <th>Active</th>
                         <th>Hành động</th>

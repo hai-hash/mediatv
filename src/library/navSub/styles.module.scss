@@ -1,26 +1,41 @@
 .rank{
     text-align: center;
     font-size: 30px;
-    color: rgb(16, 9, 116);
+    color: #fff;
     border-bottom: 1px solid #ccc;
     &:hover{
-        color: red;
+        color: #ff6500;
         cursor: pointer;
+        transition: 400ms;
     }
 }
 .button_navsub{
     display: flex;
+    .button_active{
+        border-color: #ff6500;
+    }
     button{
         padding:10px 10px;
-        margin: 5px;
+        margin:5px 5px 5px 0px;
         cursor: pointer;
-        background: rgb(16, 9, 116);
+        background: #2d2d2d;
         border:none;
-        color: #fff;
+        color: #ff6500;
         border-radius: 5px;
+        border: 0.1px solid #2d2d2d;
 
         &:hover{
-            background: rgb(202, 20, 202);
+            border-color: #ff6500;
+            transition: 400ms;
         }
+    }
+}
+
+.view_more{
+    color: #fff;
+    &:hover{
+        color: #ff6500;
+        transition: 400ms;
+        cursor: pointer;
     }
 }

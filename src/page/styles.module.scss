@@ -1,7 +1,7 @@
 .container{
     max-width: 1200px;
     margin: 0 auto;
-    background: #fff;
+    background: #000;
 
     .container_main{
         display: flex;
@@ -22,5 +22,18 @@
 
 .wap_pageAdmin{
     overflow-x: hidden;
+}
+
+@media screen and (max-width: 750px) {
+    .container{
+        .container_main{
+            .container_right{
+               display: none;
+            }
+            .container_left{
+                width: 100%;
+            }
+        }
+    }
 }
 

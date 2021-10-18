@@ -29,11 +29,12 @@
         }
     }
     .contact_header{
+        display: none;
         height: 80%;
         width: 5%;
         background-color: rgb(182, 178, 178,0.5);
         margin-left: -4%;
-        display: flex;
+        // display: flex;
         align-items: center;
         justify-content: center;
         color: #fff;
@@ -118,11 +119,13 @@
 
 .menu{
     height: 43px;
-    background-color: #ddd;
+    background-color: #000;
+    color: #9B9B9B;
     .category{
         max-width: 1200px;
         margin: 0 auto;
         display: flex;
+        padding-left: 0px;
         .main_category{
             position: relative;
             .sub_category{
@@ -130,9 +133,10 @@
                 position: absolute;
                 width: 640px;
                 min-height: 200px;
-                background-color: #ddd;
+                background-color: #000;
+                color: #fff;
                 top: 45px;
-                left: 0px;
+                left: 38px;
                 z-index: 100;
                 border-radius: 5px;
                 .row_category{
@@ -142,11 +146,12 @@
                        margin-top: 5px;
                         .name_category{
                             margin-left: 10px;
-                            font-weight: 500;
+                            font-weight: 300;
+                            font-size: 16px;
                         }
                         &:hover{
-                            background-color: #fff;
-                            color: red;
+                            color: #ff6500;
+                            transition: 400ms;
                         }
                     }
                     
@@ -162,11 +167,11 @@
             .sub_country{
                 display: none;
                 position: absolute;
-                width: 540px;
-                min-height: 200px;
-                background-color: #ddd;
+                width: 350px;
+                background-color: #000;
+                color: #fff;
                 top: 45px;
-                left: 0px;
+                left: 38px;
                 z-index: 100;
                 border-radius: 5px;
                 .row_country{
@@ -176,11 +181,12 @@
                        margin-top: 5px;
                         .name_country{
                             margin-left: 10px;
-                            font-weight: 500;
+                            font-weight: 300;
+                            font-size: 16px;
                         }
                         &:hover{
-                            background-color: #fff;
-                            color: red;
+                            color: #ff6500;
+                            transition: 400ms;
                         }
                     }
                     
@@ -193,35 +199,57 @@
 
         li{
             list-style: none;
-            padding: 9px 20px;
+            padding: 9px 38px;
             box-sizing: border-box;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-left: 1px solid #ccc;
-            .icon_home{
-                height: 25px;
-                width: 25px;
+            // border-left: 1px solid #ccc;
+            .wap_element{
+                .icon_home{
+                    height: 25px;
+                    width: 25px;
+                }
+                .icon_category{
+                    height: 20px;
+                    width: 20px;
+                }
+                .icon_nation, .icon_media,.icon_firm,.icon_star,.icon_cinema,.icon_tvshow{
+                    height: 15px;
+                    width: 15px;
+                }
+                span{
+                    margin-left: 3px;
+                }
+                // &:hover{
+                   
+                //    color: #ff6500;
+                // }
             }
-            .icon_category{
-                height: 20px;
-                width: 20px;
+            
+            &:hover .wap_element{
+                color: #ff6500;
+                transition: 400ms;
             }
-            .icon_nation, .icon_media,.icon_firm,.icon_star,.icon_cinema,.icon_tvshow{
-                height: 15px;
-                width: 15px;
-            }
-            span{
-                margin-left: 3px;
-            }
-            &:hover{
-               
-                background-color: #fff;
-            }
-            &:hover span{
-                color: red;
-            }
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .header{
+        .user{
+            right: -50px;
+        }
+    }
+    .menu{
+        display: none;
+    }
+}
+@media screen and (max-width: 700px) {
+    .header{
+        .user{
+            right: -20px;
         }
     }
 }

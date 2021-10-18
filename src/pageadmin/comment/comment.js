@@ -39,20 +39,22 @@ const CommentAdmin = () => {
                     <h5>commnet</h5>
                 </div>
             </div>
-            <Table striped>
-                <thead>
-                    <tr>
-                        <th >Stt</th>
-                        <th>Nội dung bình luận</th>
-                        <th>Tài khoản bình luận</th>
-                        <th>Bộ phim bình luận</th>
-                        <th>Thời gian bình luận</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {Dispplay(data)}
-                </tbody>
-            </Table>
+            <div className={styles.table}>
+                <Table striped>
+                    <thead>
+                        <tr>
+                            <th >Stt</th>
+                            <th>Nội dung bình luận</th>
+                            <th>Tài khoản bình luận</th>
+                            <th>Bộ phim bình luận</th>
+                            <th>Thời gian bình luận</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {Dispplay(data)}
+                    </tbody>
+                </Table>
+            </div>
         </div>
     )
 }

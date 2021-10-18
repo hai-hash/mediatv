@@ -1,9 +1,23 @@
 import Slider from "react-slick";
 import styles from './styles.module.scss';
+import { useState, useEffect } from 'react';
+import filmApi from "../../../api/film/filmApi";
+import { Link } from "react-router-dom";
 const Banner = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const getAllFilmViewMost = async () => {
+      try {
+        const res = await filmApi.getFilmViewMostIncurrent();
+        setData(res);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getAllFilmViewMost();
+  }, [])
+
   const settings = {
-
-
     speed: 500,
     slidesToShow: 6,
     slidesToScroll: 6,
@@ -35,7 +49,7 @@ const Banner = () => {
         }
       },
       {
-        breakpoint: 480,
+        breakpoint: 400,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1
@@ -43,19 +57,20 @@ const Banner = () => {
       }
     ]
   };
-  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
   const display = () => {
     var result = null;
-    if (arr.length > 0) {
-      result = arr.map((slide, index) => {
+    if (data.length > 0) {
+      result = data.map((video, index) => {
         return (
-          <div className={styles.item_banner} key={index}>
-            <img src="https://i.pinimg.com/474x/27/c5/fa/27c5fac7833c0233cef69700e4b44ee6.jpg" alt="" />
-            <div className={styles.title_banner}>anime bubu siêu hay kịch tính</div>
-            <div className={styles.time_banner}>1999</div>
-            <span>Full 40/40</span>
-          </div >
+          <Link to={`/home/anime/${video.id}`} className={styles.wap_item_firm} key={index}>
+            <div className={styles.item_banner} >
+              <img src={video?.illustration} alt="" />
+              <div className={styles.title_banner}>{video.nameFilm}</div>
+              <div className={styles.time_banner}>{video.viewingTime}</div>
+              <span>{video.status}</span>
+            </div >
+          </Link>
         )
       })
     }

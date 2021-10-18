@@ -12,12 +12,16 @@ const axiosClient = axios.create({
     baseURL: "https://file-managementt.herokuapp.com",
     headers: {
         'content-type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem("token") ? localStorage.getItem("token") : ""}`,
+        // 'Authorization': `Bearer ${localStorage.getItem("token") ? localStorage.getItem("token") : ""}`,
     },
     paramsSerializer: params => queryString.stringify(params),
 });
 
 axiosClient.interceptors.request.use(async (config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
 });
 

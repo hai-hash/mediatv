@@ -14,7 +14,7 @@ const NavItem = ({ film }) => {
                 <img src={`${film?.illustration}`} alt="" />
                 <div className={styles.info_item}>
                     <div className={styles.title}>{film?.nameFilm}</div>
-                    <div className={styles.content}>{film?.title}</div>
+                    <div className={styles.content}></div>
                     <div className={styles.star}><AiFillStar className={styles.star_full} /><AiFillStar className={styles.star_full} /><AiFillStar className={styles.star_full} /><AiFillStar className={styles.star_full} /><AiOutlineStar /></div>
                 </div>
 

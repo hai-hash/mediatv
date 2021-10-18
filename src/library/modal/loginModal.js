@@ -31,12 +31,12 @@ const LogInModal = ({ activeSignIn, onSignIn }) => {
                 setIsLogin(true);
                 localStorage.setItem("user", JSON.stringify(res));
                 localStorage.setItem("token", res?.token);
-                toasis.notifySuccess("đăng nhập thành công");
                 history.push("/home");
                 onSignIn();
                 if (res?.role === "ADMIN") {
                     history.push("/admin")
                 }
+                toasis.notifySuccess("đăng nhập thành công");
 
             } catch (error) {
                 console.log("Failed to fetch sign in :", error);
@@ -55,7 +55,7 @@ const LogInModal = ({ activeSignIn, onSignIn }) => {
                 style={{ maxWidth: '518px' }}
             >
                 <ModalBody className={styles.modalBody}>
-                    <div className={styles.content}>
+                    <div className={styles.content} style={{ background: 'url("https://media.istockphoto.com/videos/defocused-particles-background-loop-video-id932483108?b=1&k=6&m=932483108&s=640x640&h=HAwn4USIw_AF3MuWG3E87XQNYCz7MYLq3sWPn7KDNss=")' }}>
                         <span><img src="/logo/logo2.png" alt="" /></span>
                         <p className={styles.title}>Đăng Nhập</p>
 
@@ -64,7 +64,7 @@ const LogInModal = ({ activeSignIn, onSignIn }) => {
                                 <input name="username" type="text" className="form-control" placeholder="Tên tài khoản" required onChange={onChangeForm} />
                             </div>
                             <div className={styles.line_info}>
-                                <input name="password" type="text" className="form-control" placeholder="Mật Khẩu" required onChange={onChangeForm} />
+                                <input name="password" type="password" className="form-control" placeholder="Mật Khẩu" required onChange={onChangeForm} />
                             </div>
                             <button className="btn btn-primary">Đăng Nhập</button>
                         </form>

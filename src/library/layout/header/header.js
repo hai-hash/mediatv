@@ -9,6 +9,8 @@ import FireBaseModal from '../../modal/firebaseModal';
 import { PublicContext } from './../../../publicContexts/contexts';
 import * as toasts from './../../toast/toast';
 import { useHistory } from 'react-router-dom';
+import PaymentModal from '../../modal/paymentModal';
+
 const Header = () => {
     const [active, setActive] = useState(false);
     const [activeSignUp, setActiveSignUp] = useState(false);
@@ -17,6 +19,7 @@ const Header = () => {
     const [dataFormSignUp, setDataFormSignUp] = useState({});
     const { isLogin, infoAccount, setIsLogin } = useContext(PublicContext);
     const [dataSearch, setDataSearch] = useState("");
+    const [activePayment, setActivePayment] = useState(false);
     const history = useHistory();
     const onActive = () => {
         setActive(!active);
@@ -30,10 +33,14 @@ const Header = () => {
     const onFireBase = () => {
         setActiveFireBase(!activeFireBase);
     }
+    const onPayment = () => {
+        setActivePayment(!activePayment);
+    }
     const onLogout = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
         setIsLogin(false);
+        history.push("/home");
         toasts.notifySuccess("Đăng xuất thành công");
     }
     const getName = (name) => {
@@ -100,9 +107,14 @@ const Header = () => {
                         {isLogin &&
                             <ul>
                                 <li>Thông tin cá nhân</li>
+
                                 <li>Thông Báo</li>
                                 <li>Phim yêu thích</li>
                             </ul>
+                        }
+                        {
+                            isLogin && infoAccount?.role !== "VIP"
+                            && <ul> <li onClick={onPayment}>Nâng cấp tài khoản</li></ul>
                         }
                         <ul>
                             <li>Sự kiên</li>
@@ -117,8 +129,8 @@ const Header = () => {
                 </div>
                 <LogUpModal activeSignUp={activeSignUp} onSignUp={onSignUp} setDataFormSignUp={setDataFormSignUp} setActiveFireBase={setActiveFireBase} />
                 <LogInModal activeSignIn={activeSignIn} onSignIn={onSignIn} />
+                <PaymentModal activePayment={activePayment} onPayment={onPayment} />
                 <FireBaseModal activeFireBase={activeFireBase} onFireBase={onFireBase} dataFormSignUp={dataFormSignUp} />
-
             </div>
         </>
     )

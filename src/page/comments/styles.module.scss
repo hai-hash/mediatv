@@ -6,6 +6,7 @@
     .count_comment{
         margin-top: 10px;
         font-weight: 500;
+        color: #fff;
     }
 
     .comments{
@@ -47,14 +48,15 @@
         .content_display{
            margin-left: 30px;
            .name_user{
-            color: #385898;
+            color: #fff;
             cursor: pointer;
             font-weight: 600;
             white-space: nowrap;
            }
            .content_comment_display{
                font-size: 14px;
-               font-weight: 500;
+               font-weight: 400;
+               color: #9b9b9b;
            }
         }
     }

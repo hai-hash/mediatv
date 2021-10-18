@@ -9,13 +9,15 @@ export default function ItemFirm({ film, setStatus, setId, }) {
 
     const [active, setActive] = useState(film?.active);
 
+    const [cost, setCost] = useState(film?.cost);
+
     const { setFilmSelect } = useContext(PublicContext);
 
     const onHot = () => {
         setHot(!hot);
         const changeHotFilm = async () => {
             try {
-                const res = await filmAdminApi.changeHot(film?.id)
+                const res = await filmAdminApi.changeHot(film?.id);
                 console.log(res);
             } catch (error) {
                 console.log(error);
@@ -24,11 +26,24 @@ export default function ItemFirm({ film, setStatus, setId, }) {
         changeHotFilm();
     }
 
+    const onCost = () => {
+        setCost(!cost);
+        const changeCostFilm = async () => {
+            try {
+                const res = await filmAdminApi.changeCost(film?.id);
+                console.log(res);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        changeCostFilm();
+    }
+
     const onActive = () => {
         setActive(!active);
         const changeActiveFilm = async () => {
             try {
-                const res = await filmAdminApi.changeActive(film?.id)
+                const res = await filmAdminApi.changeActive(film?.id);
                 console.log(res);
             } catch (error) {
                 console.log(error);
@@ -47,6 +62,7 @@ export default function ItemFirm({ film, setStatus, setId, }) {
         setFilmSelect(film);
     }
 
+
     return (
         <tr>
             <th scope="row">{film?.id}</th>
@@ -54,6 +70,7 @@ export default function ItemFirm({ film, setStatus, setId, }) {
             <td>{film?.createDate}</td>
             <td>Danchoi9x</td>
             <td>{film?.countView}</td>
+            <td className={cost ? styles.hot : styles.nhot} onClick={onCost}>Tính phí</td>
             <td className={hot ? styles.hot : styles.nhot} onClick={onHot}>Hot</td>
             <td className={active ? styles.hot : styles.nhot} onClick={onActive}>Hoạt động</td>
             <td className={styles.action}>

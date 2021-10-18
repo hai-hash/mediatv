@@ -26,6 +26,10 @@ const filmAdminApi = {
         const url = `${urls.CHANGE_ACTIVE}/${id}`;
         return axiosClient.put(url);
     },
+    changeCost: (id) => {
+        const url = `${urls.CHANGE_COST}/${id}`;
+        return axiosClient.put(url);
+    },
     addCategory: (idCategory, idFilm) => {
         const url = `${urls.ADD_CATEGORY_FILM}/${idCategory}/${idFilm}`;
         return axiosClient.put(url);

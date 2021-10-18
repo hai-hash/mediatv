@@ -41,7 +41,25 @@ const filmApi = {
     searchFilm: (params) => {
         const url = urls.SEARCH_FILM;
         return axiosClient.get(url, { params });
-    }
+    },
+    getFilmViewMostByCategory: (params) => {
+        const url = urls.GET_FILM_VIEW_MOST_BY_CATEGORY;
+        return axiosClient.get(url, { params });
+    },
+    getFilmRecommender: (params) => {
+        const url = urls.GET_FILM_RECOMMENDER;
+        return axiosClient.get(url, { params });
+    },
+    getFilmViewMostIncurrent: () => {
+        const url = urls.GET_FILM_VIEW_MOST_IN_CURRENT;
+        return axiosClient.get(url);
+    },
+    getUpComingMovie: (params) => {
+        const url = urls.UP_COMING_MOVIE;
+        return axiosClient.get(url, { params });
+    },
+
+
 }
 
 export default filmApi;
