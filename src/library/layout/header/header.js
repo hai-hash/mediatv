@@ -2,7 +2,8 @@ import styles from './../styles.module.scss';
 import { BiSearch } from 'react-icons/bi';
 import { AiOutlineMail } from 'react-icons/ai';
 import { MdAccountCircle } from "react-icons/md";
-import { useState, useContext } from 'react';
+import { BsMic, BsFillRecord2Fill } from "react-icons/bs";
+import { useState, useContext, useEffect } from 'react';
 import LogUpModal from '../../modal/logupModal';
 import LogInModal from '../../modal/loginModal';
 import FireBaseModal from '../../modal/firebaseModal';
@@ -10,6 +11,7 @@ import { PublicContext } from './../../../publicContexts/contexts';
 import * as toasts from './../../toast/toast';
 import { useHistory } from 'react-router-dom';
 import PaymentModal from '../../modal/paymentModal';
+import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 
 const Header = () => {
     const [active, setActive] = useState(false);
@@ -20,6 +22,26 @@ const Header = () => {
     const { isLogin, infoAccount, setIsLogin } = useContext(PublicContext);
     const [dataSearch, setDataSearch] = useState("");
     const [activePayment, setActivePayment] = useState(false);
+    const [activeMic, setActiveMic] = useState(false);
+    const commands = [
+        {
+            command: ["*"],
+            callback: (content) => setContentRecord(content)
+        }
+    ]
+    const [contentRecord, setContentRecord] = useState("");
+    const { transcript } = useSpeechRecognition({ commands });
+    useEffect(() => {
+        if (contentRecord !== "") {
+            setActiveMic(false);
+            setDataSearch("");
+            history.push(`/home/search/${contentRecord}`);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [contentRecord])
+    useEffect(() => {
+        setDataSearch(transcript);
+    }, [transcript])
     const history = useHistory();
     const onActive = () => {
         setActive(!active);
@@ -64,13 +86,21 @@ const Header = () => {
         setDataSearch(e.target.value);
     }
     const onSearch = () => {
+        setDataSearch("");
         history.push(`/home/search/${dataSearch}`);
+    }
+    const onRecord = () => {
+        setActiveMic(true);
+        SpeechRecognition.startListening();
     }
     return (
         <>
             <div className={styles.header}>
                 <div className={styles.header_search}>
-                    <input onChange={onChangeContentSearch} type="text" name="search" placeholder="Nhập tên phim, diễn viên ..." />
+                    {activeMic ? <BsFillRecord2Fill style={{ color: 'red' }} className={styles.record} /> :
+                        <BsMic className={styles.mic} onClick={onRecord} />
+                    }
+                    <input autocomplete="off" value={dataSearch} onChange={onChangeContentSearch} type="text" name="search" placeholder="Nhập tên phim, diễn viên ..." />
                     <BiSearch className={styles.icon} onClick={onSearch} />
                 </div>
                 <div className={styles.contact_header}>

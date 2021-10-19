@@ -61,3 +61,13 @@
         }
     }
 }
+.view_more{
+    color: #9b9b9b;
+    font-size: 14px;
+    padding-top: 40px;
+    &:hover{
+        color: #ff6500;
+        transition: 400ms;
+        cursor: pointer;
+    }
+}

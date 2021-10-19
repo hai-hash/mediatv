@@ -6,6 +6,7 @@ import { PublicContext } from '../../publicContexts/contexts';
 import commentUserApi from '../../api/comment/commentApi';
 import * as toasts from './../../library/toast/toast';
 
+
 const Comments = ({ id }) => {
     const { infoAccount } = useContext(PublicContext);
 
@@ -13,29 +14,51 @@ const Comments = ({ id }) => {
 
     const [listComments, setListComments] = useState([]);
 
-    const [comment, setComment] = useState({ createBy: infoAccount?.fullName ? infoAccount?.fullName : "" });
+    const [comment, setComment] = useState({ createBy: infoAccount?.fullName ? infoAccount?.fullName : "", contentComment: "" });
+
+    const [sizePage, setSizePage] = useState(4);
 
     useEffect(() => {
         setCountComment(listComments.length);
     }, [listComments])
 
 
-
     useEffect(() => {
+        setSizePage(4);
         const getAllCommentByFilm = async () => {
             try {
                 const params = {
-                    size: 8,
-                    page: 0
+                    size: sizePage,
+                    page: 0,
                 }
-                const res = await commentUserApi.getAllCommentByFilm(id, { params })
+                const res = await commentUserApi.getAllCommentByFilm(id, params);
                 setListComments(res);
             } catch (error) {
                 console.log(error);
             }
         }
         getAllCommentByFilm();
+        setComment({ ...comment, contentComment: "" });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
+
+    useEffect(() => {
+        const getAllCommentByFilm = async () => {
+            try {
+                const params = {
+                    size: sizePage,
+                    page: 0,
+                }
+                const res = await commentUserApi.getAllCommentByFilm(id, params);
+                setListComments(res);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getAllCommentByFilm();
+        setComment({ ...comment, contentComment: "" });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [sizePage])
 
 
     const DisplayElementComment = (comments) => {
@@ -68,6 +91,7 @@ const Comments = ({ id }) => {
                 try {
                     const res = await commentUserApi.post(comment, id, infoAccount?.username ? infoAccount?.username : "");
                     console.log(res);
+                    setComment({ ...comment, contentComment: "" });
                     toasts.notifyInfo("Bình luận đã được ghi lại");
                 } catch (error) {
                     console.log(error);
@@ -100,6 +124,9 @@ const Comments = ({ id }) => {
         }
         return result;
     }
+    const onViewMore = () => {
+        setSizePage(sizePage + 2);
+    }
 
 
 
@@ -112,14 +139,18 @@ const Comments = ({ id }) => {
             <div className={styles.comments}>
                 <div className={styles.avatar_comment}>{getName(infoAccount?.fullName ? infoAccount?.fullName : "người dùng")}</div>
                 <div className={styles.input_comment}>
-                    <form onSubmit={onComment}>
-                        <input required type="text" name="contentComment" placeholder="Nội dung bình luận" onChange={onAddComment} />
+                    <form onSubmit={onComment} autocomplete="off">
+                        <input required type="text" name="contentComment" value={comment?.contentComment} placeholder="Nội dung bình luận" onChange={onAddComment} />
                         <button>Bình Luận</button>
                     </form>
 
                 </div>
             </div>
             {DisplayElementComment(listComments)}
+            {listComments.length >= 4 ?
+                <div className={styles.view_more} onClick={onViewMore}>Xem các bình luận trước</div>
+                : null
+            }
 
         </div>
     )

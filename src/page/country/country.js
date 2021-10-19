@@ -4,15 +4,17 @@ import { AiFillVideoCamera } from 'react-icons/ai';
 import { useParams } from 'react-router-dom';
 import filmApi from '../../api/film/filmApi';
 import ItemFirm from './../home/components/Itemfirm';
+import BasePagination from '../../library/pagination/pagination';
 
 const FilmByCountry = () => {
     let { name } = useParams();
     const [data, setData] = useState([]);
+    const [page, setPage] = useState(1);
     useEffect(() => {
         const getFilmByCountry = async () => {
             try {
                 const params = {
-                    page: 0,
+                    page: page - 1,
                     size: 20
                 }
                 const res = await filmApi.getFilmByCountry(params, name);
@@ -23,7 +25,7 @@ const FilmByCountry = () => {
             }
         }
         getFilmByCountry();
-    }, [name])
+    }, [name, page])
 
     const display = () => {
         var result = null;
@@ -39,12 +41,24 @@ const FilmByCountry = () => {
         return result;
     }
 
+    const onPageChange = (page) => {
+        setPage(page)
+    }
+
+
+
     return (
         <>
             <h1 className={styles.title_series}><AiFillVideoCamera className={styles.icon_series} />Quốc Gia {name}</h1>
             <div className="row">
                 {display()}
             </div>
+            <BasePagination
+                page={page}
+                total={100}
+                onPageChange={onPageChange}
+                limit={20}
+            />
         </>
     )
 }
