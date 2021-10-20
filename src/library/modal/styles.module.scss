@@ -2,7 +2,7 @@
     background-size: cover;
     span{
         display: block;
-        padding-top: 30px;
+        padding-top: 15px;
         img{
             height: 50px;
             margin-left: 50%;
@@ -26,19 +26,139 @@
             margin-left: 50%;
             transform: translate(-50%);
             input{
-                height: 45px;
+                height: 42px;
             }
         }
         
         button{
             margin-top: 30px;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
             width: 70%;
+            background: #FF6400;
+            color: #fff;
+            &:hover{
+                color: #fff !important;
+                transition: 300ms;
+                background: #e25a03;
+            }
+          
         }
     }
 }
 .modalBody{
     padding: 0px !important;
+    position: relative;
+    background: #1F1F1F;
+    color: #fff;
+    .btn_close{
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        color: #fff;
+        &:hover{
+            transition: 300ms;
+            color: #e25a03;
+            cursor: pointer;
+        }
+    }
+    .content_login{
+        background: #1F1F1F;
+    }
+    .forgetPassword{
+        margin-bottom: 0px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        padding-bottom: 5px;
+        &:hover{
+            color: #ff6500;
+            transition: 400ms;
+            cursor: pointer;
+        }
+    }
+    .content_regulation{
+        margin-bottom: 0px;
+        color: #4A4A4A;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        padding-bottom: 5px;
+    }
+    .regulation{
+        margin-bottom: 0px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        padding-bottom: 10px;
+        cursor: pointer;
+        &:hover{
+            color: #ff6500;
+            transition: 400ms;
+        }
+    }
+    .or{
+        margin-bottom: 0px;
+        color: #4A4A4A;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        padding-bottom: 10px;
+    }
+    .btn_facebook{
+        color: #fff;
+        width: 70%;
+        background: #3B5998;
+        margin-left: 50%;
+        transform: translate(-50%);
+        height: 38px;
+        border: none;
+        border-radius: 3px;
+        &:hover{
+            background: #1f4696;
+            transition: 300ms;
+        }
+        
+    }
+    .btn_google{
+        margin-top: 15px;
+        color: #fff;
+        width: 70%;
+        background: #DD4B39;
+        margin-left: 50%;
+        transform: translate(-50%);
+        height: 38px;
+        border: none;
+        border-radius: 3px;
+        margin-bottom: 15px;
+        &:hover{
+            background: #dd2e18;
+            transition: 300ms;
+        }
+    }
+    .footer_login{
+        color: #9b9b9b;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        p{
+            padding: 0 2px;
+        }
+        .register{
+            color: #4A4A4A;
+            cursor: pointer;
+            &:hover{
+                color: #ff6500;
+                transition: 400ms;
+            }
+        }
+    }
 }
 
 .wrapperModalComingSoon {

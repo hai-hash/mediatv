@@ -2,18 +2,23 @@ import React, { useState } from 'react';
 import { Modal, ModalBody } from 'reactstrap';
 import styles from './styles.module.scss';
 import Paypal from '../paypal/paypay';
+import { AiOutlineClose } from 'react-icons/ai';
 
 const PaymentModal = ({ activePayment, onPayment }) => {
     const [checkout, setCheckOut] = useState(false);
+    const onCloseModal = () => {
+        onPayment();
+    }
     return (
         <div>
             <Modal
                 isOpen={activePayment}
                 toggle={onPayment}
                 size="lg"
-                style={{ maxWidth: '518px' }}
+                style={{ maxWidth: '380px' }}
             >
                 <ModalBody className={styles.modalBody}>
+                    <AiOutlineClose className={styles.btn_close} onClick={onCloseModal} />
                     <p className={styles.titlepaypal}>Nâng cấp tài khoản</p>
                     <div className={styles.moneyPaypal}>
                         <p>Thực hiện nâng cấp tài khoản để có thể xem được nhiều bộ phim hay hơn</p>

@@ -3,6 +3,7 @@ import { Modal, ModalBody } from 'reactstrap';
 import styles from './styles.module.scss';
 import accountApi from '../../api/account/accountApi';
 import * as toasts from './../../library/toast/toast';
+import { AiOutlineClose } from 'react-icons/ai';
 // import firebase from '../firebase/firebaseConfig';
 const LogUpModal = ({ activeSignUp, onSignUp, setDataFormSignUp, setActiveFireBase }) => {
     const [dataForm, setDataForm] = useState({ fullName: "", email: "", numberPhone: "", username: "", password: "" })
@@ -21,7 +22,7 @@ const LogUpModal = ({ activeSignUp, onSignUp, setDataFormSignUp, setActiveFireBa
 
     const onSubmitForm = (event) => {
         event.preventDefault();
-        setDataFormSignUp(dataForm);
+        // setDataFormSignUp(dataForm);
         // figureCapcha();
         // var numberPhone = customNumberPhone(dataForm.numberPhone);
         // console.log("đây là số điện thoại", numberPhone);
@@ -43,10 +44,10 @@ const LogUpModal = ({ activeSignUp, onSignUp, setDataFormSignUp, setActiveFireBa
                 const res = await accountApi.signup(params)
                 console.log(res);
                 onSignUp();
-                toasts.notifySuccess("Đăng ký thành công");
+                toasts.notifySuccess("Đăng ký thành công !.");
             } catch (error) {
                 console.log("Failed to fetch sign up :", error);
-                toasts.notifyError("Tên tài khoản đã tồn tại");
+                toasts.notifyError("Tên tài khoản đã tồn tại !.");
             }
         }
 
@@ -63,20 +64,24 @@ const LogUpModal = ({ activeSignUp, onSignUp, setDataFormSignUp, setActiveFireBa
     //         defaultCountry: "IN"
     //     });
     // }
+    const onCloseModal = () => {
+        onSignUp();
+    }
     return (
         <div>
             <Modal
                 isOpen={activeSignUp}
                 toggle={onSignUp}
                 size="lg"
-                style={{ maxWidth: '518px' }}
+                style={{ maxWidth: '380px' }}
             >
                 <ModalBody className={styles.modalBody}>
-                    <div className={styles.content} style={{ background: 'url("https://media.istockphoto.com/videos/defocused-particles-background-loop-video-id932483108?b=1&k=6&m=932483108&s=640x640&h=HAwn4USIw_AF3MuWG3E87XQNYCz7MYLq3sWPn7KDNss=")' }}>
+                    <AiOutlineClose className={styles.btn_close} onClick={onCloseModal} />
+                    <div className={`${styles.content} ${styles.content_login}`} >
                         <span><img src="/logo/logo2.png" alt="" /></span>
                         <p className={styles.title}>Đăng ký</p>
 
-                        <form onSubmit={onSubmitForm}>
+                        <form onSubmit={onSubmitForm} autoComplete="off">
                             <div className={styles.line_info}>
                                 <input name="fullName" type="text" className="form-control" placeholder="Họ Và Tên" required onChange={onChangeForm} />
                             </div>
@@ -93,9 +98,12 @@ const LogUpModal = ({ activeSignUp, onSignUp, setDataFormSignUp, setActiveFireBa
                                 <input name="password" type="password" className="form-control" placeholder="Mật Khẩu" required onChange={onChangeForm} />
                             </div>
                             <div id="sign-in-button"></div>
-                            <button className="btn btn-primary">Tiếp Tục</button>
+                            <button className="btn">Đăng ký</button>
                         </form>
-
+                        <p className={styles.content_regulation}>Khi bấm vào nút đăng ký, bạn đã đồng ý với</p>
+                        <p className={styles.regulation}>Chính sách và quy định</p>
+                        <button className={styles.btn_facebook}>Facebook</button>
+                        <button className={styles.btn_google}>Google</button>
                     </div>
                 </ModalBody>
             </Modal>

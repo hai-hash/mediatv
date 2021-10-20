@@ -4,6 +4,23 @@
     display: flex;
     align-items: center;
    
+    .buyPacket{
+        color: #fff;
+        background: #ff6500;
+        padding: 4px 12px;
+        border-radius: 15px;
+        margin: 0 3px;
+        margin-left: 30px;
+        cursor: pointer;
+    }
+    .btn_login{
+        color: #9B9B9B;
+        &:hover{
+            cursor: pointer;
+            color: #ff6500;
+            transition: 400ms;
+        }
+    }
 
     .header_search{
         height: 80%;
@@ -40,6 +57,7 @@
       }
       .record{
         margin-right: 8px;
+        cursor: pointer;
         -webkit-animation: glowing 1500ms infinite;
         -moz-animation: glowing 1500ms infinite;
         -o-animation: glowing 1500ms infinite;
@@ -86,7 +104,7 @@
     }
     .user{
         position: relative;
-        right: -100px;
+        right: -30px;
         cursor: pointer;
         .iconUser{
             color: #fff;
@@ -94,13 +112,13 @@
             height: 40px;
         }
         .iconUserText{
-            height: 45px;
-            width: 45px;
+            height: 40px;
+            width: 40px;
             color: #000;
             background-color: #fff;
             border-radius: 100%;
             text-align: center;
-            line-height: 45px;
+            line-height: 40px;
             font-weight: 500;
         }
         .subMenu{
@@ -109,8 +127,8 @@
             display: none;
             border-radius: 5px;
             top: 50px;
-            left: -160px;
-            min-height: 400px;
+            left: -180px;
+            min-height: 360px;
             width: 240px;
             background-color: #fff;
             border: 0.5px solid #000;

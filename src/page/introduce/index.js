@@ -112,18 +112,18 @@ const Introduct = () => {
                 try {
                     const res = await evaluateAdminApi.updateStar(id, infoAccount?.username, parseInt(newRating));
                     console.log(res);
-                    toasts.notifySuccess("đánh giá của bạn đã được ghi nhận");
+                    toasts.notifySuccess("Đánh giá của bạn đã được ghi nhận !.");
                     setStarCurren(parseInt(newRating));
                 } catch (error) {
                     console.log(error);
-                    toasts.notifyError("đánh giá của bạn ghi nhận thất bại");
+                    toasts.notifyError("Đánh giá của bạn ghi nhận thất bại !");
                 }
             }
             updateStar();
         }
         else {
             setActiveSignIn(true);
-            toasts.notifyWarning("bạn cần đăng nhập để thực hiện đánh giá")
+            toasts.notifyWarning("Bạn cần đăng nhập để thực hiện đánh giá !")
 
         }
 

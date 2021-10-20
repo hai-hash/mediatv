@@ -22,7 +22,6 @@ const Header = () => {
     const { isLogin, infoAccount, setIsLogin } = useContext(PublicContext);
     const [dataSearch, setDataSearch] = useState("");
     const [activePayment, setActivePayment] = useState(false);
-    const [activeMic, setActiveMic] = useState(false);
     const commands = [
         {
             command: ["*"],
@@ -30,18 +29,19 @@ const Header = () => {
         }
     ]
     const [contentRecord, setContentRecord] = useState("");
-    const { transcript } = useSpeechRecognition({ commands });
+    const { transcript, listening } = useSpeechRecognition({ commands });
     useEffect(() => {
         if (contentRecord !== "") {
-            setActiveMic(false);
             setDataSearch("");
             history.push(`/home/search/${contentRecord}`);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [contentRecord])
+
     useEffect(() => {
         setDataSearch(transcript);
     }, [transcript])
+
     const history = useHistory();
     const onActive = () => {
         setActive(!active);
@@ -90,73 +90,87 @@ const Header = () => {
         history.push(`/home/search/${dataSearch}`);
     }
     const onRecord = () => {
-        setActiveMic(true);
         SpeechRecognition.startListening();
+    }
+    const onRecordOff = () => {
+        SpeechRecognition.stopListening();
+    }
+    const onBuyPacket = () => {
+        if (isLogin) {
+            if (infoAccount?.role !== "VIP") {
+                onPayment();
+            }
+            else {
+                toasts.notifyInfo("Hiện tại bạn đang là thành viên VIP !.");
+            }
+
+        }
+        else {
+            onSignIn();
+            toasts.notifyInfo("Bạn cần đăng nhập trước khi thực hiện chức năng này !.")
+        }
     }
     return (
         <>
             <div className={styles.header}>
                 <div className={styles.header_search}>
-                    {activeMic ? <BsFillRecord2Fill style={{ color: 'red' }} className={styles.record} /> :
+                    {listening ? <BsFillRecord2Fill style={{ color: 'red' }} className={styles.record} onClick={onRecordOff} /> :
                         <BsMic className={styles.mic} onClick={onRecord} />
                     }
-                    <input autocomplete="off" value={dataSearch} onChange={onChangeContentSearch} type="text" name="search" placeholder="Nhập tên phim, diễn viên ..." />
+                    <input autoComplete="off" value={dataSearch} onChange={onChangeContentSearch} type="text" name="search" placeholder="Nhập tên phim, diễn viên ..." />
                     <BiSearch className={styles.icon} onClick={onSearch} />
                 </div>
+                <div className={styles.buyPacket} onClick={onBuyPacket}>Mua gói</div>
+
                 <div className={styles.contact_header}>
                     <AiOutlineMail />
                     <span><a href="mailto:whynotme1131999@gmail.com">Liên hệ</a></span>
                 </div>
-                <div className={styles.user} onClick={onActive}>
-                    {isLogin ?
-                        <div className={styles.iconUserText}> {getName(infoAccount?.fullName)}</div>
-                        : <MdAccountCircle className={styles.iconUser} />
-                    }
-                    <div className={`${styles.subMenu} ${active ? styles.active : ""}`}>
+                {!isLogin ? <div className={styles.btn_login} onClick={onSignIn}>Đăng nhập</div> :
+                    <div className={styles.user} onClick={onActive}>
                         {isLogin ?
-                            <ul>
-                                <li className={styles.avatar}>
-                                    <div className={styles.icon_name}>
-                                        {getName(infoAccount?.fullName)}
-                                    </div>
-                                    <div className={styles.name}>
-                                        {infoAccount?.fullName}
-                                    </div>
-                                </li>
-                            </ul>
-                            : null
+                            <div className={styles.iconUserText}> {getName(infoAccount?.fullName)}</div>
+                            : <MdAccountCircle className={styles.iconUser} />
                         }
+                        <div className={`${styles.subMenu} ${active ? styles.active : ""}`}>
+                            {isLogin ?
+                                <ul>
+                                    <li className={styles.avatar}>
+                                        <div className={styles.icon_name}>
+                                            {getName(infoAccount?.fullName)}
+                                        </div>
+                                        <div className={styles.name}>
+                                            {infoAccount?.fullName}
+                                        </div>
+                                    </li>
+                                </ul>
+                                : null
+                            }
 
-                        {!isLogin ?
-                            <ul>
-                                <li onClick={onSignIn}>Đăng nhập</li>
-                                <li onClick={onSignUp}>Đăng ký</li>
-                            </ul>
-                            : null
-                        }
-                        {isLogin &&
-                            <ul>
-                                <li>Thông tin cá nhân</li>
+                            {isLogin &&
+                                <ul>
+                                    <li>Thông tin cá nhân</li>
 
-                                <li>Thông Báo</li>
-                                <li>Phim yêu thích</li>
-                            </ul>
-                        }
-                        {
-                            isLogin && infoAccount?.role !== "VIP"
-                            && <ul> <li onClick={onPayment}>Nâng cấp tài khoản</li></ul>
-                        }
-                        <ul>
-                            <li>Sự kiên</li>
-                        </ul>
-                        {isLogin &&
+                                    <li>Thông Báo</li>
+                                    <li>Phim yêu thích</li>
+                                </ul>
+                            }
+                            {
+                                isLogin && infoAccount?.role !== "VIP"
+                                && <ul> <li onClick={onPayment}>Nâng cấp tài khoản</li></ul>
+                            }
                             <ul>
-                                <li onClick={onLogout}>Đăng xuất</li>
+                                <li>Sự kiện</li>
                             </ul>
-                        }
+                            {isLogin &&
+                                <ul>
+                                    <li onClick={onLogout}>Đăng xuất</li>
+                                </ul>
+                            }
 
+                        </div>
                     </div>
-                </div>
+                }
                 <LogUpModal activeSignUp={activeSignUp} onSignUp={onSignUp} setDataFormSignUp={setDataFormSignUp} setActiveFireBase={setActiveFireBase} />
                 <LogInModal activeSignIn={activeSignIn} onSignIn={onSignIn} />
                 <PaymentModal activePayment={activePayment} onPayment={onPayment} />

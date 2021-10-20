@@ -92,16 +92,16 @@ const Comments = ({ id }) => {
                     const res = await commentUserApi.post(comment, id, infoAccount?.username ? infoAccount?.username : "");
                     console.log(res);
                     setComment({ ...comment, contentComment: "" });
-                    toasts.notifyInfo("Bình luận đã được ghi lại");
+                    toasts.notifyInfo("Bình luận đã được ghi lại !.");
                 } catch (error) {
                     console.log(error);
-                    toasts.notifyError("bình luận thất bại");
+                    toasts.notifyError("Bình luận thất bại !.");
                 }
             }
             SubmitComment();
         }
         else {
-            alert("bạn cần đăng nhập để thực hiện bình luận");
+            alert("Bạn cần đăng nhập để thực hiện bình luận !");
         }
 
     }
