@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 // import accountApi from '../../api/account/accountApi';
 const FireBaseModal = ({ activeFireBase, onFireBase, dataFormSignUp }) => {
     const [dataForm, setDataForm] = useState({ verify: "" })
-    console.log("this firebase:", dataFormSignUp);
+    // console.log("this firebase:", dataFormSignUp);
     const onChangeForm = (event) => {
         var name = event.target.name;
         var value = event.target.value;

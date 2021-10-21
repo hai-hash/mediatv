@@ -5,6 +5,8 @@ import { useState, useContext, useEffect } from 'react';
 import { PublicContext } from '../../publicContexts/contexts';
 import commentUserApi from '../../api/comment/commentApi';
 import * as toasts from './../../library/toast/toast';
+import * as sentiment from './../../library/sentiment/sentiment';
+import filmApi from '../../api/film/filmApi';
 
 
 const Comments = ({ id }) => {
@@ -91,8 +93,18 @@ const Comments = ({ id }) => {
                 try {
                     const res = await commentUserApi.post(comment, id, infoAccount?.username ? infoAccount?.username : "");
                     console.log(res);
-                    setComment({ ...comment, contentComment: "" });
                     toasts.notifyInfo("Bình luận đã được ghi lại !.");
+                    const score = sentiment.sentimentText(comment?.contentComment);
+                    const updateCore = async () => {
+                        try {
+                            const respon = await filmApi.updateScore(id, score);
+                            console.log(respon);
+                        } catch (error) {
+                            console.log(error);
+                        }
+                    }
+                    updateCore();
+                    setComment({ ...comment, contentComment: "" });
                 } catch (error) {
                     console.log(error);
                     toasts.notifyError("Bình luận thất bại !.");

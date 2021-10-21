@@ -58,6 +58,10 @@ const filmApi = {
         const url = urls.UP_COMING_MOVIE;
         return axiosClient.get(url, { params });
     },
+    updateScore: (id, score) => {
+        const url = `${urls.UPDATE_SCORE}/${id}/${score}`;
+        return axiosClient.put(url);
+    },
 
 
 }

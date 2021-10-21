@@ -21,3 +21,4 @@ export const GET_FILM_VIEW_MOST_BY_CATEGORY = "/api/public/film/view/most/all";
 export const GET_FILM_RECOMMENDER = "/api/public/evaluates";
 export const GET_FILM_VIEW_MOST_IN_CURRENT = "/api/public/film/view/most/in/curren";
 export const UP_COMING_MOVIE = "/api/public/film/status";
+export const UPDATE_SCORE = "/api/user/film/update/score";
