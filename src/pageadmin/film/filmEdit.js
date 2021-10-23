@@ -9,7 +9,7 @@ import countryAdminApi from '../../api/country/countryApi';
 import { findIndex } from 'lodash';
 
 const FilmEdit = () => {
-    const [data, setdata] = useState({ id: "", nameFilm: "", illustration: "", title: "", status: "", director: "", actor: "", nation: "", viewingTime: "", countView: "", hot: "", year: "", active: "", createDate: "", episodes: [], categorys: [] });
+    const [data, setdata] = useState({ id: "", nameFilm: "", illustration: "", subImage: "", title: "", status: "", director: "", actor: "", nation: "", viewingTime: "", countView: "", hot: "", year: "", active: "", createDate: "", episodes: [], categorys: [] });
 
     const [category, setCategory] = useState([]);
 
@@ -169,6 +169,11 @@ const FilmEdit = () => {
                     <Col xs="6" className={styles.col}>
                         <div className="form-group">
                             <input required name="illustration" value={data?.illustration ? data?.illustration : ""} type="text" className="form-control" placeholder="illustration" onChange={onChangeData} />
+                        </div>
+                    </Col>
+                    <Col xs="6" className={styles.col}>
+                        <div className="form-group">
+                            <input required name="subImage" value={data?.subImage ? data?.subImage : ""} type="text" className="form-control" placeholder="subImage" onChange={onChangeData} />
                         </div>
                     </Col>
                     <Col xs="6" className={styles.col}>

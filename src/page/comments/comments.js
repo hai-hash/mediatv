@@ -151,7 +151,7 @@ const Comments = ({ id }) => {
             <div className={styles.comments}>
                 <div className={styles.avatar_comment}>{getName(infoAccount?.fullName ? infoAccount?.fullName : "người dùng")}</div>
                 <div className={styles.input_comment}>
-                    <form onSubmit={onComment} autocomplete="off">
+                    <form onSubmit={onComment} autoComplete="off">
                         <input required type="text" name="contentComment" value={comment?.contentComment} placeholder="Nội dung bình luận" onChange={onAddComment} />
                         <button>Bình Luận</button>
                     </form>

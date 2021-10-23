@@ -11,7 +11,7 @@ const NavItem = ({ film }) => {
     return (
         <>
             <div className={styles.nav_item} onClick={() => onGoToIntroduct(film?.id)}>
-                <img src={`${film?.illustration}`} alt="" />
+                <img src={film?.illustration} alt="" />
                 <div className={styles.info_item}>
                     <div className={styles.title}>{film?.nameFilm}</div>
                     <div className={styles.content}></div>

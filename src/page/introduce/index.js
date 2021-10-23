@@ -136,7 +136,7 @@ const Introduct = () => {
             <div className={styles.wap_introduct}>
                 <div className={styles.top_introduct}>
                     <div className={styles.image_introduct}>
-                        <img src={data.illustration ? data.illustration : ""} alt="" />
+                        <img src={data?.illustration} alt="" />
                         <div className={styles.view} onClick={onViewNow}><p>Xem ngay</p></div>
                     </div>
                     <div className={styles.info_introduct}>
@@ -183,7 +183,7 @@ const Introduct = () => {
                         <p onClick={onViewMore}>{activeViewMore ? <>Thu gọn <AiFillCaretUp /></> : <>Xem thêm <AiFillCaretDown /></>}</p>
                     </div> : null
                 }
-                <div className={styles.content_image} style={{ background: `url(${data.illustration ? data.illustration : ""})` }}>
+                <div className={styles.content_image} style={{ background: `url(${data.illustration ? data?.illustration : ""})` }}>
 
                 </div>
             </div>

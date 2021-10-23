@@ -30,6 +30,10 @@
     height: 580px;
     overflow-y: auto;
     overflow-x: hidden;
+    .chart{
+        height: 300px !important;
+        background-color: #fff;
+    }
 
         /* width */
     &::-webkit-scrollbar {

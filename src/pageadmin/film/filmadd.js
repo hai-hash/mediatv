@@ -5,9 +5,24 @@ import filmAdminApi from '../../api/film/filmAdminApi';
 import * as toasts from './../../library/toast/toast';
 import countryAdminApi from '../../api/country/countryApi';
 import { findIndex } from 'lodash';
+import { Spinner } from 'react-bootstrap';
 const FilmAdd = () => {
-    const [data, setdata] = useState({ hot: false, active: true, countView: 0 });
+    const [data, setdata] = useState({ hot: false, active: true, countView: 0, score: 0, illustration: "", subImage: "" });
     const [countries, setCountries] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [loadingSub, setLoadingSub] = useState(false);
+    const [imageMain, setImageMain] = useState("");
+    const [imageSub, setImageSub] = useState("");
+
+    useEffect(() => {
+        setdata({ ...data, illustration: imageMain });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [imageMain])
+
+    useEffect(() => {
+        setdata({ ...data, subImage: imageMain });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [imageSub])
 
     useEffect(() => {
         const fetchCountryList = async () => {
@@ -68,6 +83,36 @@ const FilmAdd = () => {
             setdata({ ...data, [name]: countries[index] })
         }
     }
+
+    const onUploadImageMain = async (e) => {
+        const files = e.target.files;
+        const data = new FormData();
+        data.append('file', files[0]);
+        data.append('upload_preset', 'filmtvimages');
+        setLoading(true);
+        const res = await fetch('https://api.cloudinary.com/v1_1/filmtv/image/upload', {
+            method: 'POST',
+            body: data
+        })
+        const file = await res.json();
+        setImageMain(file.secure_url);
+        setLoading(false);
+    }
+
+    const onUploadImageSub = async (e) => {
+        const files = e.target.files;
+        const data = new FormData();
+        data.append('file', files[0]);
+        data.append('upload_preset', 'filmtvimages');
+        setLoadingSub(true);
+        const res = await fetch('https://api.cloudinary.com/v1_1/filmtv/image/upload', {
+            method: 'POST',
+            body: data
+        })
+        const file = await res.json();
+        setImageSub(file.secure_url)
+        setLoadingSub(false);
+    }
     return (
         <div className={styles.form} onSubmit={onSaveFilm}>
 
@@ -79,8 +124,20 @@ const FilmAdd = () => {
                         </div>
                     </Col >
                     <Col xs="6" className={styles.col}>
-                        <div className="form-group">
-                            <input required name="illustration" type="text" className="form-control" placeholder="illustration" onChange={onChangeData} />
+                        <div className={`form-group  ${styles.update_main_file}`}>
+                            {loading ?
+                                <Spinner animation="border" className={styles.loading} />
+                                : null}
+                            <input required name="illustration" type="text" className="form-control" value={data?.illustration} placeholder="illustration" onChange={onChangeData} />
+                            <input type="file" className={`form-control ${styles.input_file}`} required="required" onChange={onUploadImageMain} />
+                        </div>
+                    </Col>
+                    <Col xs="6" className={styles.col}>
+                        <div className={`form-group  ${styles.update_main_file}`}>
+                            {loadingSub ?
+                                <Spinner animation="border" className={styles.loading} /> : null}
+                            <input required name="subImage" type="text" className="form-control" value={data?.subImage} placeholder="subImage" onChange={onChangeData} />
+                            <input type="file" className={`form-control ${styles.input_file}`} required="required" onChange={onUploadImageSub} />
                         </div>
                     </Col>
                     <Col xs="6" className={styles.col}>

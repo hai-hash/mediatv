@@ -62,6 +62,10 @@ const filmApi = {
         const url = `${urls.UPDATE_SCORE}/${id}/${score}`;
         return axiosClient.put(url);
     },
+    getFavoriteFilm: () => {
+        const url = urls.GET_FILM_MOST_FAVORITE;
+        return axiosClient.get(url);
+    }
 
 
 }

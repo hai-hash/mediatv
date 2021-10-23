@@ -82,8 +82,48 @@
     background-color: #fff;
     margin-top: 50px;
     padding-top: 10px;
+    height: 572px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+        /* width */
+    &::-webkit-scrollbar {
+        width: 2px;
+    }
+    
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+    
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
     .col{
         margin-bottom: 20px !important;
+        .update_main_file{
+            position: relative;
+            .loading{
+                position: absolute;
+                width: 1rem;
+                height: 1rem;
+                top: 18px;
+                right: 120px;
+            }
+            .input_file{
+                position: absolute;
+                width: 89px;
+                height: 36px;
+                top: 7px;
+                right: 10px;
+            }
+        }
         input{
             height: 50px;
             border-radius: 5px;
@@ -107,6 +147,29 @@
 
 .wap_detail_film{
     background-color: #fff;
+    height: 572px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+        /* width */
+    &::-webkit-scrollbar {
+        width: 2px;
+    }
+    
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+    
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
     .detail_film{
         background-color: #fff;
         border: 1px solid;
