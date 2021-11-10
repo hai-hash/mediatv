@@ -23,3 +23,4 @@ export const GET_FILM_VIEW_MOST_IN_CURRENT = "/api/public/film/view/most/in/curr
 export const UP_COMING_MOVIE = "/api/public/film/status";
 export const UPDATE_SCORE = "/api/user/film/update/score";
 export const GET_FILM_MOST_FAVORITE = "/api/public/film/most/favorite";
+export const GET_WORD_RECOMMEND_SEARCH = "/api/public/recommend/search";

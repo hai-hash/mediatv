@@ -236,3 +236,134 @@
     margin-left: 50%;
     transform: translate(-50%);
 }
+
+
+.header_update_account{
+    padding: 40px 25px 42px 10px;
+    background: #202020;
+}
+.person_avatar{
+        display: flex;
+        position: absolute;
+        align-items: center;
+        justify-content: center;
+        padding-top: 15px;
+        top: 0px;
+        left: 325px;
+        img{
+            border-radius: 100%;
+        }
+        .camera{
+            position: absolute;
+            background: #1F1F1F;
+            width: 35px;
+            height: 35px;
+            border-radius: 100%;
+            bottom: -16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border:1px solid #fff;
+            cursor: pointer;
+        }
+}
+.body_update_info{
+    color: #c9c9c9;
+    min-height: 200px;
+    background-color: #272727;
+    display: flex;
+    justify-content: center;
+}
+.wap_info{
+    width: 90%;
+    padding-top: 80px;
+    padding-bottom: 42px;
+    span{
+        padding-top: 5px;
+    }
+    input{
+        background: #383838!important;
+        border-radius: 12px;
+        border-bottom: unset!important;
+        box-shadow: unset!important;
+        font-size: 16px;
+        line-height: 24px;
+        color: #fff;
+        width: 95%;
+        margin-bottom: 5px;
+        height: 2.5rem;
+        outline: none;
+        padding-left: 20px;
+    }
+    button{
+        margin-left: 50%;
+        transform: translate(-50%);
+        cursor: pointer;
+        background: #ff6400;
+        color: #fff;
+        border-radius: 10px;
+        height: 45px;
+        width: 150px;
+        margin-top: 40px;
+    }
+}
+
+.title_changePass{
+    text-align: center;
+    padding-top: 40px;
+    font-size: 22px;
+    color: #fff;
+}
+.wap_info_change_pass{
+    p{
+        text-align: center;
+        font-size: 16px;
+        color: #9b9b9b;
+        margin-bottom: 5px;
+    }
+    input{
+        text-align: center;
+        border: 1px solid #ff6500;
+        color: #9b9b9b;
+        max-width: 250px;
+        margin: 15px 0 0 0;
+        height: 40px;
+        margin-left: 50%;
+        transform: translate(-50%);
+        background: transparent;
+        &:focus{
+            outline: none;
+            background: transparent;
+            color: #9b9b9b;
+        }
+    }
+    padding-bottom: 40px;
+}
+.button_submit{
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    button{
+        border-radius: 5px;
+        margin: 8px 0 0 0;
+        height: 42px;
+        background: #4a4a4a;
+        font-size: 16px;
+        border-radius: 5px;
+        min-width: 167px;
+        display: flex;
+        justify-content: center;
+        line-height: 37px;
+        outline: none;
+        border: none;
+        &:hover{
+            background-color: #ff6500;
+            transition: 400ms;
+            color: #fff;
+        }
+
+    }
+    .cancel{
+        margin-right: 20px;
+    }
+}

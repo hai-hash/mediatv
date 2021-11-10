@@ -8,7 +8,7 @@ import { Modal, ModalBody } from 'reactstrap';
 import styles from './styles.module.scss';
 
 const ShareModal = ({ onShare, activeShare, id }) => {
-    const shareUrl = `https://firmtv.herokuapp.com/home/anime/${id}`;
+    const shareUrl = `https://filmtv.netlify.app/home/anime/${id}`;
 
     function NextArrow({ onClick }) {
         return (

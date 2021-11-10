@@ -7,6 +7,8 @@ import commentUserApi from '../../api/comment/commentApi';
 import * as toasts from './../../library/toast/toast';
 import * as sentiment from './../../library/sentiment/sentiment';
 import filmApi from '../../api/film/filmApi';
+import Picker from 'emoji-picker-react';
+import { MdOutlineInsertEmoticon } from 'react-icons/md';
 
 
 const Comments = ({ id }) => {
@@ -20,11 +22,22 @@ const Comments = ({ id }) => {
 
     const [sizePage, setSizePage] = useState(4);
 
+    const [chosenEmoji, setChosenEmoji] = useState(null);
+
+    const [activeEmoji, setActiveEmoji] = useState(false);
+
     useEffect(() => {
         setCountComment(listComments.length);
     }, [listComments])
 
+    useEffect(() => {
+        if (chosenEmoji) {
+            let newComment = comment?.contentComment + chosenEmoji?.emoji;
+            setComment({ ...comment, contentComment: newComment });
+        }
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [chosenEmoji])
     useEffect(() => {
         setSizePage(4);
         const getAllCommentByFilm = async () => {
@@ -140,8 +153,13 @@ const Comments = ({ id }) => {
         setSizePage(sizePage + 2);
     }
 
+    const onEmojiClick = (event, emojiObject) => {
+        setChosenEmoji(emojiObject);
+    };
 
-
+    const onActiveEmoji = () => {
+        setActiveEmoji(!activeEmoji);
+    }
 
     return (
         <div className={styles.wap_comment}>
@@ -157,6 +175,11 @@ const Comments = ({ id }) => {
                     </form>
 
                 </div>
+                <MdOutlineInsertEmoticon className={styles.icon_emoji} onClick={onActiveEmoji} />
+                <div className={`${styles.emoji} ${activeEmoji ? styles.active_emoji : null}`}>
+                    <Picker onEmojiClick={onEmojiClick} />
+                </div>
+
             </div>
             {DisplayElementComment(listComments)}
             {listComments.length >= 4 ?

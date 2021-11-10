@@ -7,6 +7,8 @@ import ModalComingSoonComponent from '../../library/modal/modalCommingSoon';
 import { PublicContext } from '../../publicContexts/contexts';
 import evaluateAdminApi from '../../api/evaluate/evaluateApi';
 import RecommenderFilm from '../recommender/recommenderFilm';
+import { Row, Col } from 'reactstrap';
+// import ReactPlayer from 'react-player'
 const Firm = () => {
     const [urlCurren, setUrlCurren] = useState("");
 
@@ -82,7 +84,8 @@ const Firm = () => {
         let result = null;
         if (episodes.length > 0) {
             result = episodes.map((cha, index) => {
-                return <p className={styles.button_chap} key={index} style={{ color: urlCurren === cha.urlVideo ? "#ff6500" : "#fff" }} onClick={() => onNextChap(cha.urlVideo)}>{cha.nameEpisode}</p>
+
+                return <Col xs="2"><p className={styles.button_chap} key={index} style={{ color: urlCurren === cha.urlVideo ? "#ff6500" : "#fff" }} onClick={() => onNextChap(cha.urlVideo)}>{cha.nameEpisode}</p></Col>
             })
         }
         return result;
@@ -91,13 +94,16 @@ const Firm = () => {
     return (
         <div>
             {/* <iframe src={urlCurren} title="Video player" className={styles.size_frame} allow="autoplay" width="785" height="480"  allowFullScreen={true}></iframe> */}
-            <iframe src={urlCurren} title="YouTube video player" className={styles.size_frame} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe>
+            <iframe src={urlCurren} title="YouTube video player" className={styles.size_frame} frameborder="0" autoPlay allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe>
+            {/* <ReactPlayer url={urlCurren} controls width="785px" height="480px" autoPlay/> */}
 
             <div className={styles.list_chap}>
                 {(episodes.length === 0) ? "Phim chưa ra mắt, mong bạn quay lại sau." : "Tập phim"}
             </div>
             <div className={styles.chap}>
-                {onDisplayChap()}
+                <Row>
+                    {onDisplayChap()}
+                </Row>
             </div>
             <Comments id={id} />
             <RecommenderFilm id={id} />

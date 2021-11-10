@@ -1,0 +1,5 @@
+export const PROFILE = 'PROFILE';
+export const NOTIFY = 'NOTIFY';
+export const HISTORYTRANSACTION = 'HISTORYTRANSACTION';
+export const HISTORYVIEW = 'HISTORYVIEW';
+export const EDITPROFILE = 'EDITPROFILE';

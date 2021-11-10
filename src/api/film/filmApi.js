@@ -65,6 +65,10 @@ const filmApi = {
     getFavoriteFilm: () => {
         const url = urls.GET_FILM_MOST_FAVORITE;
         return axiosClient.get(url);
+    },
+    getWordRecommendSearch: (params) => {
+        const url = urls.GET_WORD_RECOMMEND_SEARCH;
+        return axiosClient.get(url, { params });
     }
 
 

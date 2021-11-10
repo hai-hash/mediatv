@@ -3,6 +3,7 @@ import styles from "./styles.module.scss";
 import filmApi from "../../../api/film/filmApi";
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { GoChevronRight } from "react-icons/go";
 const Slide = () => {
   const [data, setData] = useState([]);
   let history = useHistory();
@@ -22,7 +23,7 @@ const Slide = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    // autoplay: true,
   };
 
   const onGoToIntroduce = (id) => {
@@ -39,6 +40,7 @@ const Slide = () => {
             <div className={styles.title_slide}>
               <div className={styles.name_slide}>{film?.status}</div>
             </div>
+            <div className={styles.view_now}>Xem ngay <GoChevronRight /></div>
           </div>
         )
       })

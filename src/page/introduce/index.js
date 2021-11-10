@@ -69,9 +69,17 @@ const Introduct = () => {
                             console.log(error)
                         }
                     }
-
-                    history.push(`/home/firm/${id}`);
                     addView();
+                    const createHistoryView = async () => {
+                        try {
+                            const res = await viewApi.createNewHistoryView(id, infoAccount?.username);
+                            console.log(res);
+                        } catch (error) {
+                            console.log(error);
+                        }
+                    }
+                    createHistoryView();
+                    history.push(`/home/firm/${id}`);
                 }
             }
             else {
@@ -84,8 +92,20 @@ const Introduct = () => {
                     }
                 }
 
-                history.push(`/home/firm/${id}`);
                 addView();
+
+                const createHistoryView = async () => {
+                    try {
+                        const res = await viewApi.createNewHistoryView(id, infoAccount?.username);
+                        console.log(res);
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+                createHistoryView();
+
+                history.push(`/home/firm/${id}`);
+
             }
 
         }

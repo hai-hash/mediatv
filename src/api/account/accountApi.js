@@ -25,6 +25,14 @@ const accountApi = {
         const url = `${urls.UPDATE_ACCOUNT_UPTO_VIP}/${username}`;
         return axiosClient.put(url);
     },
+    updateInfoAccount: (username, data) => {
+        const url = `${urls.UPDATE_ACCOUNT_INFO}/${username}`;
+        return axiosClient.put(url, data);
+    },
+    sendMail: (params) => {
+        const url = urls.SEND_MAIL;
+        return axiosClient.get(url, { params });
+    }
 
 }
 

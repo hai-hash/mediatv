@@ -20,6 +20,10 @@ const transactionApi = {
     createNewTypeTransaction: (data) => {
         const url = urls.CREATE_NEW_TYPE_TRANSACTION;
         return axiosClient.post(url, data);
+    },
+    getTransactionByAccount: (params) => {
+        const url = urls.GET_TRANSACTION_BY_ACCOUNT;
+        return axiosClient.get(url, { params });
     }
 
 

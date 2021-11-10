@@ -12,6 +12,7 @@ import * as toasts from './../../toast/toast';
 import { useHistory } from 'react-router-dom';
 import PaymentModal from '../../modal/paymentModal';
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
+import filmApi from '../../../api/film/filmApi';
 
 const Header = () => {
     const [active, setActive] = useState(false);
@@ -22,6 +23,8 @@ const Header = () => {
     const { isLogin, infoAccount, setIsLogin } = useContext(PublicContext);
     const [dataSearch, setDataSearch] = useState("");
     const [activePayment, setActivePayment] = useState(false);
+    const [activeRecommend, setRecommend] = useState(false);
+    const [dataRecommend, setDataRecommend] = useState([]);
     const commands = [
         {
             command: ["*"],
@@ -41,6 +44,37 @@ const Header = () => {
     useEffect(() => {
         setDataSearch(transcript);
     }, [transcript])
+
+    useEffect(() => {
+        const getWordRecommend = async () => {
+            try {
+                const params = {
+                    name: dataSearch,
+                }
+                const res = await filmApi.getWordRecommendSearch(params);
+                setDataRecommend(res);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        if (dataSearch !== "") {
+            getWordRecommend();
+        }
+        else {
+            setDataRecommend([]);
+        }
+
+    }, [dataSearch])
+
+    useEffect(() => {
+        if (dataRecommend.length > 0) {
+            setRecommend(true);
+        }
+        else {
+            setRecommend(false);
+        }
+    }, [dataRecommend])
+
 
     const history = useHistory();
     const onActive = () => {
@@ -65,6 +99,7 @@ const Header = () => {
         history.push("/home");
         toasts.notifySuccess("Đăng xuất thành công");
     }
+
     const getName = (name) => {
         var result = "";
         if (name !== null) {
@@ -83,7 +118,9 @@ const Header = () => {
         return result;
     }
     const onChangeContentSearch = (e) => {
+
         setDataSearch(e.target.value);
+
     }
     const onSearch = () => {
         setDataSearch("");
@@ -110,6 +147,24 @@ const Header = () => {
             toasts.notifyInfo("Bạn cần đăng nhập trước khi thực hiện chức năng này !.")
         }
     }
+    const onGoToProfile = () => {
+        history.push("/account");
+    }
+    const onGoToSearch = (data) => {
+        setDataSearch("");
+        history.push(`/home/search/${data}`);
+    }
+
+    const displayWordRecommend = () => {
+        let result = null;
+        if (dataRecommend.length > 0) {
+            result = dataRecommend.map((data, index) => {
+                return <p key={index} onClick={() => onGoToSearch(data)}>{data}</p>
+            }
+            )
+        }
+        return result;
+    }
     return (
         <>
             <div className={styles.header}>
@@ -118,7 +173,11 @@ const Header = () => {
                         <BsMic className={styles.mic} onClick={onRecord} />
                     }
                     <input autoComplete="off" value={dataSearch} onChange={onChangeContentSearch} type="text" name="search" placeholder="Nhập tên phim, diễn viên ..." />
+
                     <BiSearch className={styles.icon} onClick={onSearch} />
+                    <div className={`${styles.recommend} ${activeRecommend ? styles.active_recommend : null}`}>
+                        {displayWordRecommend()}
+                    </div>
                 </div>
                 <div className={styles.buyPacket} onClick={onBuyPacket}>Mua gói</div>
 
@@ -149,7 +208,7 @@ const Header = () => {
 
                             {isLogin &&
                                 <ul>
-                                    <li>Thông tin cá nhân</li>
+                                    <li onClick={onGoToProfile}>Thông tin cá nhân</li>
 
                                     <li>Thông Báo</li>
                                     <li>Phim yêu thích</li>
