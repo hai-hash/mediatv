@@ -13,6 +13,7 @@ import { useHistory } from 'react-router-dom';
 import PaymentModal from '../../modal/paymentModal';
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import filmApi from '../../../api/film/filmApi';
+import * as types from './../../../handler/profile/profile';
 
 const Header = () => {
     const [active, setActive] = useState(false);
@@ -148,7 +149,7 @@ const Header = () => {
         }
     }
     const onGoToProfile = () => {
-        history.push("/account");
+        history.push(`/account/${types.PROFILE}`);
     }
     const onGoToSearch = (data) => {
         setDataSearch("");
@@ -164,6 +165,9 @@ const Header = () => {
             )
         }
         return result;
+    }
+    const onToNotify = () => {
+        history.push(`/account/${types.NOTIFY}`);
     }
     return (
         <>
@@ -210,7 +214,7 @@ const Header = () => {
                                 <ul>
                                     <li onClick={onGoToProfile}>Thông tin cá nhân</li>
 
-                                    <li>Thông Báo</li>
+                                    <li onClick={onToNotify}>Thông Báo</li>
                                     <li>Phim yêu thích</li>
                                 </ul>
                             }

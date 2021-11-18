@@ -8,7 +8,8 @@ import { PublicContext } from '../../publicContexts/contexts';
 import evaluateAdminApi from '../../api/evaluate/evaluateApi';
 import RecommenderFilm from '../recommender/recommenderFilm';
 import { Row, Col } from 'reactstrap';
-// import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player';
+import { findIndex } from 'lodash';
 const Firm = () => {
     const [urlCurren, setUrlCurren] = useState("");
 
@@ -85,21 +86,41 @@ const Firm = () => {
         if (episodes.length > 0) {
             result = episodes.map((cha, index) => {
 
-                return <Col xs="2"><p className={styles.button_chap} key={index} style={{ color: urlCurren === cha.urlVideo ? "#ff6500" : "#fff" }} onClick={() => onNextChap(cha.urlVideo)}>{cha.nameEpisode}</p></Col>
+                return <Col xs="2" key={index}><p className={styles.button_chap} style={{ color: urlCurren === cha.urlVideo ? "#ff6500" : "#fff" }} onClick={() => onNextChap(cha.urlVideo)}>{cha.nameEpisode}</p></Col>
             })
         }
         return result;
     }
+    const onChangeChap = () => {
+        var index = findIndex(episodes, (episode => {
+            return episode?.urlVideo === urlCurren;
+        }))
+        if (index !== -1) {
+            if ((episodes.length - 1) >= (index + 1)) {
+                setUrlCurren(episodes[index + 1]?.urlVideo);
+            }
+            else {
+                setUrlCurren(episodes[0]?.urlVideo);
+            }
+        }
+    }
 
     return (
         <div>
-            {/* <iframe src={urlCurren} title="Video player" className={styles.size_frame} allow="autoplay" width="785" height="480"  allowFullScreen={true}></iframe> */}
-            <iframe src={urlCurren} title="YouTube video player" className={styles.size_frame} frameborder="0" autoPlay allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}></iframe>
-            {/* <ReactPlayer url={urlCurren} controls width="785px" height="480px" autoPlay/> */}
+            {/* {urlCurren.indexOf("youtube") !== -1 &&
+                <iframe src={`${urlCurren}?autoplay=1&mute=0`} className={styles.size_frame} frameborder="0" allow="autoplay; encrypted-media" allowFullScreen title="Film tv"></iframe>
+            } */}
+            {urlCurren.indexOf("youtube") === -1 &&
+                <iframe src={`${urlCurren}`} className={styles.size_frame} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen title="Film tv"></iframe>
+            }
+            {urlCurren.indexOf("youtube") !== -1 &&
+                <ReactPlayer url={`${urlCurren}`} controls playing={true} onEnded={onChangeChap} className={styles.size_frame} />
+            }
 
             <div className={styles.list_chap}>
                 {(episodes.length === 0) ? "Phim chưa ra mắt, mong bạn quay lại sau." : "Tập phim"}
             </div>
+
             <div className={styles.chap}>
                 <Row>
                     {onDisplayChap()}

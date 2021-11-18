@@ -11,17 +11,22 @@ import NotifyProfile from './notifyProfile';
 import TransactionProfile from './transactionProfile';
 import HistoryViewProfile from './historyViewProfile';
 import ModalEditInfo from '../../library/modal/modalEditInfo';
+import { useParams } from "react-router-dom";
 const AccountLayout = () => {
     const history = useHistory();
     const [status, setStatus] = useState(types.PROFILE);
     const [activeModalEdit, setActiveModalEdit] = useState(false);
+    let { type } = useParams();
     const onEditInfo = () => {
         setActiveModalEdit(!activeModalEdit);
     }
     useEffect(() => {
         let token = localStorage.getItem("token");
         if (!token) {
-            history.push('/home')
+            history.push('/home');
+        }
+        if (type) {
+            setStatus(type);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])

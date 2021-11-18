@@ -1,0 +1,87 @@
+.wrap_footer{
+    background: #111;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    .content_footer{
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        .logo_footer{
+            padding: 0 10px;
+            display: flex;
+            .icon{
+                height: 150px;
+                border-radius: 100%;
+            }
+            p{
+                color: #0ecab9;
+                font-size: 50px;
+                padding-left: 10px;
+                line-height: 150px;
+            }
+        }
+        .content{
+            color: #9b9b9b;
+            padding-left: 130px;
+            padding-right: 90px;
+            
+        }
+        .support{
+            .facebook{
+                width: 40px;
+                height: 40px;
+                border-radius: 100%;
+                background: #262626;
+                .icon_facebook{
+                    color: #fff; 
+                    margin-left: 50%;
+                    transform: translate(-50%);
+                    margin-top: 10px;
+                    cursor: pointer;
+                    &:hover{
+                        color: #ff6500;
+                        transition: 400ms;
+                    }
+                }
+
+            }
+            .email{
+                width: 40px;
+                height: 40px;
+                border-radius: 100%;
+                background: #262626;
+                margin-top: 10px;
+                .icon_email{
+                    color: #fff; 
+                    margin-left: 50%;
+                    transform: translate(-50%);
+                    margin-top: 10px;
+                    cursor: pointer;
+                    &:hover{
+                        color: #ff6500;
+                        transition: 400ms;
+                    }
+                }
+            }
+            .contact{
+                display: flex;
+                color: #fff;
+                margin-top: 20px;
+                justify-content: center;
+                background: #ff6500;
+                border-radius: 20px;
+                padding-right: 10px;
+                .icon_phone{
+                    margin-top: 12px;
+                    margin-left: 10px;
+                }
+                p{
+                    padding-left: 10px;
+                    margin-top: 7px;
+                    margin-bottom: 7px;
+                }
+            }
+           
+        }
+    }
+}

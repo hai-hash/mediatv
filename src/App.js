@@ -13,7 +13,7 @@ function App() {
       <ToastContainer />
       <Switch>
         <Route path="/home"><PageUser /></Route>
-        <Route path="/account"><AccountLayout /></Route>
+        <Route path="/account/:type"><AccountLayout /></Route>
         <Route path="/admin" render={() => {
           return infoAccount?.role === "ADMIN" ? <PageAdmin /> : <Redirect to="/home" />
         }}></Route>

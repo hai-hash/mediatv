@@ -12,8 +12,8 @@
         position: relative;
        .title_banner{
            color: #fff;
-           padding-top: 5px;
-           font-size: 18px;
+           padding-top: 8px;
+           font-size: 16px;
            font-weight: 400;
            &:hover{
             color: #ff6500;
@@ -34,6 +34,14 @@
            border-radius: 5px;
            color: #fff;
        }
+       .icon_vip{
+        height: 20px;
+        position: absolute;
+        top: 30px;
+        left: 10px;
+        width: 42px;
+
+    }
     }
 }
 
@@ -92,15 +100,22 @@
 .item_firm{
     position: relative;
     margin-bottom: 20px;
-    img{
+    .image_film{
         width: 100%;
         border-radius: 5px;
         margin: 0 auto;
         height: 280px;
     }
+    .icon_vip{
+        height: 20px;
+        position: absolute;
+        top: 30px;
+        left: 10px;
+
+    }
     .title_banner{
-        padding-top: 5px;
-        font-size: 18px;
+        padding-top: 8px;
+        font-size: 16px;
         font-weight: 400;
         color: #fff;
         &:hover{
@@ -119,6 +134,8 @@
         left: 10px;
         border-radius: 5px;
         color: #fff;
+        font-size: 14px;
+        padding: 0 5px;
     }
 }
 .title_series{

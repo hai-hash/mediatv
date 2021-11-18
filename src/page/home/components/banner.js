@@ -67,8 +67,11 @@ const Banner = () => {
             <div className={styles.item_banner} >
               <img src={video?.illustration} alt="" />
               <div className={styles.title_banner}>{video.nameFilm}</div>
-              <div className={styles.time_banner}>{video.viewingTime}</div>
+              {/* <div className={styles.time_banner}>{video.viewingTime}</div> */}
               <span>{video.status}</span>
+              {video?.cost &&
+                <img className={styles.icon_vip} src="/logo/vip.png" alt="" />
+              }
             </div >
           </Link>
         )

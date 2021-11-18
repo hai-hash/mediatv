@@ -3,7 +3,12 @@ import Banner from './home/components/banner'
 import NavSub from "../library/navSub/navsub";
 import { Switch, Route } from "react-router-dom";
 import { routes } from './../library/Router/route';
+import { AiFillMessage } from 'react-icons/ai';
+import Message from '../library/modal/message';
+import { useState } from 'react';
 const Body = () => {
+    const [activeMessage, setActiveMessage] = useState(false);
+    const [activeNotify, setActiveNotify] = useState(true);
     const displayPage = () => {
         var result = null;
         if (routes.length > 0) {
@@ -16,6 +21,10 @@ const Body = () => {
             })
         }
         return result;
+    }
+    const onMessage = () => {
+        setActiveMessage(!activeMessage);
+        setActiveNotify(!activeNotify);
     }
     return (
         <>
@@ -36,6 +45,11 @@ const Body = () => {
                     </div>
 
                 </div>
+                <div className={styles.message}>
+                    <AiFillMessage className={styles.icon_message} onClick={onMessage} />
+                    <Message activeMessage={activeMessage} activeNotify={activeNotify} />
+                </div>
+
             </div>
 
         </>

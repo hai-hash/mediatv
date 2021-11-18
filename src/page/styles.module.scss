@@ -23,6 +23,17 @@
 .wap_pageAdmin{
     overflow-x: hidden;
 }
+.message{
+    position: fixed;
+    top: 70%;
+    right: 20px;
+    .icon_message{
+        height: 50px;
+        width: 50px;
+        color: #ff6500;
+        cursor: pointer;
+    }
+}
 
 @media screen and (max-width: 750px) {
     .container{

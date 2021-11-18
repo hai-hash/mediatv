@@ -367,3 +367,140 @@
         margin-right: 20px;
     }
 }
+
+.content_message{
+    display: none;
+    position: absolute;
+    height: 400px;
+    width: 320px;
+    background: #fff;
+    border-radius: 10px;
+    bottom: 60px;
+    right: 10px;
+    .numberRoom{
+        text-align: center;
+    }
+    ul{
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 10px;
+        height: 300px;
+        overflow-y: auto;
+            /* width */
+    &::-webkit-scrollbar {
+        width: 2px;
+    }
+    
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+    
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+        li{
+            display: flex;
+            span{
+                background: #FF9D00;
+                border-radius: 100%;
+                width: 30px;
+                height: 30px;
+                text-align: center;
+                line-height: 30px;
+                font-size: 14px;
+            }
+            p{
+                text-align: left;
+                margin-left: 10px;
+                font-size: 14px;
+                margin-bottom: unset;
+                min-height: 35px;
+                margin-bottom: 25px;
+                background: #ccc;
+                border-radius: 15px;
+                padding: 0 10px;
+                max-width: 85%;
+                line-height: 35px;
+            }
+        }
+        .message_mySelf{
+            display: flex;
+            justify-content: right;
+           p{
+            background-color: rgb(0, 132, 255);
+           }
+        }
+    }
+    .contentMessage{
+        width: 92%;
+        margin-left: 50%;
+        transform: translate(-50%);
+        border-radius: 20px;
+        position: absolute;
+        bottom: 10px;
+        padding: 0 10px;
+        padding-right: 100px;
+        background: #f0f2f5;
+        border: none;
+        height: 40px;
+        &:focus {
+            outline: none;
+        }
+    }
+    .icon_send{
+        position: absolute;
+        right: 30px;
+        bottom: 21px;
+        color: #ccc;
+        height: 20px;
+        width: 20px;
+        cursor: pointer;
+        &:hover{
+            color: #ff6500;
+        }
+    }
+    .change_room{
+        position: absolute;
+        right: 62px;
+        bottom: 21px;
+        color: #ccc;
+        height: 20px;
+        width: 20px;
+        cursor: pointer;
+        &:hover{
+            color: #ff6500;
+        }
+
+    }
+    .icon_emoji{
+        position: absolute;
+        right: 92px;
+        bottom: 21px;
+        color: #ccc;
+        height: 20px;
+        width: 20px;
+        cursor: pointer;
+        &:hover{
+            color: #ff6500;
+        }
+    }
+    .active_emoji{
+        display: block !important;
+    }
+    .emoji{
+        display: none;
+        position: absolute;
+        top: 26px;
+        right: 8px;
+    }
+}
+.activeMessage{
+    display: block !important;
+}
