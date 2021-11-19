@@ -4,10 +4,10 @@ import { IoMdSend } from 'react-icons/io';
 import { FaExchangeAlt } from 'react-icons/fa';
 import SockJsClient from 'react-stomp';
 import { PublicContext } from '../../publicContexts/contexts';
-import axios from 'axios';
 import Picker from 'emoji-picker-react';
 import { MdOutlineInsertEmoticon } from 'react-icons/md';
 import * as notifys from './../toast/toast';
+import messageApi from '../../api/message/messageApi';
 
 const SOCKET_URL = 'https://file-managementt.herokuapp.com/api/public/ws-message';
 const Message = ({ activeMessage, activeNotify }) => {
@@ -19,6 +19,7 @@ const Message = ({ activeMessage, activeNotify }) => {
     const { infoAccount } = useContext(PublicContext);
     const [chosenEmoji, setChosenEmoji] = useState(null);
     const [activeEmoji, setActiveEmoji] = useState(false);
+    const [anonymous] = useState(Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5));
 
 
     // lưu thay đổi data khi thêm tin nhắn mới
@@ -42,13 +43,19 @@ const Message = ({ activeMessage, activeNotify }) => {
 
 
     useEffect(() => {
-        axios.post(`https://file-managementt.herokuapp.com/api/public/send/${numberRoom}`, { message: infoAccount?.username + " joined room", fullName: infoAccount?.username ? infoAccount?.username : "USER" })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        const sendMessage = async () => {
+            try {
+                const data = {
+                    message: infoAccount?.username ? infoAccount?.username : anonymous + " joined room",
+                    fullName: infoAccount?.username ? infoAccount?.username : anonymous
+                }
+                const res = await messageApi.send(data, numberRoom);
+                console.log(res);
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        sendMessage();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [numberRoom])
 
@@ -74,32 +81,56 @@ const Message = ({ activeMessage, activeNotify }) => {
 
     const onSender = () => {
         setTypedMessage("");
-        axios.post(`https://file-managementt.herokuapp.com/api/public/send/${numberRoom}`, { message: typedMessage, fullName: infoAccount?.username ? infoAccount?.username : "USER" })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        const sendMessage = async () => {
+            try {
+                const data = {
+                    message: typedMessage,
+                    fullName: infoAccount?.username ? infoAccount?.username : anonymous
+                }
+                const res = await messageApi.send(data, numberRoom);
+                console.log(res);
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        sendMessage();
     }
 
     // hiển thị tin nhắn
     const displayMessages = (data) => {
         var result = null;
         result = data.map((msg, index) => {
-            if (msg?.fullName !== infoAccount?.username) {
-                return (<li className={styles.message_other_user} key={index}>
-                    <span>{msg?.fullName.slice(0, 1)}</span>
-                    <p>{msg?.message}</p>
-                </li>
-                )
-            }
-            else {
-                return (
-                    <li className={styles.message_mySelf} key={index}>
+            if (infoAccount?.username) {
+                if (msg?.fullName !== infoAccount?.username) {
+                    return (<li className={styles.message_other_user} key={index}>
+                        <span>{msg?.fullName.slice(0, 1)}</span>
                         <p>{msg?.message}</p>
                     </li>
-                )
+                    )
+                }
+                else {
+                    return (
+                        <li className={styles.message_mySelf} key={index}>
+                            <p>{msg?.message}</p>
+                        </li>
+                    )
+                }
+            }
+            else {
+                if (msg?.fullName !== anonymous) {
+                    return (<li className={styles.message_other_user} key={index}>
+                        <span>{msg?.fullName.slice(0, 1)}</span>
+                        <p>{msg?.message}</p>
+                    </li>
+                    )
+                }
+                else {
+                    return (
+                        <li className={styles.message_mySelf} key={index}>
+                            <p>{msg?.message}</p>
+                        </li>
+                    )
+                }
             }
 
 
@@ -111,18 +142,25 @@ const Message = ({ activeMessage, activeNotify }) => {
         if (typedMessage !== "") {
             setNumberRoom(typedMessage);
             setTypedMessage("");
-            axios.post(`https://file-managementt.herokuapp.com/api/public/send/${numberRoom}`, { message: infoAccount?.username + " left room", fullName: infoAccount?.username ? infoAccount?.username : "USER" })
-                .then(function (response) {
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+            const sendMessage = async () => {
+                try {
+                    const data = {
+                        message: infoAccount?.username ? infoAccount?.username : anonymous + " left room",
+                        fullName: infoAccount?.username ? infoAccount?.username : anonymous
+                    }
+                    const res = await messageApi.send(data, numberRoom);
+                    console.log(res);
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            sendMessage();
         }
         else {
             notifys.notifyWarning("Bạn phải nhập tên phòng trước khi đổi !.");
         }
     }
+
     const onActiveEmoji = () => {
         setActiveEmoji(!activeEmoji);
     }
