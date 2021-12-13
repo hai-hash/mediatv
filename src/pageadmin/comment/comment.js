@@ -1,17 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss';
-import { Table } from 'reactstrap';
+import { Col, Row, Table } from 'reactstrap';
 import commentUserApi from '../../api/comment/commentApi';
 import ItemComment from './itemComment';
 import * as toasts from './../../library/toast/toast';
 import * as sentiment from './../../library/sentiment/sentiment';
 import { Bar } from 'react-chartjs-2';
+import { AiOutlineSearch } from 'react-icons/ai';
+import { MdRefresh } from 'react-icons/md';
+import { OnFilterByDate, formatDate } from './../../common/commonFuncition';
 const CommentAdmin = () => {
     const [data, setData] = useState([]);
     const [dataLable, setDataLable] = useState([]);
     const [dataPositive, setDataPositive] = useState([]);
     const [dataNegative, setDataNegative] = useState([]);
     const [dataNormal, setDataNormal] = useState([]);
+    const [dataCopy, setDataCopy] = useState([]);
+    const [date, setDate] = useState({ startDate: "", endDate: "" });
+    const [refreshDate, setRefreshDate] = useState(formatDate(new Date()));
+
+
+    useEffect(() => {
+        setDataCopy(data);
+    }, [data])
     useEffect(() => {
         const getAllComment = async () => {
             try {
@@ -80,6 +91,45 @@ const CommentAdmin = () => {
         genDataChart(data);
     }, [data])
 
+    const onSearch = () => {
+        let dataFilter = OnFilterByDate('createDate', date.startDate, date.endDate, data);
+        setDataCopy(dataFilter);
+    }
+    const onChangeDate = (e) => {
+        let name = e.target.name;
+        let value = e.target.value;
+        setDate({ ...date, [name]: value });
+    }
+
+    const onRefresh = () => {
+        setRefreshDate(formatDate(new Date()));
+        const getAllComment = async () => {
+            try {
+                const res = await commentUserApi.getAll();
+                setData(res);
+                console.log(res);
+                toasts.notifySuccess("lấy danh sách bình luận thành công");
+            } catch (error) {
+                console.log(error);
+                toasts.notifyError("lấy danh sách bình luận thất bại");
+            }
+        }
+        getAllComment();
+    }
+    const onDataSearch = (e) => {
+        if (e.target.value !== "") {
+            const dataFilter = data.filter((item) => {
+
+                return item?.film?.nameFilm.toLowerCase().indexOf(e.target.value) !== -1;
+            })
+            setDataCopy(dataFilter);
+        }
+        else {
+            setDataCopy(data);
+        }
+
+    }
+
     return (
         <div>
             <div className={styles.url}>
@@ -119,6 +169,36 @@ const CommentAdmin = () => {
                         }}
                     />
                 </div>
+                <div className={styles.search}>
+                    <Row>
+                        <Col xs="2">
+                            <input type="date" name="startDate" style={{ width: '170px' }} onChange={onChangeDate} />
+                        </Col>
+                        <Col xs="2">
+                            <input type="date" name="endDate" style={{ width: '170px' }} onChange={onChangeDate} />
+                        </Col>
+                        <Col xs="2">
+                            <button onClick={onSearch} >Search</button>
+                        </Col>
+                        <Col xs="3">
+                        </Col>
+                        <Col xs="3">
+                            <span>Last Update : {refreshDate}</span>
+                            <MdRefresh size={35} className={styles.icon_refresh} onClick={onRefresh} />
+
+                        </Col>
+                    </Row>
+
+                    <Row style={{ marginTop: '20px' }}>
+                        <Col xs="4">
+                            <span className={styles.search_name_film}>
+                                <input type="text" style={{ width: '375px' }} placeholder='Tên Phim' onChange={onDataSearch} />
+                                < AiOutlineSearch size={25} className={styles.icon_search} />
+                            </span>
+
+                        </Col>
+                    </Row>
+                </div>
                 <Table striped>
                     <thead>
                         <tr>
@@ -131,7 +211,7 @@ const CommentAdmin = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {Dispplay(data)}
+                        {Dispplay(dataCopy)}
                     </tbody>
                 </Table>
             </div>

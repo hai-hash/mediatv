@@ -3,6 +3,8 @@
     background-color: black;
     display: flex;
     align-items: center;
+    padding-top: 10px;
+    box-sizing: unset;
    
     .buyPacket{
         color: #fff;
@@ -152,6 +154,16 @@
             color: #fff;
             width: 40px;
             height: 40px;
+        }
+        .icon_vip{
+            position: absolute;
+            top: -12px;
+            left: -20px;
+            transform: rotate(-45deg);
+            img{
+                height: 24px;
+               
+            }
         }
         .iconUserText{
             height: 40px;

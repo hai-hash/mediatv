@@ -21,8 +21,8 @@ const accountApi = {
         const url = `${urls.UPDATE_ACCOUNT}/${id}`;
         return axiosClient.put(url, data);
     },
-    upToVip: (username) => {
-        const url = `${urls.UPDATE_ACCOUNT_UPTO_VIP}/${username}`;
+    upToVip: (username, month) => {
+        const url = `${urls.UPDATE_ACCOUNT_UPTO_VIP}/${username}/${month}`;
         return axiosClient.put(url);
     },
     updateInfoAccount: (username, data) => {
@@ -32,6 +32,18 @@ const accountApi = {
     sendMail: (params) => {
         const url = urls.SEND_MAIL;
         return axiosClient.get(url, { params });
+    },
+    checkVip: (params) => {
+        const url = urls.CHECK_VIP;
+        return axiosClient.get(url, { params });
+    },
+    changeStatusAccount: (username) => {
+        const url = `${urls.CHANGE_STATUS}/${username}`;
+        return axiosClient.put(url);
+    },
+    resetPassWord: (username) => {
+        const url = `${urls.RESET_PASSWORD}/${username}`;
+        return axiosClient.put(url);
     }
 
 }

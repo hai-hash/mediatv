@@ -5,11 +5,14 @@ import filmApi from "../../../api/film/filmApi";
 import { Link } from "react-router-dom";
 const Banner = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(true);
     const getAllFilmViewMost = async () => {
       try {
         const res = await filmApi.getFilmViewMostIncurrent();
         setData(res);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -84,6 +87,7 @@ const Banner = () => {
       <Slider {...settings}>
         {display()}
       </Slider>
+      {loading && <span className={styles.loader}></span>}
     </div>
   );
 }

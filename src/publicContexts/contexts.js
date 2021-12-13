@@ -11,6 +11,7 @@ const PublicContextProvider = ({ children }) => {
     const [viewSelect, setViewSelect] = useState();
     const [accountSelect, setAccountSelect] = useState();
     const [countrySelect, setCountrySelect] = useState();
+    const [loading, setLoading] = useState(false);
     const publicContextData = {
         isLogin,
         idToken,
@@ -29,7 +30,9 @@ const PublicContextProvider = ({ children }) => {
         accountSelect,
         setAccountSelect,
         countrySelect,
-        setCountrySelect
+        setCountrySelect,
+        loading,
+        setLoading,
     }
 
     return (

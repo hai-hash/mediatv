@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import styles from './styles.module.scss';
 import { AiFillVideoCamera } from 'react-icons/ai';
 import { useParams } from 'react-router-dom';
 import filmApi from '../../api/film/filmApi';
 import ItemFirm from './../home/components/Itemfirm';
 import BasePagination from '../../library/pagination/pagination';
-
+import { PublicContext } from '../../publicContexts/contexts';
 const FilmByCategory = () => {
     let { name } = useParams();
     const [data, setData] = useState([]);
     const [page, setPage] = useState(1);
+    const { setLoading } = useContext(PublicContext);
     useEffect(() => {
+        setLoading(true);
         const getFilmByCategory = async () => {
             try {
                 const params = {
@@ -20,12 +22,14 @@ const FilmByCategory = () => {
                 }
                 const res = await filmApi.getFilmByNameCategory(params);
                 setData(res);
-                console.log(res);
+                setLoading(false);
             } catch (error) {
                 console.log(error);
+                setLoading(false);
             }
         }
         getFilmByCategory();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [name, page])
 
     const display = () => {

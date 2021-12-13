@@ -4,6 +4,7 @@ import { AiOutlineEdit, AiFillDelete } from 'react-icons/ai';
 import episodeAdminApi from '../../api/episode/episodeApi';
 import * as types from './../../handler/episode/episodeType';
 import { PublicContext } from '../../publicContexts/contexts';
+import { formatDate } from './../../common/commonFuncition';
 
 const ItemEpisode = ({ episode, setStatus }) => {
 
@@ -32,10 +33,10 @@ const ItemEpisode = ({ episode, setStatus }) => {
         <tr>
             <th scope="row">{episode.id}</th>
             <td>{episode.nameEpisode}</td>
-            <td>{episode.createDate}</td>
-            <td>Danchoi9x</td>
-            <td>{episode?.active ? "đang hoạt động" : "không hoạt động"}</td>
             <td>{episode?.film?.nameFilm}</td>
+            <td>Danchoi9x</td>
+            <td style={{ color: episode?.active ? "green" : "red", fontWeight: 700 }}>{episode?.active ? "Active" : "UnActive"}</td>
+            <td>{formatDate(episode.createDate)}</td>
             <td className={styles.action}>
                 <button className={styles.edit} onClick={onEdit}><AiOutlineEdit /></button>
                 <button className={styles.detail} onClick={onDelete}><AiFillDelete /></button>

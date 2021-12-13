@@ -3,6 +3,7 @@ import { AiOutlineEdit } from 'react-icons/ai';
 import styles from './styles.module.scss';
 import { PublicContext } from '../../publicContexts/contexts';
 import * as types from './../../handler/view/viewType';
+import { formatDate } from './../../common/commonFuncition';
 const ItemView = ({ view, setStatus }) => {
     const { setViewSelect } = useContext(PublicContext);
     const onEdit = () => {
@@ -17,7 +18,7 @@ const ItemView = ({ view, setStatus }) => {
             <td>{view?.month}</td>
             <td>{view?.year}</td>
             <td>{view?.film?.nameFilm}</td>
-            <td>{view?.createDate}</td>
+            <td>{formatDate(view?.createDate)}</td>
             <td className={styles.action}>
                 <button className={styles.edit} onClick={onEdit}><AiOutlineEdit /></button>
             </td>

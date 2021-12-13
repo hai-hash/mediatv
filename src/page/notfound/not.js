@@ -1,11 +1,15 @@
-import React from 'react'
-import {useRouteMatch} from "react-router-dom";
+
+import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
 const NotFound = () => {
-    let url = useRouteMatch();
-    console.log(url);
+    let history = useHistory();
+    useEffect(() => {
+        history.push('/notfound');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     return (
         <div>
-           <h1>404 - Not Found</h1> 
+
         </div>
     )
 }

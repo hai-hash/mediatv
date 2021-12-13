@@ -195,6 +195,8 @@ const Header = () => {
                             <div className={styles.iconUserText}> {getName(infoAccount?.fullName)}</div>
                             : <MdAccountCircle className={styles.iconUser} />
                         }
+                        {infoAccount?.role === "VIP" && <div className={styles.icon_vip}><img src="/logo/king.png" alt="fire" /></div>}
+
                         <div className={`${styles.subMenu} ${active ? styles.active : ""}`}>
                             {isLogin ?
                                 <ul>

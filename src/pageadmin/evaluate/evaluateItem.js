@@ -3,6 +3,7 @@ import styles from './styles.module.scss';
 import { AiOutlineEdit, AiFillDelete } from 'react-icons/ai';
 import * as types from './../../handler/evaluate/evaluateType';
 import evaluateAdminApi from '../../api/evaluate/evaluateApi';
+import { formatDate } from './../../common/commonFuncition';
 const EvaluateItem = ({ evaluate, setStatus }) => {
 
     const onEdit = () => {
@@ -27,8 +28,8 @@ const EvaluateItem = ({ evaluate, setStatus }) => {
             <td>{evaluate?.star}</td>
             <td>{evaluate?.account?.username}</td>
             <td>{evaluate?.film?.nameFilm}</td>
-            <td>{evaluate?.createDate}</td>
-            <td>{evaluate?.modifyDate}</td>
+            <td>{formatDate(evaluate?.createDate)}</td>
+            <td>{formatDate(evaluate?.modifyDate)}</td>
             <td className={styles.action}>
                 <button className={styles.edit} onClick={onEdit}><AiOutlineEdit /></button>
                 <button className={styles.detail} onClick={onDelete}><AiFillDelete /></button>

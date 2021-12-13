@@ -5,6 +5,7 @@ import { AiOutlineClose, AiFillCamera } from 'react-icons/ai';
 import { Row, Col } from 'reactstrap';
 import { PublicContext } from '../../publicContexts/contexts';
 import accountApi from '../../api/account/accountApi';
+import * as notifys from './../toast/toast';
 const ModalEditInfo = ({ activeModalEdit, onEditInfo }) => {
     const { infoAccount, setInfoAccount } = useContext(PublicContext);
     const [data, setData] = useState({ username: infoAccount?.username, fullName: infoAccount?.fullName, email: infoAccount?.email, numberPhone: infoAccount?.numberPhone });
@@ -21,11 +22,14 @@ const ModalEditInfo = ({ activeModalEdit, onEditInfo }) => {
                 const newData = { ...infoAccount, fullName: data?.fullName, email: data?.email, numberPhone: data?.numberPhone };
                 localStorage.setItem("user", JSON.stringify(newData));
                 console.log(res);
+                notifys.notifyInfo("Cập nhật tài khoản thành công !!.");
             } catch (error) {
                 console.log(error)
+                notifys.notifyError("Cập nhật tài khoản thất bại !!.");
             }
         }
         updateInfoAccount();
+        onEditInfo();
     }
     return (
         <div>

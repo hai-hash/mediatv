@@ -2,6 +2,7 @@ import React from 'react'
 import * as sentiment from './../../library/sentiment/sentiment';
 import { BiHappyAlt, BiSad } from 'react-icons/bi';
 import { RiEmotionNormalLine } from 'react-icons/ri';
+import { formatDate } from './../../common/commonFuncition';
 const ItemComment = ({ comment }) => {
     const displaySentiment = (contentComment) => {
         const score = sentiment.sentimentText(contentComment);
@@ -16,7 +17,7 @@ const ItemComment = ({ comment }) => {
             <td>{displaySentiment(comment?.contentComment)}</td>
             <td>{comment?.account?.username}</td>
             <td>{comment?.film?.nameFilm}</td>
-            <td>{comment?.createDate}</td>
+            <td>{formatDate(comment?.createDate)}</td>
         </tr>
     )
 }

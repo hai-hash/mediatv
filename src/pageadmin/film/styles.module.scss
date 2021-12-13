@@ -31,6 +31,32 @@
     overflow-y: auto;
     overflow-x: hidden;
 
+    .search{
+        margin: 40px 0;
+        span{
+            font-weight: 500;
+        }
+        .icon_refresh{
+            margin-left: 10px;
+            cursor: pointer;
+            color: #1890ff;
+            &:hover{
+                color: #ff6565;
+            }
+        }
+        button{
+            border: none;
+            background: #1890ff;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 2px;
+            box-shadow: 4px 4px 10px #ccc;
+            &:hover{
+                background: #ff6565;
+            }
+        }
+    }
+
         /* width */
     &::-webkit-scrollbar {
         width: 2px;
@@ -135,6 +161,18 @@
 .hot{
     font-weight: 500;
     color: rgb(233, 15, 15);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.active{
+    font-weight: 500;
+    color: rgb(11, 236, 3);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.cost{
+    font-weight: 500;
+    color: orange;
     border-radius: 5px;
     cursor: pointer;
 }

@@ -39,7 +39,7 @@ const Body = () => {
                             </Switch>
                         </div>
 
-                        <div className={styles.container_right}>
+                        <div className={styles.container_right} >
                             <NavSub />
                         </div>
                     </div>

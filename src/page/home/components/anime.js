@@ -2,12 +2,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ItemFirm from './Itemfirm';
 import styles from './styles.module.scss';
 import { AiFillVideoCamera, AiFillCaretDown } from 'react-icons/ai';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import filmApi from '../../../api/film/filmApi';
+import { PublicContext } from '../../../publicContexts/contexts';
 const Anime = () => {
     const [data, setData] = useState([]);
     const [sizePage, setSizePage] = useState(8);
+    const { setLoading } = useContext(PublicContext);
     useEffect(() => {
+        setLoading(true);
         const fetchFilmList = async () => {
             try {
                 const params = {
@@ -16,13 +19,15 @@ const Anime = () => {
                 }
                 const res = await filmApi.getFilmNewUpdateByCategory(params);
                 setData(res);
+                setLoading(false);
             } catch (error) {
-                console.log("Failed to fetch film list :", error);
+                console.log(error);
+                setLoading(false);
             }
         }
 
         fetchFilmList();
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sizePage])
     const display = () => {
         var result = null;

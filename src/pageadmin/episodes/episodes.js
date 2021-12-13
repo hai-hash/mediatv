@@ -29,8 +29,7 @@ const EpisodesAdmin = () => {
         <div>
             <div className={styles.url}>
                 <div className={styles.url_left}>
-                    <span>api / admin / episode </span>
-                    <h5>Category</h5>
+                    <h5>{`Episode >>> Display`}</h5>
                 </div>
                 <div className={styles.url_right}>
                     <button onClick={onAdd}>Episode</button>

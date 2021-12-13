@@ -8,7 +8,9 @@ import ItemFirm from './../home/components/Itemfirm';
 const SearchFilm = () => {
     let { name } = useParams();
     const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
+        setLoading(true);
         const searchFilm = async () => {
             try {
                 const params = {
@@ -16,7 +18,7 @@ const SearchFilm = () => {
                 }
                 const res = await filmApi.searchFilm(params);
                 setData(res);
-                console.log(res);
+                setLoading(false);
             } catch (error) {
                 console.log(error);
             }
@@ -39,10 +41,11 @@ const SearchFilm = () => {
     }
     return (
         <>
-            <h1 className={styles.title_series}><AiFillVideoCamera className={styles.icon_series} />Từ Khóa Tìm Kiếm : {name}</h1>
+            <h1 className={styles.title_series}><AiFillVideoCamera className={styles.icon_series} />Từ Khóa Tìm Kiếm : {name}  {loading && <span className={styles.loader}></span>}</h1>
             <div className="row">
                 {display()}
             </div>
+
         </>
     )
 }

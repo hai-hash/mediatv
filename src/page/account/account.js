@@ -27,12 +27,16 @@ const Account = () => {
             setStatus(types.ADD)
         else setStatus(types.DISPLAY)
     }
+    const genTitle = () => {
+        if (status === types.DISPLAY) return "Display";
+        else if (status === types.ADD) return "Add";
+        else return "Edit";
+    }
     return (
         <div>
             <div className={styles.url}>
                 <div className={styles.url_left}>
-                    <span>api / admin / account </span>
-                    <h5>Account</h5>
+                    <h5>{`Account >>> ${genTitle()}`}</h5>
                 </div>
                 <div className={styles.url_right}>
                     <button onClick={onAdd}>Account</button>

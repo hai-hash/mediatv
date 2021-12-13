@@ -219,7 +219,7 @@
     margin-top: 5px;
 }
 .moneyPaypal{
-    height: 100px;
+    min-height: 150px;
     text-align: center;
     width: 80%;
     margin-left: 50%;
@@ -228,6 +228,15 @@
         color:#ffc439 ;
         font-size: 20px;
         margin: 0px;
+    }
+    .month{
+        display: flex;
+        justify-content: space-around;
+        .select_month{
+            display: flex;
+            flex-direction: column;
+            align-content: space-around;
+        }
     }
 }
 
