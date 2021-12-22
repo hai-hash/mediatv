@@ -87,3 +87,47 @@ export const formatDate = (date) => {
     return `${year}/${newMonth}/${newDay} ${newHour}:${newMinute}:${newSecond}`;
 
 }
+
+// chart data
+export const getDataTotal = (yearSelected, data, nameAttribute, nameValue) => {
+    let dataMap = new Map();
+    let dataTotal = [];
+    for (let i = 0; i < data.length; i++) {
+        let year = new Date(data[i]?.[nameAttribute]).getFullYear();
+        let month = new Date(data[i]?.[nameAttribute]).getMonth() + 1;
+        if (year === yearSelected) {
+            if (dataMap.get(month)) {
+                let oldValue = dataMap.get(month);
+                dataMap.set(month, oldValue + data[i]?.[nameValue]);
+            }
+            else {
+                dataMap.set(month, data[i]?.[nameValue]);
+            }
+        }
+    }
+
+    for (let j = 1; j <= 12; j++) {
+        if (dataMap.get(j)) {
+            dataTotal.push(dataMap.get(j));
+        }
+        else {
+            dataTotal.push(0);
+        }
+    }
+
+
+    return dataTotal;
+}
+
+export const getYears = (data, nameAttribute) => {
+    const years = [];
+    if (data.length > 0) {
+        for (let i = 0; i < data.length; i++) {
+            let year = new Date(data[i]?.[nameAttribute]).getFullYear();
+            if (years.indexOf(year)) {
+                years.push(year)
+            }
+        }
+    }
+    return years;
+}

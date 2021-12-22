@@ -8,6 +8,7 @@ import { Bar } from 'react-chartjs-2';
 import { OnFilterByDate, formatDate } from './../../common/commonFuncition';
 import { MdRefresh } from 'react-icons/md';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { getDataTotal, getYears } from './../../common/commonFuncition';
 const ViewDisplay = ({ setStatus }) => {
     const [data, setData] = useState([]);
     const [dataLable, setDataLable] = useState([]);
@@ -15,19 +16,27 @@ const ViewDisplay = ({ setStatus }) => {
     const [dataCopy, setDataCopy] = useState([]);
     const [date, setDate] = useState({ startDate: "", endDate: "" });
     const [refreshDate, setRefreshDate] = useState(formatDate(new Date()));
+    const [dataView, setDataView] = useState([]);
+    const [yearSelected, setYearSelected] = useState(new Date().getFullYear());
+    const [years, setYears] = useState([new Date().getFullYear()]);
+    const [lable] = useState(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'august', 'september', 'october', 'november', 'december']);
     useEffect(() => {
         setDataCopy(data);
-    }, [data])
+        setDataView(getDataTotal(yearSelected, data, "createDate", "countView"));
+    }, [data, yearSelected])
+
+    useEffect(() => {
+        console.log(dataView);
+    }, [dataView])
 
     useEffect(() => {
         const getAll = async () => {
             try {
                 const res = await viewApi.getAll();
                 setData(res);
-                console.log(res);
+                setYears(getYears(res, "createDate"));
                 toasts.notifySuccess("lấy danh sách lượt xem thành công");
             } catch (error) {
-                console.log(error);
                 toasts.notifyError("lấy danh sách lượt xem thất bại");
             }
         }
@@ -62,8 +71,6 @@ const ViewDisplay = ({ setStatus }) => {
         }
         setDataLable(arrLable);
         setDataNumber(dataNumber);
-        console.log("đây là lable :", arrLable);
-        console.log("đây là dữ liệu :", dataNumber);
     }
 
 
@@ -98,10 +105,8 @@ const ViewDisplay = ({ setStatus }) => {
             try {
                 const res = await viewApi.getAll();
                 setData(res);
-                console.log(res);
                 toasts.notifySuccess("lấy danh sách lượt xem thành công");
             } catch (error) {
-                console.log(error);
                 toasts.notifyError("lấy danh sách lượt xem thất bại");
             }
         }
@@ -121,6 +126,21 @@ const ViewDisplay = ({ setStatus }) => {
 
     }
 
+
+    const DisplayListTime = (data) => {
+        let result = null;
+        if (data.length > 0) {
+            result = data.map((item, index) => {
+                return <option key={index}>{item}</option>
+            })
+        }
+        return result;
+    }
+
+    const onChangeYear = (e) => {
+        setYearSelected(parseInt(e.target.value))
+    }
+
     return (
         <>
 
@@ -135,6 +155,34 @@ const ViewDisplay = ({ setStatus }) => {
                                     label: "view Total",
                                     data: dataNumber,
                                     backgroundColor: '#426ebe',
+                                }
+                            ]
+
+                        }}
+                        width={600}
+                        height={300}
+                        options={{
+                            maintainAspectRatio: false,
+
+                        }}
+                    />
+                </div>
+                <div className={styles.time_selected}>
+                    <span>Lượt xem theo năm : </span>
+                    <select value={yearSelected} onChange={onChangeYear}>
+                        {DisplayListTime(years)}
+                        <option>2019</option>
+                    </select>
+                </div>
+                <div className={styles.chart}>
+                    <Bar
+                        data={{
+                            labels: lable,
+                            datasets: [
+                                {
+                                    label: "view by year",
+                                    data: dataView,
+                                    backgroundColor: 'green',
                                 }
                             ]
 
