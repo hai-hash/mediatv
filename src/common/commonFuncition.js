@@ -52,7 +52,6 @@ export const OnFilterByDate = (nameAttribute, start, end, data) => {
             dataAfterFilter = data.filter((item) => {
                 const expirationDate = item?.[nameAttribute];
                 if (expirationDate !== null) {
-                    console.log("đã vào đến đây 1")
                     const date = new Date(expirationDate);
                     const newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 7, 0, 0, 0);
                     return +newDate === +endDate;

@@ -7,6 +7,7 @@ import evaluateAdminApi from '../../api/evaluate/evaluateApi';
 import { OnFilterByDate, formatDate } from './../../common/commonFuncition';
 import { MdRefresh } from 'react-icons/md';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { CSVLink } from "react-csv";
 const EvaluateDisplay = ({ setStatus }) => {
     const [data, setData] = useState([]);
     const [dataCopy, setDataCopy] = useState([]);
@@ -117,7 +118,7 @@ const EvaluateDisplay = ({ setStatus }) => {
                         </Col>
                     </Row>
                 </div>
-                <Table striped></Table>
+                <div className={styles.export}><CSVLink data={dataCopy} filename={"evaluate.csv"}>Export</CSVLink></div>
                 <Table striped>
                     <thead>
                         <tr>

@@ -6,7 +6,7 @@ import CategoryAdmin from '../../pageadmin/category/category';
 import EpisodesAdmin from '../../pageadmin/episodes/episodes';
 import { Switch, Route } from "react-router-dom";
 import NotFound from './notfound';
-import HomeAdminSub from '../../pageadmin/home/home';
+// import HomeAdminSub from '../../pageadmin/home/home';
 import CommentAdmin from './../../pageadmin/comment/comment';
 import ViewAdmin from '../../pageadmin/view/view';
 import Account from '../../page/account/account';
@@ -34,7 +34,7 @@ export default function BodyAdmin() {
                 <div><MdAccountCircle className={styles.icon_account} onClick={onLogout} /></div>
             </div>
             <Switch>
-                <Route exact path="/admin"> <HomeAdminSub /></Route>
+                <Route exact path="/admin"> <Account /></Route>
                 <Route path="/admin/account"> <Account /></Route>
                 <Route path="/admin/film"> <FilmAdmin /></Route>
                 <Route path="/admin/category"> <CategoryAdmin /></Route>

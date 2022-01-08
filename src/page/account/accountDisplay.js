@@ -8,6 +8,7 @@ import { OnFilter, OnFilterByDate, formatDate } from './../../common/commonFunci
 import { Row, Col } from 'reactstrap';
 import { MdRefresh } from 'react-icons/md';
 import DialogResetAccount from '../../library/Dialog/dialogResetAccount';
+import { CSVLink } from "react-csv";
 
 const AccountDisPlay = ({ setStatus }) => {
     const [data, setData] = useState([]);
@@ -106,6 +107,7 @@ const AccountDisPlay = ({ setStatus }) => {
                     </Col>
                 </Row>
             </div>
+            <div className={styles.export}><CSVLink data={dataCopy} filename={"account.csv"}>Export</CSVLink></div>
             <Table bordered responsive className={styles.custom_table}>
                 <thead>
                     <tr>

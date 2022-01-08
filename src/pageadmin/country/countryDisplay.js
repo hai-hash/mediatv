@@ -4,8 +4,9 @@ import styles from './styles.module.scss';
 import * as toasts from './../../library/toast/toast';
 import countryAdminApi from '../../api/country/countryApi';
 import CountryItem from './countryItem';
+import { CSVLink } from "react-csv";
 
-const CountryDisplay = ({setStatus}) => {
+const CountryDisplay = ({ setStatus }) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -35,6 +36,7 @@ const CountryDisplay = ({setStatus}) => {
     }
     return (
         <div className={styles.table}>
+            <div className={styles.export}><CSVLink data={data} filename={"country.csv"}>Export</CSVLink></div>
             <Table striped>
                 <thead>
                     <tr>

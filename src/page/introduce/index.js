@@ -56,11 +56,7 @@ const Introduct = () => {
         var token = localStorage.getItem("token");
         if (token) {
             if (data?.cost) {
-                if (infoAccount?.role !== 'VIP') {
-                    setActivePayment(true);
-                    toasts.notifyInfo("Đây là bộ phim tính phí, vui lòng nâng cấp tài khoản để tiếp tục xem");
-                }
-                else {
+                if (infoAccount?.role === 'VIP' || infoAccount?.role === 'ADMIN') {
                     const addView = async () => {
                         try {
                             const res = await viewApi.addViewByFilm(id)
@@ -80,6 +76,10 @@ const Introduct = () => {
                     }
                     createHistoryView();
                     history.push(`/home/firm/${id}`);
+                }
+                else {
+                    setActivePayment(true);
+                    toasts.notifyInfo("Đây là bộ phim tính phí, vui lòng nâng cấp tài khoản để tiếp tục xem");
                 }
             }
             else {

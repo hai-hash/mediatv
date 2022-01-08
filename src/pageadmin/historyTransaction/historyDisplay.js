@@ -6,6 +6,7 @@ import transactionApi from '../../api/transaction/transactionApi';
 import StatisticMoney from './StatisticMoney';
 import { Row, Col } from 'reactstrap';
 import * as notifys from './../../library/toast/toast';
+import { CSVLink } from "react-csv";
 const HistoryDisplay = () => {
     const [data, setData] = useState([]);
     const [dataTotal, setDataTotal] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
@@ -229,6 +230,7 @@ const HistoryDisplay = () => {
             <StatisticMoney dataTotal={dataTotal} />
 
             <div className={styles.custom_table}>Tổng Thu Nhập : {caculatorTotalMoney(dataCopy)} VNĐ</div>
+            <div className={styles.export}><CSVLink data={dataCopy} filename={"history-transaction.csv"}>Export</CSVLink></div>
 
             <table class={`table  table-bordered ${styles.custom_table}`}>
                 <thead>

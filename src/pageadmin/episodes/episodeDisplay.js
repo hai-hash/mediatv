@@ -7,6 +7,7 @@ import * as toasts from './../../library/toast/toast';
 import { OnFilterByDate, formatDate } from './../../common/commonFuncition';
 import { MdRefresh } from 'react-icons/md';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { CSVLink } from "react-csv";
 
 const EpisodeDisplay = ({ setStatus }) => {
     const [data, setData] = useState([]);
@@ -123,6 +124,7 @@ const EpisodeDisplay = ({ setStatus }) => {
                     </Col>
                 </Row>
             </div>
+            <div className={styles.export}><CSVLink data={dataCopy} filename={"episode.csv"}>Export</CSVLink></div>
             <Table>
                 <thead>
                     <tr>

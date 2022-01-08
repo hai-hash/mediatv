@@ -34,6 +34,25 @@
     overflow-y: auto;
     overflow-x: hidden;
 
+    .export{
+        background: #1890ff;
+        display: inline-block;
+        a{
+            color: #fff !important;
+            text-decoration: none;
+        }
+        padding: 4px 8px;
+        border-radius: 2px;
+        box-shadow: 2px 2px 2px 2px #ddd;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        &:hover{
+            background: #ff6565;
+        }
+        
+
+    }
+
     
     .search{
         margin: 40px 0;

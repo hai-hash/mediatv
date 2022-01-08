@@ -30,6 +30,23 @@
     height: 580px;
     overflow-y: auto;
     overflow-x: hidden;
+    .export{
+        background: #1890ff;
+        display: inline-block;
+        a{
+            color: #fff !important;
+            text-decoration: none;
+        }
+        padding: 4px 8px;
+        border-radius: 2px;
+        box-shadow: 2px 2px 2px 2px #ddd;
+        margin-top: 20px;
+        &:hover{
+            background: #ff6565;
+        }
+        
+
+    }
     .time_selected{
         padding: 30px 0px;
     }
