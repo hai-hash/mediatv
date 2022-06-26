@@ -56,8 +56,23 @@
                     font-weight: 500;
                 }
             }
-            .director,.actor,.type,.nation,.timeView,.countView,.year,.time{
+            .director,.actor,.type,.nation,.timeView,.countView,.year,.time,.follow{
                 font-size: 16px;
+                .iconFollow{
+                    margin-left: 5px;
+                    &:hover{
+                        color: rgb(219, 17, 10);
+                        cursor: pointer;
+                    }
+                }
+                .activeIconFollow{
+                    margin-left: 5px;
+                    color: rgb(219, 17, 10);
+                    &:hover{
+                        color: #9b9b9b;
+                        cursor: pointer;
+                    }
+                }
                 span{
                     color: #9b9b9b;
                 }

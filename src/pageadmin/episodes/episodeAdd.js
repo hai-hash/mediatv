@@ -16,10 +16,10 @@ const EpisodeAdd = () => {
             try {
                 const res = await filmAdminApi.getAll();
                 setFilm(res);
-                toasts.notifySuccess("thêm thành công");
+                toasts.notifySuccess("lấy danh sách phim thành công");
             } catch (error) {
                 console.log(error);
-                toasts.notifyError("thêm thất bại");
+                toasts.notifyError("lấy danh sách phim thất bại");
             }
         }
 
@@ -38,9 +38,9 @@ const EpisodeAdd = () => {
         const fetchCreateEpisode = async () => {
             try {
                 const res = await episodeAdminApi.post(data, idFilm);
-                console.log(res);
+                toasts.notifySuccess("thêm thành công");
             } catch (error) {
-                console.log(error);
+                toasts.notifyError("thêm thất bại");
             }
         }
 

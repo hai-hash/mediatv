@@ -51,7 +51,7 @@ const HistoryDisplay = () => {
         if (data.length > 0) {
             for (let i = 0; i < data.length; i++) {
                 let year = new Date(data[i]?.createDate).getFullYear();
-                if (years.indexOf(year)) {
+                if (years.indexOf(year) === -1) {
                     years.push(year)
                 }
             }

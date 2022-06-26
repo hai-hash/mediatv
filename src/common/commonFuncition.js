@@ -123,7 +123,7 @@ export const getYears = (data, nameAttribute) => {
     if (data.length > 0) {
         for (let i = 0; i < data.length; i++) {
             let year = new Date(data[i]?.[nameAttribute]).getFullYear();
-            if (years.indexOf(year)) {
+            if (years.indexOf(year) === -1) {
                 years.push(year)
             }
         }

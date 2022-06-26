@@ -4,7 +4,7 @@ import { useEffect, useState, useContext } from 'react';
 import filmApi from '../../api/film/filmApi';
 import LogInModal from '../../library/modal/loginModal';
 import ReactStars from "react-rating-stars-component";
-import { AiOutlineBook, AiFillEye, AiOutlineShareAlt, AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
+import { AiOutlineBook, AiFillEye, AiOutlineShareAlt, AiFillCaretDown, AiFillCaretUp, AiFillHeart } from 'react-icons/ai';
 import Comments from '../comments/comments';
 import ShareModal from '../../library/share/shareModal';
 import viewApi from '../../api/view/viewApi';
@@ -13,6 +13,7 @@ import * as toasts from './../../library/toast/toast';
 import { PublicContext } from '../../publicContexts/contexts';
 import RecommenderFilm from '../recommender/recommenderFilm';
 import PaymentModal from './../../library/modal/paymentModal';
+import followApi from './../../api/follow/followApi';
 
 const Introduct = () => {
     const [data, setData] = useState({});
@@ -25,6 +26,8 @@ const Introduct = () => {
     const [starCurren, setStarCurren] = useState(0);
     const [activePayment, setActivePayment] = useState(false);
     const [activeViewMore, setActiveViewMore] = useState(false);
+    const [followed, setFollowed] = useState(false);
+
     useEffect(() => {
         const getTotalAndValueStar = async () => {
             try {
@@ -35,6 +38,7 @@ const Introduct = () => {
                 console.log(error);
             }
         }
+
         getTotalAndValueStar();
 
     }, [id, starCurren])
@@ -44,13 +48,33 @@ const Introduct = () => {
             try {
                 const res = await filmApi.get(id);
                 setData(res);
+
             } catch (error) {
                 console.log("Failed to fetch film detail :", error);
             }
         }
 
         fetchFilmId();
+        const checkFollow = async () => {
+            try {
+                const response = await followApi.checkFollow(id, infoAccount?.username);
+                console.log("Gía trị nhận lại là", response);
+                if (response?.data === false) {
+                    setFollowed(response?.data)
+                }
+                else setFollowed(response)
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        checkFollow();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
+
+    useEffect(() => {
+        console.log("giá trị đã được thay đổi", followed)
+    }, [followed])
 
     const onViewNow = () => {
         var token = localStorage.getItem("token");
@@ -151,6 +175,42 @@ const Introduct = () => {
     const onViewMore = () => {
         setActiveViewMore(!activeViewMore);
     }
+    const changeStatusFollow = () => {
+        var token = localStorage.getItem("token");
+        if (token) {
+            const changeFollow = async () => {
+                try {
+                    const res = await followApi.addFollow(id, infoAccount.username);
+                    console.log(res);
+                    setFollowed(true);
+                    toasts.notifySuccess("Bạn đã theo dõi phim");
+                } catch (error) {
+                    console.log(error);
+                    toasts.notifySuccess("Theo dõi thất bại");
+
+                }
+            }
+            const deleteFollow = async () => {
+                try {
+                    const res = await followApi.deleteFollow(id, infoAccount.username);
+                    console.log(res);
+                    setFollowed(false);
+                    toasts.notifySuccess("Bỏ theo dõi thành công");
+
+                } catch (error) {
+                    console.log(error);
+                    toasts.notifySuccess("Bỏ theo dõi thất bại");
+                }
+            }
+            if (followed === false) changeFollow();
+            else deleteFollow();
+
+        }
+        else {
+            setActiveSignIn(true);
+            toasts.notifyWarning("Bạn cần đăng nhập để theo dõi phim !")
+        }
+    }
     return (
         <>
             <div className={styles.wap_introduct}>
@@ -170,6 +230,7 @@ const Introduct = () => {
                         <p className={styles.timeView}>Thời lượng:<span> {data.viewingTime ? data.viewingTime : ""}</span></p>
                         <p className={styles.countView}>Lượt xem:<span> <AiFillEye />  {data.countView ? data.countView : 0}</span></p>
                         <p className={styles.year}>Năm xuất bản:<span> {data.year ? data.year : ""}</span></p>
+                        <p className={styles.follow}>Theo dõi:<span className={followed ? styles.activeIconFollow : styles.iconFollow} onClick={changeStatusFollow}><AiFillHeart size={25} /></span></p>
                         <div className={styles.evaluate}>
                             <div className={styles.number_star_tb}>{star?.valueStarTb}</div>
                             <div className={styles.evaluate_star}>

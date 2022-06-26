@@ -3,6 +3,7 @@ import { BiSearch } from 'react-icons/bi';
 import { AiOutlineMail } from 'react-icons/ai';
 import { MdAccountCircle } from "react-icons/md";
 import { BsMic, BsFillRecord2Fill } from "react-icons/bs";
+import { IoMdNotificationsOutline } from "react-icons/io";
 import { useState, useContext, useEffect } from 'react';
 import LogUpModal from '../../modal/logupModal';
 import LogInModal from '../../modal/loginModal';
@@ -14,7 +15,9 @@ import PaymentModal from '../../modal/paymentModal';
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import filmApi from '../../../api/film/filmApi';
 import * as types from './../../../handler/profile/profile';
+import SockJsClient from 'react-stomp';
 
+const SOCKET_URL = 'https://file-managementt.herokuapp.com/api/public/ws-message';
 const Header = () => {
     const [active, setActive] = useState(false);
     const [activeSignUp, setActiveSignUp] = useState(false);
@@ -26,6 +29,8 @@ const Header = () => {
     const [activePayment, setActivePayment] = useState(false);
     const [activeRecommend, setRecommend] = useState(false);
     const [dataRecommend, setDataRecommend] = useState([]);
+    const [countNotify, setCountNotify] = useState(0);
+    const [listNotify, setListNotify] = useState([]);
     const commands = [
         {
             command: ["*"],
@@ -45,6 +50,10 @@ const Header = () => {
     useEffect(() => {
         setDataSearch(transcript);
     }, [transcript])
+
+    useEffect(() => {
+        console.log("da thay doi")
+    }, [listNotify])
 
     useEffect(() => {
         const getWordRecommend = async () => {
@@ -99,6 +108,24 @@ const Header = () => {
         setIsLogin(false);
         history.push("/home");
         toasts.notifySuccess("Đăng xuất thành công");
+    }
+
+    const getListNotify = function () {
+        let result = null;
+        if (listNotify.length > 0) {
+            result = listNotify.map((item, index) => {
+                return <div className={styles.itemNotify}>
+                    <div className={styles.imageNotify}>
+                    </div>
+                    <div className={styles.contentItemNotify}>
+                        <div className={styles.titleNotifyItem}>Ra tập phim mới</div>
+                        <div className={styles.contentNotifyItemDetail}>{item?.message}</div>
+                    </div>
+                </div>
+            })
+        }
+        return result;
+
     }
 
     const getName = (name) => {
@@ -169,6 +196,22 @@ const Header = () => {
     const onToNotify = () => {
         history.push(`/account/${types.NOTIFY}`);
     }
+
+    const addItemNotify = (item) => {
+        let newListNotify = [...listNotify];
+        newListNotify.push(item);
+        setListNotify(newListNotify);
+        console.log(newListNotify);
+    }
+
+    let onMessageReceived = (msg) => {
+        let newCount = countNotify;
+        setCountNotify(++newCount);
+        addItemNotify(msg);
+        toasts.notifyInfo(msg.message);
+
+    }
+
     return (
         <>
             <div className={styles.header}>
@@ -182,6 +225,44 @@ const Header = () => {
                     <div className={`${styles.recommend} ${activeRecommend ? styles.active_recommend : null}`}>
                         {displayWordRecommend()}
                     </div>
+                </div>
+                <div className={styles.notify}>
+                    <IoMdNotificationsOutline />
+                    <div className={styles.numberNotify}>{countNotify}</div>
+                    <div>
+                        <SockJsClient
+                            url={SOCKET_URL}
+                            topics={[`/topic/message/notify`]}
+                            onConnect={console.log("Connect Notify !")}
+                            onDisconnect={console.log("Disconnected!")}
+                            onMessage={(msg) => onMessageReceived(msg)}
+                            debug={false}
+                        />
+                    </div>
+                    <div className={styles.contentNotify}>
+                        <p className={styles.titleContentNotify}>Thông Báo Mới Nhận</p>
+                        <div className={styles.listNotify}>
+                            {
+                                getListNotify()
+                                // listNotify.map(item => {
+
+                                //     return <>
+                                //         <div className={styles.itemNotify}>
+                                //             <div className={styles.imageNotify}>
+                                //             </div>
+                                //             <div className={styles.contentItemNotify}>
+                                //                 <div className={styles.titleNotifyItem}>Ra tập phim mới</div>
+                                //                 <div className={styles.contentNotifyItemDetail}>{item?.message}</div>
+                                //             </div>
+                                //         </div>
+
+                                //     </>
+                                // })
+                            }
+                        </div>
+                        <p className={styles.viewAll}>Xem Tất Cả</p>
+                    </div>
+
                 </div>
                 <div className={styles.buyPacket} onClick={onBuyPacket}>Mua gói</div>
 

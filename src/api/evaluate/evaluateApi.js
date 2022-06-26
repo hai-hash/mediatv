@@ -18,7 +18,7 @@ const evaluateAdminApi = {
         return axiosClient.post(url);
     },
     updateStar: (id, name, star) => {
-        const url = `${urls.UPDATE_STAR}/${id}/${name}/${star}`;
+        const url = `${urls.UPDATE_STAR}/${id}/${star}`;
         return axiosClient.put(url);
     },
     getTotalAndValueTbStar: (id) => {

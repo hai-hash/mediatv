@@ -7,7 +7,7 @@ const commentUserApi = {
     },
 
     post: (data, id, username) => {
-        const url = `${urls.CREATE_NEW_COMMENT}/${id}/${username}`;
+        const url = `${urls.CREATE_NEW_COMMENT}/${id}`;
         return axiosClient.post(url, data);
     },
     getAllCommentByFilm: (id, params) => {
