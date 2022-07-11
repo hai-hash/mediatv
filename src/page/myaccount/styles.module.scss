@@ -1,13 +1,15 @@
-body{
+body {
     // background-color: #000;
 }
-.container{
+
+.container {
     max-width: 1200px;
     margin: 0 auto;
     background-color: #000;
     min-height: 650px;
 }
-.wap_menu_account{
+
+.wap_menu_account {
     background: #181818;
     border-radius: 10px;
     color: #9b9b9b;
@@ -16,27 +18,109 @@ body{
     padding-top: 20px;
     padding-bottom: 20px;
     min-height: 442px;
-    ul{
+
+    ul {
         padding-left: 0;
         list-style-type: none;
-        li{
+
+        li {
             margin-bottom: 18px;
             font-size: 16px;
             font-weight: 500;
-            i{
+
+            i {
                 margin-right: 20px;
                 position: relative;
                 top: -2px;
             }
-            &:hover{
-                color:#ff6500;
+
+            &:hover {
+                color: #ff6500;
                 transition: 400ms;
                 cursor: pointer;
             }
         }
     }
 }
-.wap_account{
+
+.wap_notify {
+    background: #181818;
+    border-radius: 10px;
+    color: #9b9b9b;
+    margin-top: 35px;
+    height: 442px;
+    padding-bottom: 10px;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    /* width */
+    &::-webkit-scrollbar {
+        width: 2px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+
+    .notify_item {
+        display: flex;
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 20px;
+        align-items: center;
+
+        &:hover {
+            background-color: #282726;
+            cursor: pointer;
+        }
+
+        .notify_icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+            background-color: #9b9b9b;
+            margin-right: 20px;
+            margin-left: 10px;
+        }
+
+        .notify_detail {
+            .notify_title {
+                font-size: 18px;
+                color: #9b9b9b
+            }
+
+            .notify_content {
+                color: #888;
+            }
+
+            .notify_date {
+                font-size: 12px;
+            }
+        }
+    }
+
+    .loading {
+        position: absolute;
+        top: 230px;
+        left: 368px;
+    }
+
+}
+
+.wap_account {
     background: #181818;
     border-radius: 10px;
     color: #9b9b9b;
@@ -48,47 +132,54 @@ body{
     overflow-y: auto;
     overflow-x: hidden;
 
-        /* width */
+
+
+    /* width */
     &::-webkit-scrollbar {
         width: 2px;
     }
-    
+
     /* Track */
     &::-webkit-scrollbar-track {
         background: #f1f1f1;
     }
-    
+
     /* Handle */
     &::-webkit-scrollbar-thumb {
         background: #888;
     }
-    
+
     /* Handle on hover */
     &::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
-    .loading{
+
+    .loading {
         position: absolute;
         top: 230px;
         left: 368px;
     }
-    h5{
+
+    h5 {
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: 300;
     }
-    table{
+
+    table {
         color: #9b9b9b;
         font-size: 14px;
         font-weight: 300;
-        tr{
-            td{
+
+        tr {
+            td {
                 border: none !important;
             }
         }
     }
-    button{
+
+    button {
         position: absolute;
         top: 20px;
         right: 20px;
@@ -100,16 +191,19 @@ body{
         border-radius: 5px;
         padding: 5px;
     }
-    .person_avatar{
+
+    .person_avatar {
         display: flex;
         align-items: center;
         justify-content: center;
         padding-top: 15px;
-        img{
+
+        img {
             border-radius: 100%;
         }
     }
-    .person_name{
+
+    .person_name {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -118,32 +212,37 @@ body{
         font-weight: 700;
         font-size: 26px;
     }
-    .wap_item{
+
+    .wap_item {
         background: #1f1f1f;
         border-radius: 10px;
-        margin: 5px 5px 15px!important;
+        margin: 5px 5px 15px !important;
         padding: 10px;
         display: flex;
         height: 68px;
-        i{
+
+        i {
             display: flex;
             justify-content: center;
             align-items: center;
-            .icon{
+
+            .icon {
                 height: 25px;
                 width: 25px;
                 margin-top: 10px;
             }
-            .icon_edit{
+
+            .icon_edit {
                 cursor: pointer;
-                &:hover{
+
+                &:hover {
                     color: #ff6500;
                     transition: 400ms;
                 }
             }
         }
-       
-        span{
+
+        span {
             color: #fff;
         }
     }

@@ -38,8 +38,20 @@
             position: absolute;
             z-index: 1;
             border-radius: 10px;
-            top: 45px;
+            top: 42px;
             left: -70px;
+
+            .arrow_up {
+                width: 0px;
+                height: 0px;
+                border-left: 12px solid transparent;
+                border-right: 12px solid transparent;
+                border-bottom: 12px solid #fff;
+                position: absolute;
+                top: -11px;
+                left: 75px;
+
+            }
 
             .titleContentNotify {
                 color: #000;

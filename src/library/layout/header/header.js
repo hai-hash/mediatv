@@ -292,13 +292,14 @@ const Header = () => {
                     }
 
                     <div className={styles.contentNotify}>
+                        <div className={styles.arrow_up}></div>
                         <p className={styles.titleContentNotify}>Thông Báo Mới Nhận</p>
                         <div className={styles.listNotify}>
                             {
                                 getListNotify()
                             }
                         </div>
-                        <p className={styles.viewAll}>Xem Tất Cả</p>
+                        <p className={styles.viewAll} onClick={onToNotify}>Xem Tất Cả</p>
                     </div>
 
                 </div>

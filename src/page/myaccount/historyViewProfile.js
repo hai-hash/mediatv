@@ -17,6 +17,7 @@ const HistoryViewProfile = () => {
                 setData(res);
                 setLoading(false);
             } catch (error) {
+                setLoading(false);
                 console.log(error);
             }
         }
