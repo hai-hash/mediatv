@@ -12,6 +12,7 @@ const PublicContextProvider = ({ children }) => {
     const [accountSelect, setAccountSelect] = useState();
     const [countrySelect, setCountrySelect] = useState();
     const [loading, setLoading] = useState(false);
+    const [isLoadingFollow, setIsLoadingFollow] = useState(true);
     const publicContextData = {
         isLogin,
         idToken,
@@ -33,6 +34,8 @@ const PublicContextProvider = ({ children }) => {
         setCountrySelect,
         loading,
         setLoading,
+        isLoadingFollow,
+        setIsLoadingFollow
     }
 
     return (

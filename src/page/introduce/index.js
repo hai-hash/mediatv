@@ -21,7 +21,7 @@ const Introduct = () => {
     const [activeShare, setActiveShare] = useState(false);
     let { id } = useParams();
     const history = useHistory();
-    const { infoAccount } = useContext(PublicContext);
+    const { infoAccount, setIsLoadingFollow } = useContext(PublicContext);
     const [star, setStar] = useState({ valueStarTb: 0, total: 0 });
     const [starCurren, setStarCurren] = useState(0);
     const [activePayment, setActivePayment] = useState(false);
@@ -57,8 +57,8 @@ const Introduct = () => {
         fetchFilmId();
         const checkFollow = async () => {
             try {
-                const response = await followApi.checkFollow(id, infoAccount?.username);
-                console.log("Gía trị nhận lại là", response);
+                //UPDATE DATE 7/9/2002
+                const response = await followApi.checkFollow(id);
                 if (response?.data === false) {
                     setFollowed(response?.data)
                 }
@@ -180,9 +180,11 @@ const Introduct = () => {
         if (token) {
             const changeFollow = async () => {
                 try {
-                    const res = await followApi.addFollow(id, infoAccount.username);
+                    //UPDATE DATE 7/9/2022
+                    const res = await followApi.addFollow(id);
                     console.log(res);
                     setFollowed(true);
+                    setIsLoadingFollow(true);
                     toasts.notifySuccess("Bạn đã theo dõi phim");
                 } catch (error) {
                     console.log(error);
@@ -192,9 +194,11 @@ const Introduct = () => {
             }
             const deleteFollow = async () => {
                 try {
-                    const res = await followApi.deleteFollow(id, infoAccount.username);
+                    //UPDATE DATE 7/9/2022
+                    const res = await followApi.deleteFollow(id);
                     console.log(res);
                     setFollowed(false);
+                    setIsLoadingFollow(true);
                     toasts.notifySuccess("Bỏ theo dõi thành công");
 
                 } catch (error) {

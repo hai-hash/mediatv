@@ -1,16 +1,24 @@
 import axiosClient from "./../axiosClient";
 import * as urls from './followUrl';
 const followApi = {
-    addFollow: (idFilm, username) => {
-        const url = `${urls.BASE_FOLLOW}/${idFilm}/${username}`;
+    //UPDATE DATE 7/9/2022
+    addFollow: (idFilm) => {
+        const url = `${urls.BASE_FOLLOW}/${idFilm}`;
         return axiosClient.post(url, {});
     },
-    deleteFollow: (idFilm, username) => {
-        const url = `${urls.BASE_FOLLOW}/${idFilm}/${username}`
+    //UPDATE DATE 7/9/2022
+    deleteFollow: (idFilm) => {
+        const url = `${urls.BASE_FOLLOW}/${idFilm}`
         return axiosClient.delete(url);
     },
-    checkFollow: (idFilm, username) => {
-        const url = `${urls.CHECK_FOLLOW}/${idFilm}/${username}`;
+    //UPDATE DATE 7/9/2022
+    checkFollow: (idFilm) => {
+        const url = `${urls.CHECK_FOLLOW}/${idFilm}`;
+        return axiosClient.get(url);
+    },
+    //ADD DATE 7/9/2022
+    getFollow: () => {
+        const url = `${urls.GET_FOLLOW}`;
         return axiosClient.get(url);
     }
 

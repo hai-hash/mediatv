@@ -16,6 +16,7 @@ import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognitio
 import filmApi from '../../../api/film/filmApi';
 import * as types from './../../../handler/profile/profile';
 import SockJsClient from 'react-stomp';
+import followApi from '../../../api/follow/followApi';
 
 const SOCKET_URL = 'https://file-managementt.herokuapp.com/api/public/ws-message';
 const Header = () => {
@@ -24,13 +25,14 @@ const Header = () => {
     const [activeSignIn, setActiveSignIn] = useState(false);
     const [activeFireBase, setActiveFireBase] = useState(false);
     const [dataFormSignUp, setDataFormSignUp] = useState({});
-    const { isLogin, infoAccount, setIsLogin } = useContext(PublicContext);
+    const { isLogin, infoAccount, setIsLogin, isLoadingFollow, setIsLoadingFollow } = useContext(PublicContext);
     const [dataSearch, setDataSearch] = useState("");
     const [activePayment, setActivePayment] = useState(false);
     const [activeRecommend, setRecommend] = useState(false);
     const [dataRecommend, setDataRecommend] = useState([]);
     const [countNotify, setCountNotify] = useState(0);
     const [listNotify, setListNotify] = useState([]);
+    const [listIdFollow, setListIdFollow] = useState([]);
     const commands = [
         {
             command: ["*"],
@@ -39,6 +41,21 @@ const Header = () => {
     ]
     const [contentRecord, setContentRecord] = useState("");
     const { transcript, listening } = useSpeechRecognition({ commands });
+    useEffect(() => {
+        const getFollowByUserCurrent = async () => {
+            try {
+                const res = await followApi.getFollow();
+                setListIdFollow(res);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        if (isLoadingFollow === true) {
+            getFollowByUserCurrent();
+            setIsLoadingFollow(false);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isLoadingFollow])
     useEffect(() => {
         if (contentRecord !== "") {
             setDataSearch("");
@@ -114,12 +131,12 @@ const Header = () => {
         let result = null;
         if (listNotify.length > 0) {
             result = listNotify.map((item, index) => {
-                return <div className={styles.itemNotify}>
+                return <div className={styles.itemNotify} key={index}>
                     <div className={styles.imageNotify}>
                     </div>
                     <div className={styles.contentItemNotify}>
-                        <div className={styles.titleNotifyItem}>Ra tập phim mới</div>
-                        <div className={styles.contentNotifyItemDetail}>{item?.message}</div>
+                        <div className={styles.titleNotifyItem}>{item?.titleNotify}</div>
+                        <div className={styles.contentNotifyItemDetail}>{item?.contentNotify}</div>
                     </div>
                 </div>
             })
@@ -212,6 +229,25 @@ const Header = () => {
 
     }
 
+    const renderSocketNotifyFollow = () => {
+        let result = null
+        if (listIdFollow && listIdFollow.length) {
+            result = listIdFollow.filter(item => item.id !== null).map((item, index) => {
+                return <div key={index}>
+                    <SockJsClient
+                        url={SOCKET_URL}
+                        topics={[`/topic/message/notify/${item.id}`]}
+                        onConnect={console.log("Connect Notify !")}
+                        onDisconnect={console.log("Disconnected!")}
+                        onMessage={(msg) => onMessageReceived(msg)}
+                        debug={false}
+                    />
+                </div>
+            })
+        }
+        return result;
+    }
+
     return (
         <>
             <div className={styles.header}>
@@ -232,32 +268,34 @@ const Header = () => {
                     <div>
                         <SockJsClient
                             url={SOCKET_URL}
-                            topics={[`/topic/message/notify`]}
+                            topics={[`/topic/message/notify/all`]}
                             onConnect={console.log("Connect Notify !")}
                             onDisconnect={console.log("Disconnected!")}
                             onMessage={(msg) => onMessageReceived(msg)}
                             debug={false}
                         />
                     </div>
+                    {isLogin ?
+                        <div>
+                            <SockJsClient
+                                url={SOCKET_URL}
+                                topics={[`/topic/message/notify/${infoAccount.username ? infoAccount.username : 'user'}`]}
+                                onConnect={console.log("Connect Notify !")}
+                                onDisconnect={console.log("Disconnected!")}
+                                onMessage={(msg) => onMessageReceived(msg)}
+                                debug={false}
+                            />
+                        </div> : null
+                    }
+                    {isLogin ?
+                        renderSocketNotifyFollow() : null
+                    }
+
                     <div className={styles.contentNotify}>
                         <p className={styles.titleContentNotify}>Thông Báo Mới Nhận</p>
                         <div className={styles.listNotify}>
                             {
                                 getListNotify()
-                                // listNotify.map(item => {
-
-                                //     return <>
-                                //         <div className={styles.itemNotify}>
-                                //             <div className={styles.imageNotify}>
-                                //             </div>
-                                //             <div className={styles.contentItemNotify}>
-                                //                 <div className={styles.titleNotifyItem}>Ra tập phim mới</div>
-                                //                 <div className={styles.contentNotifyItemDetail}>{item?.message}</div>
-                                //             </div>
-                                //         </div>
-
-                                //     </>
-                                // })
                             }
                         </div>
                         <p className={styles.viewAll}>Xem Tất Cả</p>
