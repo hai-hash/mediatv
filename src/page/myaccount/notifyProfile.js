@@ -27,10 +27,14 @@ const NotifyProfile = () => {
 
     const renderElementNotify = () => {
         let result = null;
+        const default_image = "https://media.forgecdn.net/avatars/67/43/636163084771207853.png";
         if (listNotify.length > 0) {
             result = listNotify.map((item, index) => {
+                let urlImage = item?.urlImage ? item.urlImage : default_image;
                 return <div className={styles.notify_item} key={index}>
-                    <div className={styles.notify_icon}></div>
+                    <div className={styles.notify_icon}>
+                        <img src={urlImage} />
+                    </div>
                     <div className={styles.notify_detail}>
                         <div className={styles.notify_title}>
                             {item?.titleNotify}

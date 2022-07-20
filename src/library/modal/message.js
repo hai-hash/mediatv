@@ -167,6 +167,11 @@ const Message = ({ activeMessage, activeNotify }) => {
     const onEmojiClick = (event, emojiObject) => {
         setChosenEmoji(emojiObject);
     };
+    const onKeyEnter = (event) => {
+        if (event.key === "Enter") {
+            onSender();
+        }
+    }
     return (
         <div className={`${activeMessage ? styles.activeMessage : null} ${styles.content_message}`}>
             <div className={styles.numberRoom}> Phòng Chat {numberRoom}</div>
@@ -174,7 +179,7 @@ const Message = ({ activeMessage, activeNotify }) => {
                 {displayMessages(data)}
 
             </ul>
-            <input type="text" name="contentMessage" className={styles.contentMessage} placeholder="Aa" required value={typedMessage} onChange={event => setTypedMessage(event.target.value)} />
+            <input type="text" name="contentMessage" className={styles.contentMessage} placeholder="Aa" required value={typedMessage} onChange={event => setTypedMessage(event.target.value)} onKeyDown={onKeyEnter} />
             <IoMdSend className={styles.icon_send} onClick={onSender} />
             <FaExchangeAlt className={styles.change_room} onClick={onChangeRoom} />
             <MdOutlineInsertEmoticon className={styles.icon_emoji} onClick={onActiveEmoji} />

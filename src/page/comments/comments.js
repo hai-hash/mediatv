@@ -211,6 +211,12 @@ const Comments = ({ id }) => {
         }
     }
 
+    const onKeyEnter = (event) => {
+        if (event.key === "Enter") {
+            sendComment();
+        }
+    }
+
     return (
         <div className={styles.wap_comment}>
             <div className={styles.count_comment}>
@@ -220,7 +226,7 @@ const Comments = ({ id }) => {
                 <div className={styles.avatar_comment}>{getName(infoAccount?.fullName ? infoAccount?.fullName : "người dùng")}</div>
                 <div className={styles.input_comment}>
                     <form autoComplete="off">
-                        <input type="text" name="contentComment" value={comment?.contentComment} placeholder="Nội dung bình luận" onChange={onAddComment} required />
+                        <input type="text" name="contentComment" value={comment?.contentComment} placeholder="Nội dung bình luận" onChange={onAddComment} onKeyDown={onKeyEnter} required />
                         <IoMdSend className={styles.icon_send} onClick={sendComment} />
                     </form>
 
