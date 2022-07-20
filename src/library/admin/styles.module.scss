@@ -1,90 +1,101 @@
-.wap_menu{
+.wap_menu {
     background-color: black;
     color: rgb(214, 209, 209);
     font-size: 20px;
     box-sizing: border-box;
-    height: 750px;
+    height: 100vh;
     border: 1px solid #ffff;
     overflow-y: auto;
-    
-        /* width */
-        &::-webkit-scrollbar {
-            width: 2px;
-        }
-        
-        /* Track */
-        &::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        
-        /* Handle */
-        &::-webkit-scrollbar-thumb {
-            background: #888;
-        }
-        
-        /* Handle on hover */
-        &::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-    img{
+
+    /* width */
+    &::-webkit-scrollbar {
+        width: 2px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    img {
         width: 100%;
     }
 }
 
-.element{
+.element {
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 10px;
-    &:hover{
+
+    &:hover {
         color: #ffff;
     }
-    .title{
+
+    .title {
         position: relative;
         padding-left: 20px;
         display: flex;
         flex-direction: row;
         cursor: pointer;
-        .icon{
+
+        .icon {
             display: flex;
             justify-content: center;
             align-items: center;
-        
+
         }
-        h5{
+
+        h5 {
             margin-left: 20px;
             margin-bottom: 0px;
             margin-right: 20px;
             font-size: 18px;
         }
-        span{
+
+        span {
             position: absolute;
             top: 0;
             right: 3px;
         }
     }
-    .element_menu{
+
+    .element_menu {
         display: none;
         padding-left: 70px;
         padding-top: 20px;
-       margin-bottom: 0px;
-        li{
+        margin-bottom: 0px;
+
+        li {
             list-style: none;
             cursor: pointer;
         }
     }
-    .active{
+
+    .active {
         display: block;
     }
 }
 
-.body{
+.body {
     // min-height: 850px;
     background-color: #ddd;
-    .header{
+
+    .header {
         background-color: #fff;
         min-height: 50px;
         position: relative;
-        .icon_account{
+
+        .icon_account {
             position: absolute;
             width: 50px;
             height: 50px;
@@ -96,7 +107,7 @@
     }
 }
 
-.toLink{
+.toLink {
     color: #fff;
     text-decoration: none;
 }
