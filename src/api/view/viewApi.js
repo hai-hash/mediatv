@@ -1,4 +1,4 @@
-import axiosClient from "./../axiosClient";
+import axiosClient from "../axiosClient";
 import * as urls from './urlViewApi';
 const viewApi = {
     getAll: (params) => {

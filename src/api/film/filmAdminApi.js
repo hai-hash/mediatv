@@ -1,4 +1,4 @@
-import axiosClient from "./../axiosClient";
+import axiosClient from "../axiosClient";
 import * as urls from './urlFilmApi';
 const filmAdminApi = {
     getAll: (params) => {

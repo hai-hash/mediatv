@@ -1,4 +1,4 @@
-import axiosClient from "./../axiosClient";
+import axiosClient from "../axiosClient";
 import * as urls from './urlCountryApi';
 const countryAdminApi = {
     getAll: (params) => {

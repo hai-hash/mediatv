@@ -1,37 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Row, Col } from 'reactstrap';
 import styles from './styles.module.scss';
-import accountApi from '../../api/account/accountApi';
-import * as toasts from './../../library/toast/toast';
+import AccountAddUtils from './utils/account.add.utils';
 const AccountAdd = () => {
-    const [data, setData] = useState({ role: "USER" });
+    const {
+        data,
+        onChangeForm,
+        onRole,
+        onSaveFilm
+    } = AccountAddUtils();
 
-    const onChangeForm = (e) => {
-        var name = e.target.name;
-        var value = e.target.value;
-        setData({ ...data, [name]: value })
 
-    }
-
-    const onSaveFilm = (e) => {
-        e.preventDefault();
-        const createNewAccount = async () => {
-            try {
-                const res = await accountApi.createUser(data);
-                console.log(res);
-                toasts.notifySuccess("thêm account thành công");
-            } catch (error) {
-                console.log(error);
-                toasts.notifyError("thêm account thất bại");
-            }
-        }
-        createNewAccount();
-    }
-    const onRole = (e) => {
-        var name = e.target.name;
-        var value = e.target.value;
-        setData({ ...data, [name]: value })
-    }
     return (
         <div className={styles.form} onSubmit={onSaveFilm}>
 
@@ -63,7 +42,7 @@ const AccountAdd = () => {
                         </div>
                     </Col >
                     <Col className={styles.col} xs={12}>
-                        <select name="role" className="form-control" select={data?.role} onChange={onRole} required="required">
+                        <select name="role" className="form-control" data-select={data?.role} onChange={onRole} required>
                             <option value="USER">USER</option>
                             <option value="ADMIN">ADMIN</option>
                             <option value="VIP">VIP</option>

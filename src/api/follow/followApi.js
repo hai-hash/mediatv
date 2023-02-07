@@ -1,4 +1,4 @@
-import axiosClient from "./../axiosClient";
+import axiosClient from "../axiosClient";
 import * as urls from './followUrl';
 const followApi = {
     //UPDATE DATE 7/9/2022

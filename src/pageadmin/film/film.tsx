@@ -2,11 +2,12 @@ import FilmDisplay from './firmdisplay';
 import React, { useState } from 'react'
 import styles from './styles.module.scss';
 import FilmAdd from './filmadd';
-import * as types from './../../handler/video/typeFilm';
+import * as types from '../../handler/video/typeFilm';
 import DetailFilm from './detail';
 import FilmEdit from './filmEdit';
-export default function Film() {
-    const [status, setStatus] = useState(types.DISPLAY);
+import FilmUtils from './utils/film.utils';
+const Film = () =>{
+    const [status, setStatus] = useState<String>(types.DISPLAY);
     const [id, setId] = useState(0);
     const genData = () => {
         switch (status) {
@@ -20,7 +21,7 @@ export default function Film() {
                 return <FilmEdit />
 
             default:
-                return <FilmDisplay />
+                return <FilmDisplay setStatus={setStatus} setId={setId}/>
         }
     }
     const onAdd = () => {
@@ -45,4 +46,5 @@ export default function Film() {
         </div>
     )
 }
+export default Film;
 

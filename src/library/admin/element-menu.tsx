@@ -4,7 +4,10 @@ import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { AiFillHome, AiFillSwitcher, AiOutlineComment, AiFillEye } from "react-icons/ai";
 import { MdAccountCircle } from "react-icons/md";
 import { Link } from "react-router-dom";
-export default function ElementMenu({ item }) {
+interface Props {
+    item: any
+}
+export default function ElementMenu({ item }: Props) {
     const [active, setActive] = useState(false);
 
     const onActive = () => {
@@ -13,7 +16,7 @@ export default function ElementMenu({ item }) {
     const DisplayItem = () => {
         let result = null;
         if (item.element.length > 0) {
-            result = item.element.map((i, index) => {
+            result = item.element.map((i: any, index: any) => {
                 return <Link className={styles.toLink} to={i.url} key={index}><li>{i.title}</li></Link>
             })
         }

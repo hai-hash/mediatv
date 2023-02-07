@@ -1,28 +1,36 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, ChangeEvent } from 'react';
 import { Row, Col } from 'reactstrap';
 import styles from './styles.module.scss';
 import accountApi from '../../api/account/accountApi';
 import { PublicContext } from '../../publicContexts/contexts';
-import * as toasts from './../../library/toast/toast';
+import * as toasts from '../../library/toast/toast';
+import { Account } from './utils/account.types';
 
-const AccountEdit = () => {
-    const [data, setData] = useState({ fullName: "", email: "", numberPhone: "", username: "", role: "USER" });
-    const { accountSelect } = useContext(PublicContext);
+interface Props {
+    accountSelected: Account;
+}
+
+
+const AccountEdit = ({ accountSelected }: Props) => {
+    const [data, setData] = useState<Account>({ id: 0, fullName: "", email: "", numberPhone: "", username: "", role: "USER", status: false });
 
 
     useEffect(() => {
-        setData(accountSelect);
-    }, [accountSelect])
+        setData(accountSelected);
+    }, [accountSelected])
+    useEffect(() => {
+        console.log(accountSelected);
+    }, [])
 
-    const onChangeForm = (e) => {
-        var name = e.target.name;
-        var value = e.target.value;
+    const onChangeForm = (event: React.ChangeEvent<HTMLInputElement>) => {
+        var name = event.target.name;
+        var value = event.target.value;
         setData({ ...data, [name]: value })
 
     }
 
-    const onSaveFilm = (e) => {
-        e.preventDefault();
+    const onSaveFilm = (event: React.FormEvent<HTMLDivElement>) => {
+        event.preventDefault();
         const updateNewAccount = async () => {
             try {
                 const res = await accountApi.updateUser(data, data?.id);
@@ -35,9 +43,9 @@ const AccountEdit = () => {
         }
         updateNewAccount();
     }
-    const onRole = (e) => {
-        var name = e.target.name;
-        var value = e.target.value;
+    const onRole = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        var name = event.target.name;
+        var value = event.target.value;
         setData({ ...data, [name]: value })
     }
     return (
@@ -66,7 +74,7 @@ const AccountEdit = () => {
                         </div>
                     </Col >
                     <Col className={styles.col} xs={12}>
-                        <select name="role" className="form-control" select={data?.role} onChange={onRole} required="required">
+                        <select name="role" className="form-control" data-select={data?.role} onChange={onRole} required>
                             <option value="USER">USER</option>
                             <option value="ADMIN">ADMIN</option>
                             <option value="VIP">VIP</option>

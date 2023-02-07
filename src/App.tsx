@@ -7,6 +7,7 @@ import { PublicContext } from './publicContexts/contexts';
 import { ToastContainer } from 'react-toastify';
 import AccountLayout from './page/myaccount/accountLayout';
 import NotFound from './library/notfound/notFound';
+import "antd/dist/antd.css";
 function App() {
   const { infoAccount } = useContext(PublicContext);
   return (

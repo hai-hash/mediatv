@@ -2,10 +2,9 @@
 import React from 'react'
 import styles from './styles.module.scss';
 import ElementMenu from './element-menu';
-import MenuUtils from './menu-utils';
+import {menu} from '../../constant/common';
 
-export default function Menu(){
-   const {menu} = MenuUtils();
+const Menu = () =>{
     const DisplayMenu = () =>{
         let result = null;
         if(menu.length > 0){
@@ -22,3 +21,4 @@ export default function Menu(){
         </div>
     )
 }
+export default Menu;

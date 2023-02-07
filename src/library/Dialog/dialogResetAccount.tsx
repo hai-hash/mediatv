@@ -1,25 +1,21 @@
 import React from 'react'
 import { Button, Modal, ModalBody, ModalFooter } from 'reactstrap'
 import accountApi from '../../api/account/accountApi'
-import * as notifys from './../../library/toast/toast';
+import * as notifys from '../toast/toast';
 import { AiFillWarning } from 'react-icons/ai';
+import { Account } from '../../page/account/utils/account.types';
+
+interface Props {
+    statusDialog: boolean,
+    onStatusDialog: () => void,
+    accountSelected: Account,
+    onResetPassWord: (username: string) => void
+}
 
 
-const DialogResetAccount = ({ statusDialog, onStatusDialog, accountSelected }) => {
-    const onReset = () => {
-        const resetPassWord = async () => {
-            try {
-                const res = await accountApi.resetPassWord(accountSelected);
-                console.log(res);
-                notifys.notifySuccess("Reset mật khẩu thành công !");
-                onStatusDialog();
-            } catch (error) {
-                console.log(error);
-                notifys.notifyError("Gửi yêu cầu thất bại");
-                onStatusDialog();
-            }
-        }
-        resetPassWord();
+const DialogResetAccount = ({ statusDialog, onStatusDialog, accountSelected, onResetPassWord }: Props) => {
+    const onReset = async () => {
+        await onResetPassWord(accountSelected.username);
     }
     return (
         <div>

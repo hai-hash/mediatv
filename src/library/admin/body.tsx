@@ -7,7 +7,7 @@ import EpisodesAdmin from '../../pageadmin/episodes/episodes';
 import { Switch, Route } from "react-router-dom";
 import NotFound from './notfound';
 // import HomeAdminSub from '../../pageadmin/home/home';
-import CommentAdmin from './../../pageadmin/comment/comment';
+import CommentAdmin from '../../pageadmin/comment/comment';
 import ViewAdmin from '../../pageadmin/view/view';
 import Account from '../../page/account/account';
 import Evaluate from '../../pageadmin/evaluate/evaluate';
@@ -17,7 +17,7 @@ import TypeTransaction from '../../pageadmin/typetransaction/typeTransaction';
 import { useHistory } from 'react-router-dom';
 import { useContext } from 'react';
 import { PublicContext } from '../../publicContexts/contexts';
-import * as toasts from './../toast/toast';
+import * as toasts from '../toast/toast';
 export default function BodyAdmin() {
     const history = useHistory();
     const { setIsLogin } = useContext(PublicContext);
